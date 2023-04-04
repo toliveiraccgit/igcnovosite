@@ -1,0 +1,398 @@
+.capitalSolutionContainer {
+  .reviewsContainer {
+    background-color: #f5f5f5;
+    margin-top: 80px;
+
+    .theContainer {
+      height: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .top {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        padding-top: 40px;
+        p {
+          font-weight: 500;
+          font-size: 28px;
+          line-height: 42px;
+          text-transform: lowercase;
+          color: #222f44;
+          position: relative;
+        }
+
+        .slicks {
+          display: flex;
+          gap: 20px;
+          @media (max-width: 1024px) {
+            display: none;
+          }
+
+          button {
+            border: none;
+            background: none;
+            cursor: pointer;
+          }
+        }
+      }
+      .rev {
+        // display: flex;
+        // align-items: center;
+        // justify-content: space-between;
+        width: 100%;
+      }
+    }
+  }
+
+  .bannerContainer {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    p {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 30px;
+      text-transform: lowercase;
+      color: #ffffff;
+
+      @media (max-width: 1024px) {
+        font-size: 16px;
+      }
+    }
+
+    img {
+      max-height: 400px;
+      min-height: 300px;
+
+      @media (max-width: 1024px) {
+        position: relative;
+        right: 50%;
+      }
+    }
+
+    h3 {
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 44px;
+      text-transform: lowercase;
+      color: #ffffff;
+      width: 50%;
+
+      @media (max-width: 1024px) {
+        font-size: 25px;
+        width: 100%;
+      }
+    }
+    .theContainer {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+    }
+  }
+
+  .nossosDiferenciais {
+    margin-top: 80px;
+    margin-bottom: 80px;
+
+    @media (max-width: 1024px) {
+      margin: 20px 0;
+    }
+
+    h4 {
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 42px;
+      text-transform: lowercase;
+      color: #222f44;
+      margin-bottom: 30px;
+    }
+
+    .bottom {
+      display: flex;
+
+      @media (max-width: 764px) {
+        display: block;
+        margin-left: 15px;
+      }
+
+      ul {
+        list-style: none;
+
+        li {
+          font-weight: 600;
+          font-size: 22px;
+          line-height: 33px;
+          color: #222f44;
+          display: flex;
+          align-items: center;
+          margin-bottom: 30px;
+
+          @media (max-width: 900px) {
+            font-size: 16px;
+          }
+
+          img {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .transactionsContainer {
+    // margin-top: 80px;
+
+    background: #f5f5f5;
+
+    .theContainer {
+      .top {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 40px;
+        .left {
+          display: flex;
+          align-items: center;
+
+          h3 {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 28px;
+            line-height: 42px;
+            color: #222f44;
+
+            @media (max-width: 764px) {
+              font-size: 22px;
+            }
+          }
+
+          .filters {
+            select {
+              margin-left: 30px;
+            }
+          }
+
+          select {
+            width: 250px;
+            height: 42px;
+            border-radius: 2px;
+            border: 1px solid rgba(255, 255, 255, 1);
+          }
+        }
+
+        .slicks {
+          display: flex;
+          gap: 20px;
+
+          @media (max-width: 1024px) {
+            display: none;
+          }
+
+          button {
+            border: none;
+            background: none;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .bottom {
+        margin-top: 40px;
+        width: 100%;
+        padding-bottom: 60px;
+      }
+    }
+  }
+
+  .specialistContainer {
+    .theContainer {
+      padding-top: 80px;
+      border-top: 1px solid #e9eaec;
+
+      .top {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 40px;
+        .left {
+          display: flex;
+          align-items: center;
+
+          h3 {
+            font-weight: 500;
+            font-size: 28px;
+            line-height: 42px;
+            color: #222f44;
+
+            @media (max-width: 764px) {
+              font-size: 22px;
+            }
+          }
+
+          .filters {
+            select {
+              margin-left: 30px;
+            }
+          }
+
+          select {
+            width: 250px;
+            height: 42px;
+            border-radius: 2px;
+            border: 1px solid rgba(255, 255, 255, 1);
+          }
+        }
+
+        .slicks {
+          display: flex;
+          gap: 20px;
+
+          @media (max-width: 1024px) {
+            display: none;
+          }
+
+          button {
+            border: none;
+            background: none;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .bottom {
+        margin-top: 40px;
+        width: 100%;
+        padding-bottom: 80px;
+      }
+    }
+  }
+
+  .containerForm {
+    display: flex;
+    margin-bottom: 80px;
+
+    .theContainer {
+      display: flex;
+      border-top: 1px solid #e9eaec;
+      padding-top: 40px;
+
+      @media (max-width: 1024px) {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .leftContainer {
+        h3 {
+          font-weight: 500;
+          font-size: 28px;
+          line-height: 42px;
+          color: #222f44;
+          width: 85%;
+        }
+
+        p {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 21px;
+          color: #7a828f;
+          width: 90%;
+
+          @media (max-width: 670px) {
+            width: 100%;
+          }
+
+          span {
+            color: #222f44;
+            text-decoration-line: underline;
+          }
+        }
+      }
+
+      .form {
+        @media (max-width: 675px) {
+          width: 100%;
+        }
+
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+
+          .form1 {
+            display: flex;
+            gap: 40px;
+
+            @media (max-width: 675px) {
+              gap: 20px;
+              flex-wrap: wrap;
+            }
+
+            .form11 {
+              @media (max-width: 670px) {
+                width: 100%;
+              }
+
+              label {
+                display: block;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 18px;
+                color: #222f44;
+              }
+              input {
+                background: #ffffff;
+                border: 1px solid #e9eaec;
+                border-radius: 2px;
+                height: 40px;
+                width: 315px;
+                padding: 10px 10px;
+
+                @media (max-width: 670px) {
+                  width: 100%;
+                }
+              }
+            }
+          }
+          .messageForm {
+            label {
+              display: block;
+              font-weight: 400;
+              font-size: 12px;
+              line-height: 18px;
+
+              color: #222f44;
+            }
+            input {
+              width: 100%;
+              height: 140px;
+              border: 1px solid #e9eaec;
+            }
+            textarea {
+              width: 100%;
+              height: 140px;
+              border: 1px solid #e9eaec;
+              resize: none;
+            }
+          }
+          .buttonForm {
+            display: flex;
+            justify-content: flex-end;
+            button {
+              background-color: #222f44;
+              font-size: 14px;
+              line-height: 21px;
+              text-transform: lowercase;
+              color: #ffffff;
+              border: none;
+              width: 165px;
+              height: 41px;
+              border-radius: 6px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

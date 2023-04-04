@@ -1,0 +1,43 @@
+.specialistCardContainer {
+  display: flex;
+  background-color: #f5f5f5;
+  max-width: 325px;
+  padding: 15px 10px;
+
+  img {
+    max-width: 90px;
+    max-height: 90px;
+  }
+
+  .rightContainer {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+
+    @media (max-width: 450px){
+      margin-left: 5px;
+    }
+
+    h4 {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      color: #222f44;
+      margin-bottom: 15px;
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+      color: #7a828f;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+}

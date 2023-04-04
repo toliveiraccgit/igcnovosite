@@ -1,0 +1,71 @@
+.newsCardContainer {
+  max-width: 400px;
+  background-color: #fff;
+  padding: 25px;
+
+  @media (max-width: 1240px) {
+    max-width: 325px;
+  }
+
+  @media (max-width: 1024px) {
+    max-width: 320px;
+  }
+
+  @media (max-width: 772px) {
+    max-width: 280px;
+  }
+
+  @media (max-width: 400px) {
+    max-width: 190px;
+  }
+
+  h4 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #222f44;
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #7a828f;
+    margin-top: 20px;
+  }
+
+  a {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+    text-decoration-line: underline;
+    color: #222f44;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 25px;
+
+    &::after {
+      content: "";
+      display: flex;
+      width: 20px;
+      height: 20px;
+      background-repeat: no-repeat;
+      background-image: url(../../assets/services/rightarrow.svg);
+      background-position-y: 50%;
+      background-position-x: 60%;
+    }
+  }
+
+  .short {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: auto;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    span {
+      color: #000 !important;
+    }
+  }
+}

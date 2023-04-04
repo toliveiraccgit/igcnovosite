@@ -1,0 +1,87 @@
+.NoticiaSelecionadaContainer {
+  .topPage {
+    background: #f5f5f5;
+    font-family: "Poppins";
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 54px;
+    text-transform: lowercase;
+    height: 94px;
+    display: flex;
+    align-items: center;
+    color: #d3a93d;
+  }
+
+  .NoticiaMain {
+    .theContainer {
+      display: flex;
+      gap: 40px;
+    }
+  }
+
+  .leftContainer {
+    width: 100%;
+    margin-top: 80px;
+
+    @media (max-width: 1024px) {
+      margin-top: 10px;
+    }
+
+    .imgNews {
+      width: 100%;
+    }
+
+    .datetime {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+      color: #7a828f;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .title {
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 42px;
+      color: #222f44;
+    }
+
+    .description {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      color: #7a828f;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+  }
+
+  .rightNewContainer {
+    margin-top: 80px;
+    width: 30%;
+
+    border-left: 1px solid #e9eaec;
+    padding-left: 30px;
+
+    @media (max-width: 1024px) {
+      display: none;
+    }
+
+    .highlights {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 30px;
+      text-transform: lowercase;
+      margin-bottom: 10px;
+    }
+
+    .containerLastnews {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+}

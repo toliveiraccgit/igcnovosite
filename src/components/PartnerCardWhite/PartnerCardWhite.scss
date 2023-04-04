@@ -1,0 +1,45 @@
+.PartnerCardWhiteContainer {
+  width: 257px;
+  height: 487px;
+  background-color: white;
+  padding: 25px;
+
+  .Texts {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: none;
+
+    .title {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      color: #222f44;
+      margin-bottom: 5px;
+    }
+    .subtitle {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      color: #222f44;
+      margin-bottom: 20px;
+    }
+
+    .text {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      color: #7a828f;
+    }
+  }
+}

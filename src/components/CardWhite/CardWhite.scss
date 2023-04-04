@@ -1,0 +1,30 @@
+.CardWhitecontainer{
+
+    width: 300px;
+    height: 220px;
+    background-color: #FFF;
+
+    @media (max-width: 1275px) {
+        width: 230px;
+        height: 300px;
+    }
+
+    .inside{
+        padding: 25px;
+
+        h4{
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            color: #222F44;
+        }
+
+        p{
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            color: #7A828F;
+        }
+    }
+}

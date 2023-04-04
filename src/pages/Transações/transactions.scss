@@ -1,0 +1,142 @@
+.transactionsContainer{
+
+    .bannerContainer{
+        position: relative;
+        overflow-x: hidden;
+        overflow-y: hidden;
+
+        img{
+            width: 100vw;
+        }
+
+        .imgBanner{
+        }
+        .bannerText{
+            .theContainer {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+
+                @media (max-width: 1024px) {
+                    position: inherit;
+                    background-color: #A7ACB4;
+                    margin: 0;
+                    transform: none;
+                }
+
+                h2{
+                    font-weight: 600;
+                    font-size: 36px;
+                    line-height: 44px;
+                    display: flex;
+                    align-items: center;
+                    text-transform: lowercase;
+                    color: #FFFFFF;
+                    margin-bottom: 10px;
+                    @media (max-width: 1024px) {
+                        position: absolute;
+                        top: 20px;
+                        margin: 0px 25px;
+                        font-size: 25px;
+                        white-space: nowrap;
+                    }
+                }
+
+                p{
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 21px;
+                    display: flex;
+                    align-items: center;
+                    text-transform: lowercase;
+
+                    color: #FFFFFF;
+
+                    @media (max-width: 1024px) {
+                        padding: 15px 25px;
+                    }
+
+
+                }
+            }
+        }
+    }
+
+    .caseContainer{
+        margin-top: 80px;
+        .theContainer{
+            .topCase{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                @media (max-width: 1024px) {
+                    display: block;
+                }
+
+            }
+            
+            .caseCardsContainer{
+                display: flex;
+                margin-top: 40px;
+                flex-wrap: wrap;
+                gap: 10px;
+
+                @media (max-width: 1024px){
+                    justify-content: center;
+                }
+
+                @media (max-width: 345px) {
+                    justify-content: center;
+                    
+                }
+
+            }
+        }
+
+        .filterContainer{
+            display: flex;
+            gap: 20px;
+
+            @media (max-width: 1024px) {
+                display: block;     
+            }
+
+            p{
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 21px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                color: #4E5969;
+
+                @media (max-width: 1024px) {
+                    display: none;
+                }
+
+            }
+
+            select{
+                width: 250px;
+                background: #FFFFFF;
+                border: 1px solid #E9EAEC;
+                height: 42px;
+
+                @media (max-width: 1024px) {
+                   width: 100%; 
+                   margin-top: 10px;
+                }
+
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 27px;
+                display: flex;
+                align-items: center;
+
+                color: #222F44;
+                
+            }
+        }
+    }
+}

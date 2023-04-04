@@ -1,0 +1,49 @@
+.headerTop-container {
+  @media (max-width: 992px) {
+    display: none;
+  }
+
+  display: flex;
+  background-color: #222f44;
+  height: 41px;
+  align-items: center;
+  ul {
+    display: flex;
+    list-style: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    text-transform: lowercase;
+    /* $default/white */
+    gap: 30px;
+
+    color: #ffffff;
+
+    a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .divider {
+      color: #4e5969;
+    }
+  }
+  select {
+    background-color: rgba(20, 28, 41, 1);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: auto;
+    text-align: center;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 15px;
+    padding: 0px 10px;
+  }
+
+  .theContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+}

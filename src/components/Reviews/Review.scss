@@ -1,0 +1,30 @@
+.commentContainer {
+    display: flex;
+    width: 370px;
+    gap: 10px;
+    .comments{
+
+        .comment{
+            font-family: 'Poppins';
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 24px;
+            color: #7A828F;
+        }
+
+        .person {
+            margin-top: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            color: #222F44;
+        }
+
+        .brand {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            color: #222F44;
+        }
+    }
+}

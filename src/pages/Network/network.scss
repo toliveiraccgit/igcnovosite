@@ -1,0 +1,184 @@
+.networkContainer{
+    .bannerContainer{
+        position: relative;
+        overflow-x: hidden;
+        overflow-y: hidden;
+
+        img {
+            width: 99.99%;
+        }
+    }
+
+    .bannerText{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+
+        .partner{
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 30px;
+            text-transform: lowercase;
+            color: #FFFFFF;
+        }
+        .bannerTitle{
+            font-weight: 600;
+            font-size: 36px;
+            line-height: 44px;
+            text-transform: lowercase;
+            color: #FFFFFF;
+        }
+
+        .description{
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            text-transform: lowercase;
+            color: #FFFFFF;
+        }
+    }
+
+    .howWorks{
+
+        margin-top: 80px;
+        .theContainer{
+
+            .howworks{
+                font-weight: 500;
+                font-size: 28px;
+                line-height: 42px;
+                text-transform: lowercase;
+                color: #222F44;
+            }
+
+            .how{
+                display: flex;
+                justify-content: space-around;
+                margin-top: 40px;
+            }
+        }
+    }
+
+
+    .reviewsContainer{
+        background-color: #F5F5F5;
+        height: 350px;
+        display: flex;
+        align-items: center;
+        margin-top: 80px;
+        .theContainer {
+
+            .ourClients{
+                font-size: 28px;
+                line-height: 42px;
+                color: #222F44;
+                margin-bottom: 40px;
+            }
+            
+            .rev{
+                display: flex;
+                gap: 80px;
+            }
+        }
+    }
+
+    .containerForm{
+        display: flex;
+
+        margin-top: 80px;
+        margin-bottom: 80px;
+
+        .theContainer{
+            display: flex;
+            .leftContainer{
+
+                h3{
+                    font-weight: 500;
+                    font-size: 28px;
+                    line-height: 42px;
+                    color: #222F44;
+                    width: 45%;
+                }
+    
+                p{
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 21px;
+                    color: #7A828F;
+                    width: 60%;
+    
+                    span {
+                        color: #222F44;
+                        text-decoration-line: underline;
+                    }
+                }
+                
+                
+                
+            }
+
+            .form{
+                form{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 40px;
+    
+                    .form1{
+                        display: flex;
+                        gap: 40px;
+                        .form11{
+                            label{
+                                display: block;
+                                font-weight: 400;
+                                font-size: 12px;
+                                line-height: 18px;
+                                color: #222F44;
+                            }
+                            input{
+                                background: #FFFFFF;
+                                border: 1px solid #E9EAEC;
+                                border-radius: 2px;
+                                height: 40px;
+                                width: 315px;
+                                padding: 10px 10px;
+                            }
+                        }
+                    }
+                    .messageForm{
+                        label{
+                            display: block;
+                            font-weight: 400;
+                            font-size: 12px;
+                            line-height: 18px;
+    
+                            color: #222F44;
+                        }
+                        input {
+                            width: 100%;
+                            height: 140px;
+                            border: 1px solid #E9EAEC;
+                        }
+                    }
+                    .buttonForm{
+                        display: flex;
+                        justify-content: flex-end;
+                        button{
+                            background-color: #222F44;
+                            font-size: 14px;
+                            line-height: 21px;
+                            text-transform: lowercase;
+                            color: #FFFFFF;
+                            border: none;
+                            width: 165px;
+                            height: 41px;
+                            border-radius: 6px;
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+}
