@@ -57,14 +57,6 @@
     background-size: 1rem;
   }
 
-  // .dropdown:active {
-  //   appearance: none;
-  //   background-image: url(../../assets/arrow-up.png);
-  //   background-repeat: no-repeat;
-  //   background-position: right 5px center;
-  //   background-size: 1rem;
-  // }
-
   .dropdown-toggle::after {
     border-top: 0;
     border-right: 0;
@@ -94,23 +86,19 @@
     --bs-dropdown-min-width: 59px;
   }
 
+  .dropdown .dropdown-menu {
+    display: block;
+  }
+
   .dropdown-menu li {
     padding: 4px 12px;
     cursor: pointer;
     width: 80px !important;
   }
 
-  .dropdown-menu li:hover {
-    background-color: #f1f1f1;
-  }
-
-  .dropdown:hover .dropdown-menu {
-    display: block;
-  }
-
   .dropdown-menu li .line {
     padding: 0px 0 4px 0;
-    width: 40px;
+    width: 35px;
     border-bottom: 1px solid #cccccc;
   }
 
@@ -118,8 +106,4 @@
     padding: 0px 0 4px 0;
     border-bottom: none;
   }
-
-  // .dropdown-menu li:nth-child(2) .line {
-  //   border-bottom: none;
-  // }
 }

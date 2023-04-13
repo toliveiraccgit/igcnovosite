@@ -1,8 +1,12 @@
 .PartnerCardWhiteContainer {
-  width: 257px;
-  height: 487px;
+  width: 260px;
+  height: auto;
   background-color: white;
   padding: 25px;
+
+  @media (max-width: 1600px) {
+    width: 270px;
+  }
 
   .Texts {
     overflow-wrap: break-word;
@@ -24,22 +28,27 @@
       font-weight: 600;
       font-size: 16px;
       line-height: 24px;
-      color: #222f44;
-      margin-bottom: 5px;
+      color: #9c9c9c;
+      margin-top: 20px;
+      margin-bottom: 45px;
     }
     .subtitle {
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 21px;
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
       color: #222f44;
-      margin-bottom: 20px;
+      margin-bottom: 45px;
     }
 
     .text {
-      font-weight: 400;
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 500;
       font-size: 14px;
       line-height: 21px;
-      color: #7a828f;
+      color: #7c8390;
     }
   }
 }

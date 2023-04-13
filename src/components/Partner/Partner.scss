@@ -1,31 +1,102 @@
 .PartnerContainerDesktop {
   position: relative;
 
-  .PartnerImg {
-    max-width: 178px;
-    max-height: 200px;
+  .containerImg {
+    position: relative;
+    width: 195px;
+    height: 195px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0 auto;
+
+    .PartnerImg {
+      // max-width: 195px;
+      // max-height: 195px;
+      // width: 100%;
+      // height: 100%;
+      // border-radius: 50%;
+      // margin: 0 auto;
+      width: 100%;
+      height: auto;
+      clip-path: circle(50%);
+    }
+
+    .social {
+      display: none;
+      position: absolute;
+      top: 45%;
+      left: 40%;
+      color: #ffffff;
+    }
+  }
+
+  .containerImg:hover .social {
+    z-index: 9;
+    display: flex;
+    gap: 15px;
+  }
+
+  .containerImg::before {
+    z-index: 8;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 195px;
+    max-height: 195px;
     width: 100%;
     height: 100%;
+    background-color: #222f43;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 50%;
+  }
 
-    // @media (max-width: 476px) {
-    //   width: 100px;
-    //   height: 120px;
-    // }
+  .containerImg:hover::before {
+    opacity: 0.9;
+  }
+
+  .text-area {
+    text-align: center;
+
+    p {
+      font-family: "Poppins";
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      margin: 10px 0 5px 0;
+      color: #222f43;
+    }
+
+    span {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 14px;
+      color: #7c8390;
+    }
   }
 
   .insidePartner {
     @media (max-width: 998px) {
       display: none;
     }
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
-    width: 178px;
-    height: 200px;
+    max-width: 195px;
+    max-height: 195px;
     opacity: 0;
     transition: all 0.3s;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: rgba(211, 169, 61, 0.8);
 
     &:hover {
+      display: block;
       opacity: 1;
     }
 
@@ -55,7 +126,5 @@
         height: 22px;
       }
     }
-
-    background: rgba(211, 169, 61, 0.8);
   }
 }

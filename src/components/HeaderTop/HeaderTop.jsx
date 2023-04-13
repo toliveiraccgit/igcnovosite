@@ -24,8 +24,6 @@ function HeaderTop() {
       });
   }, [locale]);
 
-  console.log(locale);
-
   const handleLocaleChange = (event) => {
     const locale = event.target.value;
     dispatch(set_locale(locale));
@@ -86,7 +84,6 @@ function HeaderTop() {
                     }
                   >
                     {locale_i.name}
-                    {console.log(locale_i.name)}
                   </div>
                 </li>
               ))}

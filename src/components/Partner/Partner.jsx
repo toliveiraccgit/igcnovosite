@@ -3,8 +3,8 @@ import "./Partner.scss";
 
 // TODO: REMOVER ESTA IMAGEM
 
-import EmailIcon from "../../assets/QuemSomos/Email.png";
-import Linkedin from "../../assets/QuemSomos/Linkedin.png";
+import EmailIcon from "../../assets/QuemSomos/Email-White.png";
+import Linkedin from "../../assets/QuemSomos/icon-linkedin-white.png";
 
 import config from "../../config/env";
 
@@ -17,9 +17,22 @@ function Partner({ partner }) {
           src={`${config.api.BASE}${partner?.attributes?.photo?.data?.attributes?.url}`}
           alt=""
         />
+        <div className="social">
+          <a href={"https://www.linkedin.com/in" + partner.attributes.linkedin}>
+            <img className="LinkedinIcon" src={Linkedin} alt="" />
+          </a>
+          <a href={`mailto:${partner.attributes.email}`}>
+            <img className="EmailIcon" src={EmailIcon} alt="" />
+          </a>
+        </div>
       </div>
 
-      <div className="insidePartner">
+      <div className="text-area">
+        <p>{`${partner?.attributes?.name}`}</p>
+        <span>{`${partner?.attributes?.grupo?.data?.attributes?.name}`}</span>
+      </div>
+
+      {/* <div className="insidePartner">
         <div className="top">
           <p className="namePartner">{partner.attributes.name}</p>
         </div>
@@ -31,7 +44,7 @@ function Partner({ partner }) {
             <img className="EmailIcon" src={EmailIcon} alt="" />
           </a>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -23,6 +23,10 @@ import {
 
 import config from "../../config/env";
 
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -52,6 +56,10 @@ function QuemSomos() {
   const [modal, setModalData] = useState({});
   const [modalIsOpen, setIsOpenModal] = useState(false);
 
+  const sliderPartners = useRef(null);
+  const sliderPartnersMobile = useRef(null);
+  const sliderPrinciplesContainers = useRef(null);
+
   function openModal(e, data) {
     e.preventDefault();
 
@@ -62,6 +70,69 @@ function QuemSomos() {
   function closeModal() {
     setIsOpenModal(false);
   }
+
+  const handlePrevClick = () => {
+    sliderPartners.current.slickPrev();
+  };
+
+  const handleNextClick = () => {
+    sliderPartners.current.slickNext();
+  };
+
+  const sliderPartner = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 5,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  const sliderPartnerMobile = {
+    className: "center",
+    centerMode: true,
+    infinite: false,
+    centerPadding: "60px",
+    slidesToShow: 1,
+    speed: 500,
+    rows: 3,
+    slidesPerRow: 1,
+  };
+
+  const sliderPrinciplesContainer = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 0,
+  };
 
   useEffect(() => {
     api_about_us
@@ -90,6 +161,7 @@ function QuemSomos() {
       .catch(() => {
         setPrinciples([]);
       });
+    console.log(partners);
 
     api_group
       .get({ locale })
@@ -99,6 +171,7 @@ function QuemSomos() {
       .catch(() => {
         setGroups([]);
       });
+    console.log(groups);
   }, [locale]);
 
   const unMute = () => {
@@ -114,7 +187,9 @@ function QuemSomos() {
   return (
     <div className="QuemSomosContainer">
       <div className="topPage">
-        <div className="theContainer">{aboutUs && aboutUs.title}</div>
+        <div className="theContainer">
+          <p>{aboutUs && aboutUs.title}</p>
+        </div>
       </div>
 
       <div className="FirstSectionContainer">
@@ -179,44 +254,37 @@ function QuemSomos() {
                 )}
             </h4>
             <p>{aboutUs?.partners?.description}</p>
-            {/* <div className="slicks">
+            <div className="slicks">
               <button onClick={handlePrevClick}>
                 <img src={arrowLeft} alt="" />
               </button>
               <button onClick={handleNextClick}>
                 <img src={arrowRight} alt="" />
               </button>
-            </div> */}
+            </div>
           </div>
 
-          {groups &&
-            groups.map((group) => (
-              <>
-                <div className="bottom">
-                  {partners &&
-                    partners
-                      .filter(
-                        (partner) =>
-                          partner &&
-                          partner.attributes &&
-                          partner.attributes.grupo &&
-                          partner.attributes.grupo.data &&
-                          partner.attributes.grupo.data.id === group.id
-                      )
-                      .map((partner) => (
-                        <a
-                          onClick={(e) =>
-                            isMobile
-                              ? openModal(e, partner)
-                              : console.log("Não é mobile")
-                          }
-                        >
-                          <Partner key={partner.id} partner={partner} />
-                        </a>
-                      ))}
-                </div>
-              </>
-            ))}
+          <div className="slider">
+            <Slider ref={sliderPartners} {...sliderPartner}>
+              {partners &&
+                partners.map((partner) => (
+                  <>
+                    <Partner key={partner.id} partner={partner} />
+                  </>
+                ))}
+            </Slider>
+          </div>
+
+          <div className="slider-mobile">
+            <Slider ref={sliderPartnersMobile} {...sliderPartnerMobile}>
+              {partners &&
+                partners.map((partner) => (
+                  <>
+                    <Partner key={partner.id} partner={partner} />
+                  </>
+                ))}
+            </Slider>
+          </div>
         </div>
       </div>
 
@@ -237,7 +305,19 @@ function QuemSomos() {
           </div>
 
           <div className="bottomMobile">
-            <Accordion flush>
+            <Slider
+              ref={sliderPrinciplesContainers}
+              {...sliderPrinciplesContainer}
+            >
+              {principles &&
+                principles.map((principle) => (
+                  <PartnerCardWhite
+                    key={principle.id}
+                    principle={principle.attributes}
+                  />
+                ))}
+            </Slider>
+            {/* <Accordion flush>
               {principles &&
                 principles.map((item, index) => (
                   <Accordion.Item eventKey={index} key={index}>
@@ -253,7 +333,7 @@ function QuemSomos() {
                     </Accordion.Body>
                   </Accordion.Item>
                 ))}
-            </Accordion>
+            </Accordion> */}
           </div>
         </div>
       </div>
