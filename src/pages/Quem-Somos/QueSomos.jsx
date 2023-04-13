@@ -9,6 +9,8 @@ import Partner from "../../components/Partner/Partner";
 import PartnerCardWhite from "../../components/PartnerCardWhite/PartnerCardWhite";
 import emailQuemSomos from "./assets/emailQuemSomos.png";
 import linkedinQuemSomos from "./assets/linkedinQuemSomos.png";
+import arrowLeft from "../../assets/slider/arrowLeft.svg";
+import arrowRight from "../../assets/slider/arrowRight.svg";
 import "./QuemSomos.scss";
 
 import { useSelector } from "react-redux";
@@ -18,6 +20,8 @@ import {
   api_partners,
   api_principles,
 } from "../../api";
+
+import config from "../../config/env";
 
 const customStyles = {
   content: {
@@ -33,8 +37,6 @@ const customStyles = {
     background: "#D3A93D",
   },
 };
-
-import config from "../../config/env";
 
 function QuemSomos() {
   const refVideo = useRef(null);
@@ -177,15 +179,19 @@ function QuemSomos() {
                 )}
             </h4>
             <p>{aboutUs?.partners?.description}</p>
+            {/* <div className="slicks">
+              <button onClick={handlePrevClick}>
+                <img src={arrowLeft} alt="" />
+              </button>
+              <button onClick={handleNextClick}>
+                <img src={arrowRight} alt="" />
+              </button>
+            </div> */}
           </div>
 
           {groups &&
             groups.map((group) => (
               <>
-                <div className="dividerContainer">
-                  <p className="dividerName">{group.attributes.name}</p>
-                  <div className="divider"></div>
-                </div>
                 <div className="bottom">
                   {partners &&
                     partners

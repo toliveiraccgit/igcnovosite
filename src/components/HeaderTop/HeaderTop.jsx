@@ -10,6 +10,7 @@ function HeaderTop() {
   const dispatch = useDispatch();
   const { locales, locale } = useSelector((state) => state.locales);
   const [header, setHeader] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     dispatch(get_async_locale());
@@ -23,9 +24,20 @@ function HeaderTop() {
       });
   }, [locale]);
 
+  console.log(locale);
+
   const handleLocaleChange = (event) => {
     const locale = event.target.value;
     dispatch(set_locale(locale));
+  };
+
+  const handleDropdownClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleLocaleClick = (locale) => {
+    dispatch(set_locale(locale));
+    setIsOpen(false);
   };
 
   return (
@@ -49,17 +61,38 @@ function HeaderTop() {
             }
           })}
         </ul>
-        <select onChange={handleLocaleChange}>
-          {locales.map((locale_i) => (
-            <option
-              value={locale_i.code}
-              selected={locale_i.code === locale || locale_i.isDefault}
-              key={locale_i.id}
-            >
-              {locale_i.name}
-            </option>
-          ))}
-        </select>
+        <div className="dropdown">
+          <div className="dropdown-toggle" onClick={handleDropdownClick}>
+            {locales.find((loc) => loc.code === locale)?.name}
+          </div>
+          {isOpen && (
+            <ul className="dropdown-menu">
+              {locales.map((locale_i) => (
+                <li
+                  key={locale_i.id}
+                  onClick={() => handleLocaleClick(locale_i.code)}
+                  style={{
+                    display: locale_i.code === locale ? "none" : "block",
+                  }}
+                >
+                  <div
+                    className={
+                      (locale_i.name === "EN" || locale_i.name == "ES") &&
+                      locale != "pt-BR"
+                        ? "line"
+                        : locale == "pt-BR" && locale_i.name === "EN"
+                        ? "line"
+                        : "no-line"
+                    }
+                  >
+                    {locale_i.name}
+                    {console.log(locale_i.name)}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -21,9 +21,8 @@
     margin-top: 80px;
 
     .video {
-      min-width: 295px;
-      max-width: 500px;
-      height: 300px;
+      height: 400px;
+      float: right;
       cursor: pointer;
       @media (max-width: 420px) {
         height: 200px;
@@ -48,6 +47,8 @@
           order: 1;
         }
 
+        width: 50%;
+
         h4 {
           font-weight: 500;
           font-size: 28px;
@@ -66,7 +67,8 @@
           font-size: 14px;
           line-height: 21px;
           color: #7a828f;
-          width: 75%;
+          // width: 75%;
+          margin-right: 25px;
 
           @media (max-width: 998px) {
             width: 100%;
@@ -75,6 +77,7 @@
       }
 
       .left {
+        width: 50%;
         @media (max-width: 998px) {
           display: flex;
           justify-content: center;
@@ -134,6 +137,17 @@
 
           @media (max-width: 720px) {
             font-size: 14px;
+          }
+        }
+        .slicks {
+          display: flex;
+          gap: 20px;
+          float: right;
+
+          button {
+            border: none;
+            background: none;
+            cursor: pointer;
           }
         }
       }

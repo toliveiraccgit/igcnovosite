@@ -37,10 +37,10 @@
 
     a {
       background-color: white;
-      padding: 15px 35px;
+      padding: 15px 20px;
       width: auto;
       height: 50px;
-      border-radius: 6px;
+      border-radius: 9px;
       font-family: "Poppins";
       font-weight: 600;
       font-size: 14px;
@@ -56,18 +56,6 @@
       img {
         margin-left: 10px;
       }
-
-      // &::after {
-      //     content: '';
-      //     width: 14px;
-      //     height: 14px;
-      //     background: url(../../assets/services/rightarrow.svg);
-      //     background-repeat: no-repeat;
-      //     position: absolute;
-      //     top: 55%;
-      //     transform: translateY(-50%);
-      //     right: 15px;
-      // }
     }
   }
 }

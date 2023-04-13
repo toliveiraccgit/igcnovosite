@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import homeBanner from "../../assets/homeBanner.png";
 import rightArrow from "../../assets/homeBanners/arrowRight.png";
 import arrowLeft from "../../assets/slider/arrowLeft.svg";
@@ -62,7 +64,7 @@ function home() {
     speed: 500,
     arrows: false,
     slidesToShow: testimony.length >= 3 ? 3 : testimony.length,
-    slidesToScroll: 1,
+    slidesToScroll: 3,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -70,7 +72,7 @@ function home() {
         breakpoint: 1200,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 3,
+          slidesToScroll: 2,
           infinite: true,
           dots: true,
         },
@@ -79,11 +81,19 @@ function home() {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToScroll: 1,
+          initialSlide: 1,
         },
       },
     ],
+  };
+
+  const handlePrevClick = () => {
+    slider4.current.slickPrev();
+  };
+
+  const handleNextClick = () => {
+    slider4.current.slickNext();
   };
 
   const fourSlider = {
@@ -91,14 +101,16 @@ function home() {
     infinite: true,
     speed: 500,
     arrows: false,
-    slidesToShow: transactions.length >= 5 ? 5 : transactions.length,
-    slidesToScroll: 1,
+    slidesToShow: transactions.length >= 6 ? 6 : transactions.length,
+    slidesToScroll: 6,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
     responsive: [
       {
         breakpoint: 1315,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
+          slidesToShow: 6,
+          slidesToScroll: 6,
           infinite: true,
           dots: false,
         },
@@ -176,7 +188,7 @@ function home() {
         res.data.data.attributes &&
         res.data.data.attributes.transaction &&
         res.data.data.attributes.transaction.transactions &&
-        res.data.data.attributes.transaction.transactions.data.slice(0, 5);
+        res.data.data.attributes.transaction.transactions.data.slice(0, 6);
 
       setTransactions(limitData);
       setTestimony(res.data.data.attributes.testmonys.data);
@@ -214,9 +226,14 @@ function home() {
             <h4>
               {transactions_api_title && transactions_api_title.transaction}
             </h4>
-            <Link to="/transacoes">
-              {transactions_api_title && transactions_api_title.more}
-            </Link>
+            <div className="slicks">
+              <button onClick={handlePrevClick}>
+                <img src={arrowLeft} alt="" />
+              </button>
+              <button onClick={handleNextClick}>
+                <img src={arrowRight} alt="" />
+              </button>
+            </div>
           </div>
           <div className="bottom">
             <Slider ref={slider4} {...fourSlider}>
