@@ -11,6 +11,7 @@ function HeaderTop() {
   const { locales, locale } = useSelector((state) => state.locales);
   const [header, setHeader] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const defaultLocale = locales[0].code;
 
   useEffect(() => {
     dispatch(get_async_locale());
@@ -61,7 +62,7 @@ function HeaderTop() {
         </ul>
         <div className="dropdown">
           <div className="dropdown-toggle" onClick={handleDropdownClick}>
-            {locales.find((loc) => loc.code === locale)?.name}
+            {locales.find((loc) => loc.code === locale)?.name || defaultLocale}
           </div>
           {isOpen && (
             <ul className="dropdown-menu">

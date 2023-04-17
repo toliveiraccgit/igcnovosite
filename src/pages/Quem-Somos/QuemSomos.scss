@@ -113,16 +113,17 @@
       flex-direction: column;
       gap: 40px;
 
-      @media (max-width: 1600px) {
-        margin: 0 45px;
-
+      @media (max-width: 4000px) {
         .slider-mobile {
           display: none;
-
-          .PartnerContainerDesktop {
-            margin: 30px 0;
-          }
         }
+        .PartnerContainerDesktop {
+          margin: 30px 0;
+        }
+      }
+
+      @media (max-width: 1600px) {
+        margin: 0 45px;
       }
 
       @media (max-width: 998px) {
