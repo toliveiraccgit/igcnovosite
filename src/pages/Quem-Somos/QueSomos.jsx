@@ -317,23 +317,6 @@ function QuemSomos() {
                   />
                 ))}
             </Slider>
-            {/* <Accordion flush>
-              {principles &&
-                principles.map((item, index) => (
-                  <Accordion.Item eventKey={index} key={index}>
-                    <Accordion.Header>
-                      {item?.attributes?.title}
-                    </Accordion.Header>
-                    <Accordion.Body>
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: item?.attributes?.description,
-                        }}
-                      ></p>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                ))}
-            </Accordion> */}
           </div>
         </div>
       </div>
