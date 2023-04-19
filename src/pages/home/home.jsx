@@ -101,8 +101,8 @@ function home() {
     infinite: true,
     speed: 500,
     arrows: false,
-    slidesToShow: transactions.length >= 6 ? 6 : transactions.length,
-    slidesToScroll: 6,
+    slidesToShow: transactions.length >= 5 ? 5 : transactions.length,
+    slidesToScroll: 5,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [

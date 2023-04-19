@@ -86,6 +86,10 @@
     .theContainer {
       margin-top: 180px;
 
+      @media (max-width: 450px) {
+        margin-top: 0;
+      }
+
       .top {
         display: flex;
         justify-content: space-between;
@@ -141,6 +145,10 @@
 
   .reviewsContainer {
     margin-top: 180px;
+
+    @media (max-width: 450px) {
+      margin-top: 0;
+    }
 
     .theContainer {
       display: flex;
@@ -203,6 +211,10 @@
         color: #222f44;
         margin-bottom: 65px;
         margin-top: 180px;
+
+        @media (max-width: 450px) {
+          margin-top: 0;
+        }
       }
     }
 

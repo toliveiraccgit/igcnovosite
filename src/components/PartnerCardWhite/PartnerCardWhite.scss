@@ -1,8 +1,9 @@
 .PartnerCardWhiteContainer {
   width: 260px;
-  height: auto;
+  height: 470px;
   background-color: white;
   padding: 25px;
+  overflow: hidden;
 
   @media (max-width: 1600px) {
     width: 270px;

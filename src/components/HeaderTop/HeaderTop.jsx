@@ -25,8 +25,6 @@ function HeaderTop() {
       });
   }, [locale]);
 
-  console.log(locale);
-
   const handleLocaleChange = (event) => {
     const locale = event.target.value;
     dispatch(set_locale(locale));
@@ -62,7 +60,7 @@ function HeaderTop() {
             }
           })}
         </ul>
-        <div className="dropdown">
+        <div className={`dropdown ${isOpen ? "dropdownOpen" : ""}`}>
           <div className="dropdown-toggle" onClick={handleDropdownClick}>
             {locales.find((loc) => loc.code === locale)
               ? locales.find((loc) => loc.code === locale).name

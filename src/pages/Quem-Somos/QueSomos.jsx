@@ -127,11 +127,12 @@ function QuemSomos() {
 
   const sliderPrinciplesContainer = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 0,
+    variableWidth: true,
   };
 
   useEffect(() => {

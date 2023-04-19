@@ -16,7 +16,7 @@
       }
 
       @media (max-width: 998px) {
-        margin: 0 15px;
+        margin: 0 20px;
       }
     }
 
@@ -35,6 +35,7 @@
       cursor: pointer;
       @media (max-width: 420px) {
         height: 200px;
+        width: 90vw;
       }
     }
 
@@ -54,6 +55,10 @@
       @media (max-width: 1024px) {
         margin: 0 15px;
         flex-wrap: wrap;
+      }
+
+      @media (max-width: 998px) {
+        margin: 0 25px;
       }
 
       .right {
@@ -127,7 +132,7 @@
       }
 
       @media (max-width: 998px) {
-        margin: 0 15px;
+        margin: 0 25px;
 
         .slider {
           display: none;
@@ -226,7 +231,7 @@
       }
 
       @media (max-width: 998px) {
-        margin: 0 15px;
+        margin: 0 25px;
       }
     }
 
@@ -317,13 +322,16 @@
     }
 
     .PartnerCardWhiteContainer {
-      height: 550px;
+      height: 480px;
+    }
+
+    .slick-initialized .slick-slide {
+      padding: 0 20px 0 0;
     }
 
     .slick-dots {
-      display: flex;
-      justify-content: center;
       top: 105%;
+      right: 20px;
     }
 
     .slick-dots li {
