@@ -138,7 +138,7 @@ function Footer() {
           </div>
 
           <div className="social-media">
-            <h2>Acompanhe mais sobre a igc:</h2>
+            <h2>ACOMPANHE</h2>
             <ul>
               <li>
                 <a href="#">

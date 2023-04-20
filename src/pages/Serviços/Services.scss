@@ -38,8 +38,9 @@
   }
 
   .middleContainer {
-    margin-top: 20px;
-    @media (min-width: 1024){
+    margin-top: 180px;
+
+    @media (min-width: 1024) {
       margin-top: 100px;
     }
 
@@ -52,8 +53,10 @@
       }
 
       .rightContainer {
+        width: 50%;
+
         @media (max-width: 1124px) {
-          width: 100%;
+          width: 50%;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -63,15 +66,21 @@
         @media (max-width: 560px) {
           // margin-left: 20px;
           align-items: baseline;
+          width: 100%;
+
+          p {
+            width: 80% !important;
+            margin-top: 3.5rem !important;
+          }
         }
 
         h4 {
-          font-weight: 500;
-          font-size: 28px;
-          line-height: 42px;
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 24px;
           display: flex;
           align-items: center;
-          color: #d3a93d;
+          color: #222f43;
           display: flex;
           align-items: center;
           gap: 15px;
@@ -81,10 +90,17 @@
           }
         }
 
+        p {
+          width: 75%;
+          margin-top: 4.5rem;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 21px;
+          color: #7c8390;
+        }
+
         .bottom {
           display: flex;
-
-          margin-top: 35px;
 
           @media (max-width: 560px) {
             flex-wrap: wrap;
@@ -93,6 +109,22 @@
 
           .right {
             margin-right: 35px;
+
+            .mobileExtraLine {
+              display: none;
+            }
+
+            @media (max-width: 520px) {
+              .mobileExtraLine {
+                display: flex;
+              }
+            }
+          }
+
+          .left {
+            @media (max-width: 520px) {
+              display: none !important;
+            }
           }
 
           .right,
@@ -105,6 +137,7 @@
               display: flex;
               list-style: none;
               gap: 7px;
+              margin-top: 5rem;
 
               img {
                 width: 30px;
@@ -114,13 +147,22 @@
 
               .firstLine {
                 font-weight: 600;
-                font-size: 22px;
-                line-height: 33px;
+                font-size: 45px;
+                line-height: 24px;
                 text-transform: lowercase;
-                color: #222f44;
+                color: #222f43;
+                width: 65%;
+
+                span {
+                  font-weight: 600;
+                  font-size: 16px;
+                  line-height: 0px;
+                }
 
                 @media (max-width: 520px) {
-                  font-size: 16px;
+                  font-size: 36px;
+                  text-align: center;
+                  margin: 0 auto;
                 }
               }
 
@@ -136,17 +178,41 @@
       }
 
       .leftContainer {
-        background-color: #f5f5f5;
-        padding: 20px;
+        // background-color: #f5f5f5;
+        // padding: 20px;
+        width: 50%;
+        position: relative;
 
         @media (max-width: 1124px) {
+          width: 50%;
           margin: 0 auto;
           margin-top: 50px;
           min-width: 210px;
         }
 
-        h4 {
-          margin-bottom: 20px;
+        .brandsArea {
+          width: 100%;
+          display: inline-flex;
+          justify-content: center;
+          gap: 50px;
+          text-align: center;
+
+          h4 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 24px;
+            color: #c9c9d6;
+          }
+
+          @media (max-width: 560px) {
+            gap: 20px;
+
+            h4 {
+              font-size: 12px;
+              line-height: 14px;
+            }
+          }
         }
 
         .theBrand {
@@ -208,11 +274,15 @@
         }
       }
     }
+
+    @media (max-width: 980px) {
+      margin-top: 80px;
+    }
   }
 
   .reviewsContainer {
     background-color: #f5f5f5;
-    margin-top: 80px;
+    margin-top: 180px;
 
     .theContainer {
       height: 350px;
@@ -258,9 +328,9 @@
   }
 
   .transactionsContainer {
-    padding-top: 134px;
+    padding-top: 180px;
 
-    @media (max-width: 1024px){
+    @media (max-width: 1024px) {
       padding-top: 0px;
     }
 

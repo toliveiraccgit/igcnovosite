@@ -10,6 +10,7 @@ import arrowLeft from "../../assets/slider/arrowLeft.svg";
 import arrowRight from "../../assets/slider/arrowRight.svg";
 import CardCase from "../../components/CardCase/cardCase";
 import Reviews from "../../components/Reviews/Review";
+import BarChart from "../../components/BarChart/BarChart";
 
 import Modal from "react-modal";
 import closeButton from "../../assets/closeButton.png";
@@ -45,6 +46,8 @@ function Services() {
   const [formMessage, setFormMessage] = useState(undefined);
 
   const [statusMessage, setStatusMessage] = useState("");
+
+  const data = [48, 56, 65, 67, 69];
 
   const handleFilterChange = (event, type) => {
     const filterValue = event.target.value;
@@ -280,22 +283,29 @@ function Services() {
         <div className="theContainer">
           <div className="rightContainer">
             <h4>
-              <img src={icon07} alt="" />
+              {/* <img src={icon07} alt="" /> */}
               {(servicePage && servicePage.dif && servicePage.dif.title) ||
                 `nossos diferenciais`}
             </h4>
-            <h4>
+            <p>
+              Nossa responsabilidade não é apenas da porta para dentro, com um
+              sistema de partnership baseado em resultados. Mas, principalmente,
+              da porta para fora, compartilhando e sendo donos dos desafios de
+              nossos clientes.
+            </p>
+            {/* <h4>
               <img src={icon08} alt="" /> Maior precificação do seu deal.
-            </h4>
+            </h4> */}
             <div className="bottom">
               <div className="right">
                 <ul>
                   {/* <img src={icon01} alt="" /> */}
                   <div className="container">
                     <li className="firstLine">
-                      {servicePage &&
+                      {/* {servicePage &&
                         servicePage.dif &&
-                        servicePage.dif.differential_1}
+                        servicePage.dif.differential_1}{" "} */}
+                      +25 anos <br /> <span>de transações de sucesso</span>
                     </li>
                     <li className="secondLine">
                       {servicePage &&
@@ -308,9 +318,11 @@ function Services() {
                   {/* <img src={icon02} alt="" /> */}
                   <div className="container">
                     <li className="firstLine">
-                      {servicePage &&
+                      {/* {servicePage &&
                         servicePage.dif &&
-                        servicePage.dif.differential_3}
+                        servicePage.dif.differential_3} */}
+                      +50% <br />
+                      <span>de transações com players estrangeiros</span>
                     </li>
                     <li className="secondLine">
                       {servicePage &&
@@ -319,8 +331,25 @@ function Services() {
                     </li>
                   </div>
                 </ul>
-                <ul>
-                  {/* <img src={icon03} alt="" /> */}
+                <ul className="mobileExtraLine">
+                  {/* <img src={icon04} alt="" /> */}
+                  <div className="container">
+                    <li className="firstLine">
+                      {/* {servicePage &&
+                        servicePage.dif &&
+                        servicePage.dif.differential_2} */}
+                      +330 <br />
+                      <span>deals realizados em m&a</span>
+                    </li>
+                    <li className="secondLine">
+                      {servicePage &&
+                        servicePage.dif &&
+                        servicePage.dif.differential_2_description}
+                    </li>
+                  </div>
+                </ul>
+                {/* <ul>
+                  <img src={icon03} alt="" />
                   <div className="container">
                     <li className="firstLine">
                       {servicePage &&
@@ -333,16 +362,18 @@ function Services() {
                         servicePage.dif.differential_5_description}
                     </li>
                   </div>
-                </ul>
+                </ul> */}
               </div>
               <div className="left">
                 <ul>
                   {/* <img src={icon04} alt="" /> */}
                   <div className="container">
                     <li className="firstLine">
-                      {servicePage &&
+                      {/* {servicePage &&
                         servicePage.dif &&
-                        servicePage.dif.differential_2}
+                        servicePage.dif.differential_2} */}
+                      +330 <br />
+                      <span>deals realizados em m&a</span>
                     </li>
                     <li className="secondLine">
                       {servicePage &&
@@ -351,8 +382,8 @@ function Services() {
                     </li>
                   </div>
                 </ul>
-                <ul>
-                  {/* <img src={icon05} alt="" /> */}
+                {/* <ul>
+                  <img src={icon05} alt="" />
                   <div className="container">
                     <li className="firstLine">
                       {servicePage &&
@@ -365,9 +396,9 @@ function Services() {
                         servicePage.dif.differential_4_description}
                     </li>
                   </div>
-                </ul>
-                <ul>
-                  {/* <img src={icon06} alt="" /> */}
+                </ul> */}
+                {/* <ul>
+                  <img src={icon06} alt="" />
                   <div className="container">
                     <li className="firstLine">
                       {servicePage &&
@@ -380,13 +411,29 @@ function Services() {
                         servicePage.dif.differential_6_description}
                     </li>
                   </div>
-                </ul>
+                </ul> */}
               </div>
             </div>
           </div>
           <div className="leftContainer">
-            <h4>{servicePage && servicePage.chart_title}</h4>
-            {servicePage &&
+            {/* <h4>{servicePage && servicePage.chart_title}</h4> */}
+            <div className="brandsArea">
+              <h4 style={{ color: "#cbaa58" }}>igc partners</h4>
+              <h4>
+                BTG
+                <br /> Pactual
+              </h4>
+              <h4>Itaú BBA</h4>
+              <h4>
+                Boutiques
+                <br /> de M&A
+              </h4>
+              <h4>
+                Bradesco
+                <br /> BBI
+              </h4>
+            </div>
+            {/* {servicePage &&
               servicePage.chart &&
               servicePage.chart.map((item, index) => (
                 <div className="theBrand" key={item.id}>
@@ -395,7 +442,8 @@ function Services() {
                   </p>
                   <p className="number">{item.value}</p>
                 </div>
-              ))}
+              ))} */}
+            <BarChart data={data} />
             <p className="font">{servicePage && servicePage.font}</p>
           </div>
         </div>
