@@ -11,9 +11,19 @@
   background-color: white;
 
   img {
-    width: 130px;
-    height: 140px;
+    width: 180px;
+    height: 170px;
     cursor: pointer;
+  }
+
+  @media (max-width: 1074px) {
+    max-width: 175px;
+    height: 155px;
+
+    img {
+      width: 140px;
+      height: 130px;
+    }
   }
 
   @media (max-width: 980px) {

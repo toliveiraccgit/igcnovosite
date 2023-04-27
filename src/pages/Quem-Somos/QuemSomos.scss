@@ -15,6 +15,11 @@
         margin: 0 45px;
       }
 
+      @media (max-width: 1074px) {
+        margin: 0 15px;
+        flex-wrap: wrap;
+      }
+
       @media (max-width: 998px) {
         margin: 0 20px;
       }
@@ -27,14 +32,15 @@
   }
 
   .FirstSectionContainer {
-    margin-top: 80px;
+    margin-top: 130px;
 
     .video {
-      height: 400px;
+      height: auto;
+      width: 100%;
       float: right;
       cursor: pointer;
       @media (max-width: 420px) {
-        height: 200px;
+        height: auto;
         width: 90vw;
       }
     }
@@ -52,7 +58,7 @@
         margin: 0 45px;
       }
 
-      @media (max-width: 1024px) {
+      @media (max-width: 1074px) {
         margin: 0 15px;
         flex-wrap: wrap;
       }
@@ -62,13 +68,13 @@
       }
 
       .right {
+        width: 50%;
+
         @media (max-width: 1024px) {
           order: 1;
           width: 100%;
           margin-top: 30px;
         }
-
-        width: 50%;
 
         h4 {
           font-weight: 500;
@@ -99,6 +105,12 @@
 
       .left {
         width: 50%;
+
+        @media (max-width: 1024px) {
+          width: 100%;
+          margin-top: 30px;
+        }
+
         @media (max-width: 998px) {
           display: flex;
           justify-content: center;
@@ -110,8 +122,8 @@
   }
 
   .partnersContainer {
-    margin-top: 80px;
-    margin-bottom: 80px;
+    margin-top: 130px;
+    margin-bottom: 130px;
 
     .theContainer {
       display: flex;
@@ -129,6 +141,10 @@
 
       @media (max-width: 1600px) {
         margin: 0 45px;
+      }
+
+      @media (max-width: 1024px) {
+        margin: 0 15px;
       }
 
       @media (max-width: 998px) {
@@ -164,6 +180,30 @@
       }
 
       .top {
+        display: flex;
+        align-content: space-between;
+        justify-content: space-between;
+
+        .left {
+          select {
+            width: 15rem;
+            height: 46px;
+            border-radius: 9px;
+            border: 2px solid #f5f5f5;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 21px;
+            color: #222f43;
+            appearance: none;
+            background-image: url(/src/assets/down-arrow.png);
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1rem;
+          }
+        }
+
         h4 {
           font-weight: 500;
           font-size: 28px;
@@ -202,6 +242,15 @@
         }
       }
 
+      .noSlider {
+        display: inline-flex;
+        gap: 8rem;
+
+        @media (max-width: 998px) {
+          display: block;
+        }
+      }
+
       .bottom {
         display: flex;
         gap: 50px;
@@ -230,7 +279,13 @@
         margin: 0 45px;
       }
 
+      @media (max-width: 1074px) {
+        padding-top: 80px;
+        margin: 0 15px;
+      }
+
       @media (max-width: 998px) {
+        padding-top: 0;
         margin: 0 25px;
       }
     }
@@ -323,6 +378,10 @@
 
     .PartnerCardWhiteContainer {
       height: 480px;
+
+      @media (max-width: 998px) {
+        height: 300px;
+      }
     }
 
     .slick-initialized .slick-slide {

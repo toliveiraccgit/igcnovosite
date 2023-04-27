@@ -8,7 +8,6 @@
   left: 0;
   height: 300px;
   width: 100%;
-  /* background-color: #f8f8f8; */
   padding: 10px;
   box-sizing: border-box;
 }
@@ -16,7 +15,6 @@
 .bar {
   display: inline-block;
   width: 30%;
-  /* max-width: 120px; */
   height: 100%;
   background-color: #e9e9ec;
   transition: height 0.5s;
@@ -36,9 +34,17 @@
   font-size: 60px;
   line-height: 24px;
   position: absolute;
-  top: -125px;
+  top: -110px;
   left: 25%;
   color: #e8ebec;
+}
+
+@media (max-width: 1074px) {
+  .value {
+    font-size: 50px;
+    top: -100px;
+    left: 20%;
+  }
 }
 
 @media (max-width: 560px) {
@@ -46,12 +52,13 @@
     position: relative;
     width: 350px;
     height: 160px;
-    bottom: -80px;
+    bottom: -250px;
     left: -70px;
   }
 
   .value {
     top: -65px;
+    left: 25%;
     font-size: 30px;
   }
 }

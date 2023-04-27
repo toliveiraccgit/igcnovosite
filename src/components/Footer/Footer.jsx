@@ -74,7 +74,7 @@ function Footer() {
             <h2>Nossas transações</h2>
             <div className="secondListFooter">
               <ul>
-                {dynamic && dynamic?.screens?.length > 0 && <h3>Setores</h3>}
+                {/* {dynamic && dynamic?.screens?.length > 0 && <h3>Setores</h3>} */}
                 {dynamic &&
                   dynamic?.screens?.map((e) => {
                     return (
@@ -84,7 +84,7 @@ function Footer() {
                     );
                   })}
               </ul>
-              <ul>
+              {/* <ul>
                 <h3>Buyers</h3>
                 <li>
                   <a href="#">Parceiros estratégicos</a>
@@ -101,7 +101,7 @@ function Footer() {
                 <li>
                   <a href="#">Internacionais</a>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
 
@@ -164,7 +164,7 @@ function Footer() {
             </div>
             <div className="float-text">
               <h1>
-                nosso deal <br />
+                nosso deal é<br />
                 com você
               </h1>
             </div>

@@ -1,7 +1,12 @@
 .capitalSolutionContainer {
   .reviewsContainer {
     background-color: #f5f5f5;
-    margin-top: 80px;
+    margin-top: 130px;
+    padding-bottom: 60px;
+
+    @media (max-width: 1024px) {
+      margin-top: 80px;
+    }
 
     .theContainer {
       height: 350px;
@@ -26,7 +31,8 @@
         .slicks {
           display: flex;
           gap: 20px;
-          @media (max-width: 1024px) {
+
+          @media (max-width: 764px) {
             display: none;
           }
 
@@ -38,9 +44,6 @@
         }
       }
       .rev {
-        // display: flex;
-        // align-items: center;
-        // justify-content: space-between;
         width: 100%;
       }
     }
@@ -61,29 +64,42 @@
       @media (max-width: 1024px) {
         font-size: 16px;
       }
+
+      @media (max-width: 764px) {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 30px;
+        text-transform: lowercase;
+        color: #ffffff;
+      }
     }
 
     img {
-      max-height: 400px;
+      width: 100%;
       min-height: 300px;
 
       @media (max-width: 1024px) {
         position: relative;
-        right: 50%;
+      }
+
+      @media (max-width: 764px) {
+        position: relative;
+        width: 100%;
+        min-height: 300px;
       }
     }
 
     h3 {
       font-weight: 600;
       font-size: 36px;
-      line-height: 44px;
       text-transform: lowercase;
       color: #ffffff;
-      width: 50%;
+      width: 90%;
 
-      @media (max-width: 1024px) {
-        font-size: 25px;
-        width: 100%;
+      @media (max-width: 764px) {
+        width: 90%;
+        line-height: 30px;
+        font-size: 22px;
       }
     }
     .theContainer {
@@ -95,28 +111,38 @@
   }
 
   .nossosDiferenciais {
-    margin-top: 80px;
-    margin-bottom: 80px;
+    margin-top: 130px;
+    margin-bottom: 60px;
 
     @media (max-width: 1024px) {
-      margin: 20px 0;
+      margin: 80px 0;
     }
 
     h4 {
-      font-weight: 500;
-      font-size: 28px;
-      line-height: 42px;
-      text-transform: lowercase;
-      color: #222f44;
-      margin-bottom: 30px;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+      display: flex;
+      align-items: center;
+      color: #222f43;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      @media (max-width: 764px) {
+        font-size: 18px;
+      }
     }
 
     .bottom {
       display: flex;
+      margin-top: 4.5rem;
+      gap: 5rem;
 
       @media (max-width: 764px) {
         display: block;
         margin-left: 15px;
+        margin-top: 3.5rem !important;
       }
 
       ul {
@@ -133,6 +159,7 @@
 
           @media (max-width: 900px) {
             font-size: 16px;
+            width: 90%;
           }
 
           img {
@@ -144,11 +171,17 @@
   }
 
   .transactionsContainer {
-    // margin-top: 80px;
+    margin-top: 130px;
 
-    background: #f5f5f5;
+    @media (max-width: 1024px) {
+      margin-top: 80px;
+    }
 
     .theContainer {
+      @media (max-width: 764px) {
+        padding-top: 0;
+      }
+
       .top {
         display: flex;
         justify-content: space-between;
@@ -187,14 +220,14 @@
           display: flex;
           gap: 20px;
 
-          @media (max-width: 1024px) {
-            display: none;
-          }
-
           button {
             border: none;
             background: none;
             cursor: pointer;
+          }
+
+          @media (max-width: 764px) {
+            display: none;
           }
         }
       }
@@ -249,14 +282,122 @@
           display: flex;
           gap: 20px;
 
-          @media (max-width: 1024px) {
+          button {
+            border: none;
+            background: none;
+            cursor: pointer;
+          }
+
+          @media (max-width: 764px) {
             display: none;
           }
+        }
+      }
+
+      .bottom {
+        @media (max-width: 998px) {
+          display: none;
+        }
+
+        margin-top: 40px;
+        width: 100%;
+        padding-bottom: 80px;
+      }
+
+      .bottomMobile {
+        @media (min-width: 998px) {
+          display: none;
+        }
+
+        padding-bottom: 80px;
+        margin-top: 40px;
+
+        .accordion-body {
+          overflow-wrap: break-word;
+          word-wrap: break-word;
+
+          -ms-word-break: break-all;
+          /* This is the dangerous one in WebKit, as it breaks things wherever */
+          word-break: break-all;
+          /* Instead use this non-standard one: */
+          word-break: break-word;
+
+          /* Adds a hyphen where the word breaks, if supported (No Blink) */
+          -ms-hyphens: auto;
+          -moz-hyphens: auto;
+          -webkit-hyphens: auto;
+          hyphens: auto;
+        }
+
+        .accordion-item {
+          background-color: transparent;
+        }
+
+        .accordion-button {
+          background-color: transparent;
+        }
+
+        .PartnerCardWhiteContainer {
+          height: 480px;
+        }
+
+        .slick-initialized .slick-slide {
+          padding: 0 20px 0 0;
+        }
+
+        .slick-dots {
+          top: 105%;
+          right: 15px;
+        }
+
+        .slick-dots li {
+          margin: 0;
+          width: 12px;
+          height: 2px;
+          background-color: #ccc;
+          // border-radius: 4px;
+          cursor: pointer;
+        }
+
+        .slick-dots li.slick-active {
+          background-color: #333;
+        }
+
+        .slick-dots li button {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .newsContainer {
+    background: #f5f5f5;
+
+    .theContainer {
+      padding-top: 80px;
+
+      .top {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 40px;
+
+        .left {
+          display: flex;
+          align-items: center;
+        }
+
+        .slicks {
+          display: flex;
+          gap: 20px;
 
           button {
             border: none;
             background: none;
             cursor: pointer;
+          }
+
+          @media (max-width: 764px) {
+            display: none;
           }
         }
       }
@@ -265,6 +406,59 @@
         margin-top: 40px;
         width: 100%;
         padding-bottom: 80px;
+
+        @media (max-width: 764px) {
+          .accordion-body {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+
+            -ms-word-break: break-all;
+            word-break: break-all;
+            word-break: break-word;
+
+            -ms-hyphens: auto;
+            -moz-hyphens: auto;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+          }
+
+          .accordion-item {
+            background-color: transparent;
+          }
+
+          .accordion-button {
+            background-color: transparent;
+          }
+
+          .PartnerCardWhiteContainer {
+            height: 480px;
+          }
+
+          .slick-initialized .slick-slide {
+            padding: 0 20px 0 0;
+          }
+
+          .slick-dots {
+            top: 105%;
+            right: 20px;
+          }
+
+          .slick-dots li {
+            margin: 0;
+            width: 60px;
+            height: 2px;
+            background-color: #ccc;
+            cursor: pointer;
+          }
+
+          .slick-dots li.slick-active {
+            background-color: #333;
+          }
+
+          .slick-dots li button {
+            display: none;
+          }
+        }
       }
     }
   }
@@ -380,15 +574,25 @@
             display: flex;
             justify-content: flex-end;
             button {
-              background-color: #222f44;
+              height: 50px;
+              width: 144px;
+              padding: 15px 20px;
+              position: relative;
+              display: flex;
+              white-space: nowrap;
+              overflow: hidden;
+              justify-content: center;
+              align-items: center;
+              gap: 5px;
+              font-family: "Poppins";
+              font-weight: 600;
               font-size: 14px;
               line-height: 21px;
               text-transform: lowercase;
+              text-decoration: none;
+              border-radius: 9px;
               color: #ffffff;
-              border: none;
-              width: 165px;
-              height: 41px;
-              border-radius: 6px;
+              background-color: #222f44;
             }
           }
         }

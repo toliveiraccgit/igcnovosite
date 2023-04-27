@@ -1,13 +1,12 @@
 import React from "react";
-import "./BarChart.css"; // import your CSS file for the component
+import "./BarChart.css";
 
 const BarChart = ({ data }) => {
-  const maxVal = Math.max(...data); // find the maximum value in the data
+  const maxVal = Math.max(...data);
 
   return (
     <div className="bar-chart">
-      {/* <h4>igc partners</h4> */}
-      {data.map((value, index) => (
+      {/* {data.map((value, index) => (
         <div
           key={index}
           className="bar"
@@ -15,7 +14,22 @@ const BarChart = ({ data }) => {
         >
           <span className="value">{value}</span>
         </div>
-      ))}
+      ))} */}
+      <div className="bar" style={{ height: "6rem" }}>
+        <span className="value">48</span>
+      </div>
+      <div className="bar" style={{ height: "9rem" }}>
+        <span className="value">56</span>
+      </div>
+      <div className="bar" style={{ height: "13rem" }}>
+        <span className="value">65</span>
+      </div>
+      <div className="bar" style={{ height: "17rem" }}>
+        <span className="value">67</span>
+      </div>
+      <div className="bar" style={{ height: "20rem" }}>
+        <span className="value">69</span>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,12 @@
 .containerNews {
   display: flex;
   gap: 40px;
+  width: 97%;
+  height: auto;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 3px;
+  overflow: hidden;
 
   @media (max-width: 1000px) {
     gap: 10px;
@@ -8,13 +14,19 @@
 
   .newsImagem {
     max-width: 200px;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+
     @media (max-width: 600px) {
       width: 110px;
-      height: 80px;
+      height: 150px;
     }
   }
 
   .rightContainer {
+    margin: auto 0;
+
     .date {
       font-weight: 400;
       font-size: 12px;
@@ -30,6 +42,7 @@
       font-size: 20px;
       line-height: 30px;
       color: #222f44;
+      margin-top: 0.5rem;
     }
 
     .description {
@@ -50,10 +63,6 @@
         span {
           color: #7a828f !important;
         }
-      }
-
-      @media (max-width: 1000px) {
-        display: none;
       }
 
       a {

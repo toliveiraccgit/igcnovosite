@@ -47,6 +47,8 @@ function Services() {
 
   const [statusMessage, setStatusMessage] = useState("");
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const data = [48, 56, 65, 67, 69];
 
   const handleFilterChange = (event, type) => {
@@ -137,8 +139,8 @@ function Services() {
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 3,
+          slidesToShow: 3,
+          slidesToScroll: 1,
           infinite: true,
           dots: false,
         },
@@ -147,7 +149,7 @@ function Services() {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           infinite: true,
           dots: false,
         },
@@ -160,20 +162,18 @@ function Services() {
     infinite: true,
     speed: 500,
     arrows: false,
-    slidesToShow:
-      transactions && transactions.length > 5 ? 5 : transactions.length,
-    slidesToScroll: 1,
+    slidesToShow: transactions.length > 5 ? 5 : transactions.length,
+    slidesToScroll: 5,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
       {
         breakpoint: 1354,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
+          slidesToShow: 5,
+          slidesToScroll: 5,
           infinite: true,
           dots: false,
-          centerMode: true,
         },
       },
       {
@@ -194,8 +194,8 @@ function Services() {
           infinite: true,
           dots: false,
           centerMode: true,
-          initialSlide: 2,
-          centerPadding: "20px",
+          initialSlide: 1,
+          centerPadding: "10px",
         },
       },
     ],
@@ -449,34 +449,6 @@ function Services() {
         </div>
       </div>
 
-      <div className="reviewsContainer">
-        <div className="theContainer">
-          <div className="top">
-            <p>{(servicePage && servicePage.customer) || "nossos clientes"}</p>
-            <div className="slicks">
-              <button onClick={() => slider.current.slickPrev()}>
-                <img src={arrowLeft} alt="" />
-              </button>
-              <button onClick={() => slider.current.slickNext()}>
-                <img src={arrowRight} alt="" />
-              </button>
-            </div>
-          </div>
-          <div className="rev">
-            <Slider ref={slider} {...firstSlider}>
-              {testimony &&
-                testimony.map((test) => (
-                  <Reviews
-                    key={test.id}
-                    name={test?.attributes?.name}
-                    company={test?.attributes?.company}
-                    testimony={test?.attributes?.testimony}
-                  />
-                ))}
-            </Slider>
-          </div>
-        </div>
-      </div>
       <div className="transactionsContainer">
         <div className="theContainer">
           <div className="top">
@@ -519,14 +491,44 @@ function Services() {
           </div>
           <div className="bottom">
             <Slider ref={slider2} {...secondSlider}>
-              {transactions.map((transaction) => (
-                <a onClick={(e) => openModal(e, transaction)}>
-                  <CardCase
-                    key={transaction.id}
-                    image={`${transaction?.attributes?.image?.data?.attributes?.url}`}
+              {transactions &&
+                transactions.map((transaction) => (
+                  <a onClick={(e) => openModal(e, transaction)}>
+                    <CardCase
+                      key={transaction.id}
+                      image={`${transaction?.attributes?.image?.data?.attributes?.url}`}
+                    />
+                  </a>
+                ))}
+            </Slider>
+          </div>
+        </div>
+      </div>
+
+      <div className="reviewsContainer">
+        <div className="theContainer">
+          <div className="top">
+            <p>{(servicePage && servicePage.customer) || "nossos clientes"}</p>
+            <div className="slicks">
+              <button onClick={() => slider.current.slickPrev()}>
+                <img src={arrowLeft} alt="" />
+              </button>
+              <button onClick={() => slider.current.slickNext()}>
+                <img src={arrowRight} alt="" />
+              </button>
+            </div>
+          </div>
+          <div className="rev">
+            <Slider ref={slider} {...firstSlider}>
+              {testimony &&
+                testimony.map((test) => (
+                  <Reviews
+                    key={test.id}
+                    name={test?.attributes?.name}
+                    company={test?.attributes?.company}
+                    testimony={test?.attributes?.testimony}
                   />
-                </a>
-              ))}
+                ))}
             </Slider>
           </div>
         </div>

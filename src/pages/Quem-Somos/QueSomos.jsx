@@ -52,6 +52,7 @@ function QuemSomos() {
   const [principles, setPrinciples] = useState([]);
 
   const [groups, setGroups] = useState([]);
+  const [group, setGroup] = useState(0);
 
   const [modal, setModalData] = useState({});
   const [modalIsOpen, setIsOpenModal] = useState(false);
@@ -59,6 +60,14 @@ function QuemSomos() {
   const sliderPartners = useRef(null);
   const sliderPartnersMobile = useRef(null);
   const sliderPrinciplesContainers = useRef(null);
+
+  // const [filter, setFilter] = useState({ group: "" });
+  const [filter, setFilter] = useState({});
+
+  const handleFilterChange = (event, type) => {
+    const filterValue = event.target.value;
+    setFilter({ ...filter, [type]: filterValue });
+  };
 
   function openModal(e, data) {
     e.preventDefault();
@@ -86,14 +95,14 @@ function QuemSomos() {
     slidesToShow: 5,
     slidesToScroll: 5,
     initialSlide: 0,
+    dots: false,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1074,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 5,
+          slidesToScroll: 1,
           infinite: true,
-          dots: true,
         },
       },
       {
@@ -146,7 +155,7 @@ function QuemSomos() {
       });
 
     api_partners
-      .get({ locale })
+      .get({ locale, filter })
       .then((response) => {
         setPartners(response.data.data);
       })
@@ -162,7 +171,6 @@ function QuemSomos() {
       .catch(() => {
         setPrinciples([]);
       });
-    console.log(partners);
 
     api_group
       .get({ locale })
@@ -172,8 +180,7 @@ function QuemSomos() {
       .catch(() => {
         setGroups([]);
       });
-    console.log(groups);
-  }, [locale]);
+  }, [locale, filter]);
 
   const unMute = () => {
     refVideo.current.muted = !refVideo.current.muted;
@@ -245,46 +252,177 @@ function QuemSomos() {
 
       <div className="partnersContainer">
         <div className="theContainer">
-          <div className="top">
-            <h4>
-              {aboutUs &&
-                aboutUs.partners &&
-                String(aboutUs.partners.title).replace(
-                  "{partners_count}",
-                  partners.length
-                )}
-            </h4>
-            <p>{aboutUs?.partners?.description}</p>
-            <div className="slicks">
-              <button onClick={handlePrevClick}>
-                <img src={arrowLeft} alt="" />
-              </button>
-              <button onClick={handleNextClick}>
-                <img src={arrowRight} alt="" />
-              </button>
-            </div>
-          </div>
+          <>
+            <div className="top">
+              <div className="left">
+                <div className="textArea">
+                  <h4>
+                    {aboutUs &&
+                      aboutUs.partners &&
+                      String(aboutUs.partners.title).replace(
+                        "{partners_count}",
+                        partners.length
+                      )}
+                  </h4>
+                  <p>{aboutUs?.partners?.description}</p>
+                </div>
+                <div className="filters">
+                  <select
+                    name=""
+                    id=""
+                    onChange={(e) => {
+                      handleFilterChange(e, "group");
+                      setGroup(Number(e.target.value));
+                    }}
+                  >
+                    <option value="">Todos</option>
+                    {groups &&
+                      groups.map((group) => (
+                        <option key={group.id} value={group.id}>
+                          {group.attributes.name}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+              </div>
 
-          <div className="slider">
-            <Slider ref={sliderPartners} {...sliderPartner}>
               {partners &&
-                partners.map((partner) => (
-                  <>
-                    <Partner key={partner.id} partner={partner} />
-                  </>
-                ))}
-            </Slider>
-          </div>
+              partners.filter((partner) => {
+                if (!filter.group) {
+                  return true;
+                }
+                return (
+                  partner &&
+                  partner.attributes &&
+                  partner.attributes.grupo &&
+                  partner.attributes.grupo.data &&
+                  partner.attributes.grupo.data.id === group
+                );
+              }).length >= 5 ? (
+                <div className="slicks">
+                  <button onClick={handlePrevClick}>
+                    <img src={arrowLeft} alt="" />
+                  </button>
+                  <button onClick={handleNextClick}>
+                    <img src={arrowRight} alt="" />
+                  </button>
+                </div>
+              ) : (
+                <div className="slicks"></div>
+              )}
+            </div>
+
+            <div className="slider">
+              {partners &&
+              partners.filter((partner) => {
+                if (!filter.group) {
+                  return true;
+                }
+                return (
+                  partner &&
+                  partner.attributes &&
+                  partner.attributes.grupo &&
+                  partner.attributes.grupo.data &&
+                  partner.attributes.grupo.data.id === group
+                );
+              }).length >= 5 ? (
+                <Slider ref={sliderPartners} {...sliderPartner}>
+                  {partners &&
+                    partners
+                      .filter((partner) => {
+                        if (!filter.group) {
+                          return true;
+                        }
+                        return (
+                          partner &&
+                          partner.attributes &&
+                          partner.attributes.grupo &&
+                          partner.attributes.grupo.data &&
+                          partner.attributes.grupo.data.id === group
+                        );
+                      })
+                      .map((partner) => (
+                        <Partner key={partner.id} partner={partner} />
+                      ))}
+                </Slider>
+              ) : (
+                <div className="noSlider">
+                  {partners &&
+                    partners
+                      .filter((partner) => {
+                        if (!filter.group) {
+                          return true;
+                        }
+                        return (
+                          partner &&
+                          partner.attributes &&
+                          partner.attributes.grupo &&
+                          partner.attributes.grupo.data &&
+                          partner.attributes.grupo.data.id === group
+                        );
+                      })
+                      .map((partner) => (
+                        <Partner key={partner.id} partner={partner} />
+                      ))}
+                </div>
+              )}
+            </div>
+          </>
 
           <div className="slider-mobile">
-            <Slider ref={sliderPartnersMobile} {...sliderPartnerMobile}>
-              {partners &&
-                partners.map((partner) => (
-                  <>
-                    <Partner key={partner.id} partner={partner} />
-                  </>
-                ))}
-            </Slider>
+            {partners &&
+            partners.filter((partner) => {
+              if (!filter.group) {
+                return true;
+              }
+              return (
+                partner &&
+                partner.attributes &&
+                partner.attributes.grupo &&
+                partner.attributes.grupo.data &&
+                partner.attributes.grupo.data.id === group
+              );
+            }).length >= 5 ? (
+              <Slider ref={sliderPartnersMobile} {...sliderPartnerMobile}>
+                {partners &&
+                  partners
+                    .filter((partner) => {
+                      if (!filter.group) {
+                        return true;
+                      }
+                      return (
+                        partner &&
+                        partner.attributes &&
+                        partner.attributes.grupo &&
+                        partner.attributes.grupo.data &&
+                        partner.attributes.grupo.data.id === group
+                      );
+                    })
+                    .map((partner) => (
+                      <Partner key={partner.id} partner={partner} />
+                    ))}
+              </Slider>
+            ) : (
+              <div className="noSlider">
+                {partners &&
+                  partners
+                    .filter((partner) => {
+                      if (!filter.group) {
+                        return true;
+                      }
+                      return (
+                        partner &&
+                        partner.attributes &&
+                        partner.attributes.grupo &&
+                        partner.attributes.grupo.data &&
+                        partner.attributes.grupo.data.id === group
+                      );
+                    })
+                    .map((partner) => (
+                      <Partner key={partner.id} partner={partner} />
+                    ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -298,10 +436,12 @@ function QuemSomos() {
           <div className="bottom">
             {principles &&
               principles.map((principle) => (
-                <PartnerCardWhite
-                  key={principle.id}
-                  principle={principle.attributes}
-                />
+                <>
+                  <PartnerCardWhite
+                    key={principle.id}
+                    principle={principle.attributes}
+                  />
+                </>
               ))}
           </div>
 

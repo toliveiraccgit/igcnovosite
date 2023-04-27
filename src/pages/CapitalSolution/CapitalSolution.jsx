@@ -8,11 +8,16 @@ import Icon04 from "../../assets/CapitalSolutions/icon04.png";
 
 import Slider from "react-slick";
 
+import moment from "moment";
+import "moment/dist/locale/es";
+import "moment/dist/locale/pt-br";
+
 import arrowLeft from "../../assets/slider/arrowLeft.svg";
 import arrowRight from "../../assets/slider/arrowRight.svg";
 import CardCase from "../../components/CardCase/cardCase";
 import Reviews from "../../components/Reviews/Review";
 import Specialists from "../../components/Specialists/Specialist";
+import TheNews from "../../components/news/theNews";
 
 import "./CapitalSolution.scss";
 
@@ -23,6 +28,7 @@ import {
   api_partners,
   api_testmony,
   api_transactions,
+  api_news,
 } from "../../api";
 
 function CapitalSolution() {
@@ -40,6 +46,10 @@ function CapitalSolution() {
   const [formMessage, setFormMessage] = useState(undefined);
 
   const [statusMessage, setStatusMessage] = useState("");
+
+  const [news, setNews] = useState([]);
+  const [newsAll, setNewsAll] = useState([]);
+  const [highlight, setHighlight] = useState({});
 
   const locale = useSelector((state) => state.locales.locale);
 
@@ -78,6 +88,33 @@ function CapitalSolution() {
       .catch(() => {
         setTestimony([]);
       });
+
+    api_news
+      .page({ locale })
+      .then((res) => {
+        setPage(res.data.data.attributes);
+      })
+      .catch(() => {
+        alert.localeNotFound(locale);
+      });
+
+    api_news.highlights({ locale }).then((res) => {
+      if (res.data.data.length > 0) {
+        setHighlight(res.data.data && res.data.data[0] && res.data.data[0]);
+      }
+    });
+
+    api_news.get({ locale, count: 4 }).then((res) => {
+      if (res.data.data.length > 0) {
+        setNews(res.data.data);
+      }
+    });
+
+    api_news.get({ locale, count: 10 }).then((res) => {
+      if (res.data.data.length > 0) {
+        setNewsAll(res.data.data);
+      }
+    });
   }, [locale]);
 
   const handlerSubmit = (e) => {
@@ -124,6 +161,8 @@ function CapitalSolution() {
   const slider = useRef(null);
   const slider2 = useRef(null);
   const slider3 = useRef(null);
+  const slider3Mobile = useRef(null);
+  const sliderNews = useRef(null);
 
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -160,8 +199,8 @@ function CapitalSolution() {
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 3,
+          slidesToShow: 3,
+          slidesToScroll: 1,
           infinite: true,
           dots: false,
         },
@@ -170,7 +209,7 @@ function CapitalSolution() {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           infinite: true,
           dots: false,
         },
@@ -192,11 +231,10 @@ function CapitalSolution() {
       {
         breakpoint: 1354,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 5,
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          centerMode: true,
         },
       },
       {
@@ -251,37 +289,39 @@ function CapitalSolution() {
     arrows: false,
     slidesToShow: partners && partners.length > 4 ? 4 : partners.length,
     slidesToScroll: 1,
+    initialSlide: 0,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
       {
         breakpoint: 1360,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          centerMode: true,
         },
       },
       {
         breakpoint: 1150,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 4,
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          centerMode: true,
         },
       },
       {
         breakpoint: 850,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
+          className: "center",
           centerMode: true,
+          infinite: false,
+          centerPadding: "60px",
+          slidesToShow: 1,
+          speed: 500,
+          rows: 3,
+          slidesPerRow: 1,
         },
       },
       {
@@ -326,6 +366,46 @@ function CapitalSolution() {
           dots: false,
           centerMode: true,
           centerPadding: "10px",
+        },
+      },
+    ],
+  };
+
+  const thirdSliderMobile = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    variableWidth: true,
+  };
+
+  const newsSlick = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    arrows: false,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: true,
         },
       },
     ],
@@ -465,7 +545,7 @@ function CapitalSolution() {
         </div>
       </div>
 
-      <div className="specialistContainer">
+      {/* <div className="specialistContainer">
         <div className="theContainer">
           <div className="top">
             <div className="left">
@@ -493,8 +573,51 @@ function CapitalSolution() {
                 ))}
             </Slider>
           </div>
+
+          <div className="bottomMobile">
+            <Slider ref={slider3Mobile} {...thirdSliderMobile}>
+              {partners &&
+                partners.map((partner) => (
+                  <>
+                    <Specialists partner={partner.attributes} />
+                  </>
+                ))}
+            </Slider>
+          </div>
         </div>
-      </div>
+      </div> */}
+
+      {/* <div className="newsContainer">
+        <div className="theContainer">
+          <div className="top">
+            <div className="left">
+              <h3>últimas notícias</h3>
+            </div>
+            <div className="slicks">
+              <button onClick={() => sliderNews.current.slickPrev()}>
+                <img src={arrowLeft} alt="" />
+              </button>
+              <button onClick={() => sliderNews.current.slickNext()}>
+                <img src={arrowRight} alt="" />
+              </button>
+            </div>
+          </div>
+          <div className="bottom">
+            <Slider ref={sliderNews} {...newsSlick}>
+              {newsAll &&
+                newsAll.map((item, index) => (
+                  <TheNews
+                    key={index}
+                    data={item}
+                    postDate={moment(item.attributes.createdAt).format(
+                      "DD MMMM, YYYY"
+                    )}
+                  />
+                ))}
+            </Slider>
+          </div>
+        </div>
+      </div> */}
 
       <div className="containerForm">
         <div className="theContainer">

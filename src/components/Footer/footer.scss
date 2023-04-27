@@ -8,7 +8,7 @@ body {
   background-position: center;
   margin-top: 180px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     display: none;
   }
 
@@ -66,8 +66,9 @@ body {
     display: flex;
     justify-content: space-between;
     padding-top: 57px;
+    padding-bottom: 12rem;
 
-    @media (max-width: 1024px) {
+    @media (max-width: 768px) {
       display: none;
     }
 
@@ -169,6 +170,7 @@ body {
       li {
         margin-bottom: 10px;
         list-style: none;
+        text-transform: capitalize;
 
         a {
           text-decoration: none;
@@ -201,7 +203,7 @@ body {
   }
 
   .final-footer {
-    @media (max-width: 1024px) {
+    @media (max-width: 768px) {
       display: none;
     }
 
@@ -237,16 +239,12 @@ body {
   }
 
   .social-media {
-    // position: absolute;
-    // right: 0;
-
     h2 {
       font-weight: 700;
       text-transform: uppercase;
     }
 
     ul {
-      text-align: center;
       margin-top: 40px;
     }
 
@@ -264,6 +262,10 @@ body {
           height: 25px;
         }
       }
+    }
+
+    li:first-child {
+      margin-left: 0;
     }
 
     // a {
@@ -292,7 +294,7 @@ body {
       right: 0;
 
       h1 {
-        font-size: 80px;
+        font-size: 70px;
         text-align: right;
         font-weight: 600;
         line-height: 78px;

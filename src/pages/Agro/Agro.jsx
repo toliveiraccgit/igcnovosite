@@ -344,7 +344,7 @@ function Agro() {
             </div>
           </div>
 
-          <div className="newsContainer">
+          {/* <div className="newsContainer">
             <div className="theContainer">
               <div className="top">
                 <h4>{page && page.news}</h4>
@@ -363,7 +363,7 @@ function Agro() {
                 </Slider>
               </div>
             </div>
-          </div>
+          </div> */}
         </>
       )) || <div className="noData">Página não encontrada</div>}
     </div>

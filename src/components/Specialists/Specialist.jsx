@@ -19,13 +19,15 @@ function Specialists({ partner }) {
       <div className="rightContainer">
         <h4>{partner && partner.name}</h4>
         <p>
-          <img src={emailicon} alt="" />
+          {/* <img src={emailicon} alt="" /> */}
           {partner && partner.email}
         </p>
-        <p>
-          <img src={linkedin} alt="" />
-          {partner && partner.linkedin}
-        </p>
+        <a href={partner && partner.linkedin}>
+          <span>
+            {/* <img src={linkedin} alt="" /> */}
+            Linkedin
+          </span>
+        </a>
       </div>
     </div>
   );
