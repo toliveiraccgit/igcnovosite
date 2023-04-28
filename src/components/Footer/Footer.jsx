@@ -198,9 +198,9 @@ function Footer() {
                 <a href="#">
                   <img src={icon4} />
                 </a>
-                <a href="#">
+                {/* <a href="#">
                   <img src={icon5} />
-                </a>
+                </a> */}
               </div>
             </div>
             <div className="float-text">
@@ -217,10 +217,16 @@ function Footer() {
                 <a href="/quem-somos">Quem somos</a>
               </li>
               <li>
+                <a href="/noticias">Notícias</a>
+              </li>
+              <li>
                 <a href="/social">Social</a>
               </li>
               <li>
-                <a href="/noticias">Notícias</a>
+                <a href="https://carreirasigcp.gupy.io/">Carreiras</a>
+              </li>
+              <li>
+                <a href="#">Política de privacidade</a>
               </li>
             </ul>
           </div>
@@ -231,9 +237,9 @@ function Footer() {
               <li>
                 <a href="/servicos">M&A</a>
               </li>
-              <li>
+              {/* <li>
                 <a href="/ipo-advisor">IPO Advisor</a>
-              </li>
+              </li> */}
               <li>
                 <a href="/capitacao-recursos">Capital Solution</a>
               </li>
@@ -241,10 +247,10 @@ function Footer() {
           </div>
 
           <div className="footer-list2">
-            <h2>Transações</h2>
+            <h2>NOSSAS TRANSAÇÕES</h2>
             <div className="secondListFooter">
               <ul>
-                {dynamic && dynamic?.screens?.length > 0 && <h3>Setores</h3>}
+                {/* {dynamic && dynamic?.screens?.length > 0 && <h3>Setores</h3>} */}
                 {dynamic &&
                   dynamic?.screens?.map((e) => {
                     return (
@@ -254,7 +260,7 @@ function Footer() {
                     );
                   })}
               </ul>
-              <ul>
+              {/* <ul>
                 <h3>Buyers</h3>
                 <li>
                   <a href="#">Parceiros estratégicos</a>
@@ -271,7 +277,7 @@ function Footer() {
                 <li>
                   <a href="#">Internacionais</a>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
 
