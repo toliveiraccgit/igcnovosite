@@ -185,6 +185,13 @@
         justify-content: space-between;
 
         .left {
+          display: flex;
+          gap: 2rem;
+
+          .filters {
+            margin-top: 1rem;
+          }
+
           select {
             width: 15rem;
             height: 46px;
@@ -201,6 +208,14 @@
             background-repeat: no-repeat;
             background-position: right 0.5rem center;
             background-size: 1rem;
+          }
+
+          @media (max-width: 720px) {
+            display: block;
+
+            .filters {
+              margin-top: 0;
+            }
           }
         }
 
@@ -229,11 +244,16 @@
           display: flex;
           gap: 20px;
           float: right;
+          margin-right: 2.5rem;
 
           button {
             border: none;
             background: none;
             cursor: pointer;
+          }
+
+          @media (max-width: 1024px) {
+            margin-right: 0;
           }
 
           @media (max-width: 998px) {
@@ -273,6 +293,11 @@
     flex-direction: column;
     justify-content: center;
     margin-bottom: -80px;
+
+    @media (max-width: 1024px) {
+      display: block;
+      margin-bottom: -200px;
+    }
 
     .theContainer {
       @media (max-width: 1600px) {

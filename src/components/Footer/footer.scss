@@ -6,7 +6,6 @@ body {
   color: #fdfeff;
   max-height: 750px;
   background-position: center;
-  margin-top: 180px;
 
   @media (max-width: 768px) {
     display: none;
@@ -308,7 +307,7 @@ body {
     display: none;
   }
 
-  margin-top: 80px;
+  margin-top: 0;
   background-position: center;
   background-color: #222f43;
   color: #fdfeff;
