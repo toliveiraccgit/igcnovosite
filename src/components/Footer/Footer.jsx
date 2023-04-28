@@ -205,8 +205,7 @@ function Footer() {
             </div>
             <div className="float-text">
               <h1>
-                nosso deal <br />
-                com você
+                nosso deal <br />é com você
               </h1>
             </div>
           </div>
