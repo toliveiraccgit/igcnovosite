@@ -141,13 +141,19 @@ function Footer() {
             <h2>ACOMPANHE</h2>
             <ul>
               <li>
-                <a href="#">
+                <a
+                  href="https://www.instagram.com/igcpartners_/"
+                  target="blank"
+                >
                   <img src={icon3} />
                 </a>
               </li>
 
               <li>
-                <a href="#">
+                <a
+                  href="https://www.linkedin.com/company/igc-partners/"
+                  target="blank"
+                >
                   <img src={icon4} />
                 </a>
               </li>

@@ -14,6 +14,9 @@ import { api_news } from "../../api";
 import config from "../../config/env";
 import alert from "../../utils/systemAlert";
 
+import icon4 from "../../assets/icon-linkedinB.png";
+import icon3 from "../../assets/icon-instaB.png";
+
 function NotíciaSelecionada() {
   const { id } = useParams();
 
@@ -46,6 +49,7 @@ function NotíciaSelecionada() {
   }, [locale]);
 
   const navigate = new useNavigate();
+
   return (
     <div className="NoticiaSelecionadaContainer">
       <div className="topPage">
@@ -54,38 +58,64 @@ function NotíciaSelecionada() {
         </div>
       </div>
 
+      <div className="pathArea">
+        <div className="theContainer">
+          <h4>
+            <span>Noticia</span> <span>&gt;</span> {news && news.title}
+          </h4>
+        </div>
+      </div>
+
       <div className="NoticiaMain">
         <div className="theContainer">
           <div className="leftContainer">
-            <p className="datetime">
-              <img src={Calendar} alt="" />
-              {moment(news && news.createdAt).format("DD MMMM, YYYY")}
-            </p>
-            <h4 className="title">{news && news.title}</h4>
-            <img
-              className="imgNews"
-              src={`${config.api.BASE}${
-                news && news.banner && news.banner.data.attributes.url
-              }`}
-              alt=""
-            />
-            <p
-              className="description"
-              dangerouslySetInnerHTML={{ __html: news && news.description }}
-            ></p>
-          </div>
-          <div className="rightNewContainer">
-            <h3 className="highlights">{page && page.latest}</h3>
-            <div className="containerLastnews">
-              {listNews &&
-                listNews.map((item, index) => (
-                  <LastNews
-                    key={index}
-                    title={item.attributes.title}
-                    link={`/noticias/${item.id}`}
-                    number={index + 1}
-                  />
-                ))}
+            <div className="imgArea">
+              <img
+                className="imgNews"
+                src={`${config.api.BASE}${
+                  news && news.banner && news.banner.data.attributes.url
+                }`}
+                alt=""
+              />
+            </div>
+
+            <div className="textArea">
+              <p className="datetime">
+                {moment(news && news.createdAt).format("DD MMMM, YYYY")}
+              </p>
+
+              <h4 className="title">{news && news.title}</h4>
+
+              <p
+                className="description"
+                dangerouslySetInnerHTML={{ __html: news && news.description }}
+              ></p>
+
+              <div className="iconsArea">
+                <ul>
+                  <li>
+                    <a
+                      href="https://www.instagram.com/igcpartners_/"
+                      target="blank"
+                    >
+                      <img src={icon3} />
+                    </a>
+                  </li>
+
+                  <li>
+                    <a
+                      href="https://www.linkedin.com/company/igc-partners/"
+                      target="blank"
+                    >
+                      <img src={icon4} />
+                    </a>
+                  </li>
+
+                  <li>
+                    <p>compartilhe</p>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
