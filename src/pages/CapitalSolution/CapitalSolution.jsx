@@ -431,7 +431,7 @@ function CapitalSolution() {
           </div>
           <div className="bottom">
             <div className="left">
-              <ul>
+              {/* <ul>
                 {capitalSolution &&
                   capitalSolution.differentials &&
                   capitalSolution.differentials.differential_1 && (
@@ -453,10 +453,21 @@ function CapitalSolution() {
                         capitalSolution.differentials.differential_3}
                     </li>
                   )}
+              </ul> */}
+
+              <ul>
+                <li>
+                  <h3>De dono para dono</h3>
+                  <span>28 sócios</span>
+                </li>
+                <li>
+                  <h3>Alta perfomance</h3>
+                  <span>+330 transações realizadas em M&A</span>
+                </li>
               </ul>
             </div>
             <div className="right">
-              <ul>
+              {/* <ul>
                 {capitalSolution &&
                   capitalSolution.differentials &&
                   capitalSolution.differentials.differential_2 && (
@@ -478,6 +489,17 @@ function CapitalSolution() {
                         capitalSolution.differentials.differential_4}
                     </li>
                   )}
+              </ul> */}
+
+              <ul>
+                <li>
+                  <h3>Sem conflito de interesse</h3>
+                  <span>sempre no sell-side</span>
+                </li>
+                <li>
+                  <h3>Especialização setorial</h3>
+                  <span>sócios dedicados setorialmente</span>
+                </li>
               </ul>
             </div>
           </div>

@@ -1,10 +1,18 @@
+.desktop {
+  display: block;
+}
+
+.mobile {
+  display: none;
+}
+
 .bar-chart {
   display: flex;
   flex-direction: row-reverse;
   align-items: flex-end;
   justify-content: center;
   position: absolute;
-  bottom: -80px;
+  bottom: 20rem;
   left: 0;
   height: 300px;
   width: 100%;
@@ -35,11 +43,20 @@
   line-height: 24px;
   position: absolute;
   top: -110px;
-  left: 25%;
+  left: 30%;
   color: #e8ebec;
 }
 
+@media (max-width: 1680px) {
+  .bar-chart {
+    bottom: 1rem;
+  }
+}
+
 @media (max-width: 1074px) {
+  .bar-chart {
+    bottom: -3rem;
+  }
   .value {
     font-size: 50px;
     top: -100px;
@@ -48,17 +65,25 @@
 }
 
 @media (max-width: 560px) {
+  .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+
   .bar-chart {
     position: relative;
     width: 350px;
     height: 160px;
     bottom: -250px;
-    left: -70px;
+    left: 0;
   }
 
   .value {
-    top: -65px;
+    top: -25%;
     left: 25%;
-    font-size: 30px;
+    font-size: 22px;
   }
 }

@@ -16,6 +16,8 @@ import { useNavigate } from "react-router-dom";
 import config from "../../config/env";
 import alert from "../../utils/systemAlert";
 
+import rightArrow from "../../assets/homeBanners/arrowRight.png";
+
 function news() {
   const navigate = useNavigate();
   const locale = useSelector((state) => state.locales.locale);
@@ -26,6 +28,12 @@ function news() {
   const [news, setNews] = useState([]);
   const [newsAll, setNewsAll] = useState([]);
   const [highlight, setHighlight] = useState({});
+
+  const [displayCount, setDisplayCount] = useState(6);
+
+  const handleLoadMore = () => {
+    setDisplayCount(displayCount + 6);
+  };
 
   useEffect(() => {
     api_news
@@ -43,7 +51,7 @@ function news() {
       }
     });
 
-    api_news.get({ locale, count: 4 }).then((res) => {
+    api_news.get({ locale, count: 6 }).then((res) => {
       if (res.data.data.length > 0) {
         setNews(res.data.data);
       }
@@ -62,67 +70,65 @@ function news() {
         <div className="theContainer">{page && page.title}</div>
       </div>
 
+      <div className="welcome">
+        <div className="theContainer">
+          <div className="area">
+            <h1>
+              Seja bem-vindo ao hub de notícias, <span>igc.</span>
+            </h1>
+          </div>
+        </div>
+      </div>
+
       <div className="newsBanner">
         <div className="theContainer">
           <div className="leftContainer">
-            <p className="highlights">{page && page.highlights}</p>
             <div
               className="bannerContainer"
-              onClick={() => navigate(`/noticias/${highlight && highlight.id}`)}
+              // onClick={() => navigate(`/noticias/${highlight && highlight.id}`)}
             >
-              <img
-                className="bannerNews"
-                src={`${config.api.BASE}${
-                  highlight &&
-                  highlight.attributes &&
-                  highlight.attributes.banner &&
-                  highlight.attributes.banner.data.attributes.url
-                }`}
-                alt=""
-              />
-              <div className="containerAbsolute">
-                <p className="date">
-                  <img src={Calendar} alt="" />{" "}
-                  {highlight &&
+              <div className="bannerNewsContainer">
+                <img
+                  className="bannerNews"
+                  src={`${config.api.BASE}${
+                    highlight &&
                     highlight.attributes &&
-                    moment(highlight.attributes.createdAt).format(
-                      "DD MMMM, YYYY"
-                    )}
-                </p>
-                <h3 className="title">
-                  {highlight &&
-                    highlight.attributes &&
-                    highlight.attributes.title}
-                </h3>
-                <p className="description">
-                  <div
-                    className="short"
-                    dangerouslySetInnerHTML={{
-                      __html:
-                        highlight &&
-                        highlight.attributes &&
-                        highlight.attributes.description,
-                    }}
-                  ></div>
-                  <a href={`/noticias/${highlight && highlight.id}`}>
-                    Continuar lendo
-                  </a>
-                </p>
+                    highlight.attributes.banner &&
+                    highlight.attributes.banner.data.attributes.url
+                  }`}
+                  alt=""
+                />
               </div>
             </div>
           </div>
           <div className="rightContainer">
-            <h3 className="highlights">{page && page.latest}</h3>
-            <div className="containerLastnews">
-              {news &&
-                news.map((item, index) => (
-                  <LastNews
-                    key={index}
-                    title={item.attributes.title}
-                    link={`/noticias/${item.id}`}
-                    number={index + 1}
-                  />
-                ))}
+            <div className="content">
+              <h5>
+                {highlight &&
+                  highlight.attributes &&
+                  moment(highlight.attributes.createdAt).format(
+                    "DD MMMM, YYYY"
+                  )}
+              </h5>
+              <h1>
+                {highlight &&
+                  highlight.attributes &&
+                  highlight.attributes.title}
+              </h1>
+              <p>
+                <div
+                  className="short"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      highlight &&
+                      highlight.attributes &&
+                      highlight.attributes.description,
+                  }}
+                ></div>
+              </p>
+              <a href={`/noticias/${highlight && highlight.id}`}>
+                Ler conteúdo
+              </a>
             </div>
           </div>
         </div>
@@ -131,15 +137,27 @@ function news() {
       <div className="theNews">
         <div className="theContainer">
           {newsAll &&
-            newsAll.map((item, index) => (
-              <TheNews
-                key={index}
-                data={item}
-                postDate={moment(item.attributes.createdAt).format(
-                  "DD MMMM, YYYY"
-                )}
-              />
-            ))}
+            newsAll
+              .slice(0, displayCount)
+              .map((item, index) => (
+                <TheNews
+                  key={index}
+                  data={item}
+                  postDate={moment(item.attributes.createdAt).format(
+                    "DD MMMM, YYYY"
+                  )}
+                />
+              ))}
+        </div>
+        <div className="moreNews">
+          {/* {newsAll && displayCount < newsAll.length && (
+            <button onClick={handleLoadMore}>
+              carregar mais <img src={rightArrow} alt="" />{" "}
+            </button>
+          )} */}
+          <button onClick={handleLoadMore}>
+            carregar mais <img src={rightArrow} alt="" />{" "}
+          </button>
         </div>
       </div>
     </div>

@@ -7,11 +7,9 @@ import config from "../../config/env";
 
 function theNews({ data, postDate }) {
   const navigate = new useNavigate();
+
   return (
-    <div
-      className="containerNews"
-      onClick={() => navigate(`/noticias/${data.id}`)}
-    >
+    <div className="containerNews">
       <img
         className="newsImagem"
         src={`${config.api.BASE}${
@@ -22,20 +20,14 @@ function theNews({ data, postDate }) {
         }`}
         alt=""
       />
-      <div className="rightContainer">
-        <p className="date">
-          <img src={Calendar} alt="" />
-          {postDate}
-        </p>
-        <h3>{data.attributes.title}</h3>
-        <p className="description">
-          <div
-            className="short"
-            dangerouslySetInnerHTML={{ __html: data.attributes.description }}
-          ></div>
-          <a href={`/noticias/${data.id}`}>continuar lendo</a>
-        </p>
-      </div>
+
+      <h5>{postDate}</h5>
+
+      <hr />
+
+      <h1>{data.attributes.title}</h1>
+
+      <a href={`/noticias/${data.id}`}>Ler conteúdo</a>
     </div>
   );
 }

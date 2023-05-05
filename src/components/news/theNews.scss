@@ -1,21 +1,12 @@
 .containerNews {
-  display: flex;
-  gap: 40px;
-  width: 97%;
+  width: 100%;
   height: auto;
-  padding: 1rem;
-  background-color: #fff;
-  border-radius: 3px;
   overflow: hidden;
-
-  @media (max-width: 1000px) {
-    gap: 10px;
-  }
+  padding-bottom: 2rem;
 
   .newsImagem {
-    max-width: 200px;
     width: 100%;
-    height: 200px;
+    height: 15rem;
     object-fit: cover;
 
     @media (max-width: 600px) {
@@ -24,50 +15,50 @@
     }
   }
 
-  .rightContainer {
-    margin: auto 0;
+  h5 {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 17px;
+    margin: 2rem 0;
 
-    .date {
-      font-weight: 400;
-      font-size: 12px;
-      line-height: 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #7a828f;
+    color: #cbaa58;
+  }
+
+  h1 {
+    margin: 2rem 0;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 33px;
+    letter-spacing: 0.025em;
+
+    color: #222f43;
+  }
+
+  p {
+    height: 10rem;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 31px;
+    letter-spacing: 0.02em;
+
+    span {
+      font-family: "Poppins" !important;
+      color: #222f43 !important;
     }
+  }
 
-    h3 {
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 30px;
-      color: #222f44;
-      margin-top: 0.5rem;
-    }
+  a {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
 
-    .description {
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 21px;
-      color: #7a828f;
-      margin-top: 10px;
+    color: #222f43;
+    text-decoration: none;
 
-      .short {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        width: auto;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-
-        span {
-          color: #7a828f !important;
-        }
-      }
-
-      a {
-        color: #222f44;
-      }
-    }
+    border-bottom: 1px solid #222f43;
+    padding-bottom: 4px;
   }
 }

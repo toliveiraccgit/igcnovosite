@@ -49,7 +49,7 @@ function Services() {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const data = [48, 56, 65, 67, 69];
+  const data = [48, 48, 48, 56, 65, 67, 69];
 
   const handleFilterChange = (event, type) => {
     const filterValue = event.target.value;
@@ -283,140 +283,88 @@ function Services() {
         <div className="theContainer">
           <div className="rightContainer">
             <h4>
-              {/* <img src={icon07} alt="" /> */}
               {(servicePage && servicePage.dif && servicePage.dif.title) ||
                 `nossos diferenciais`}
             </h4>
-            <p>
-              Nossa responsabilidade não é apenas da porta para dentro, com um
-              sistema de partnership baseado em resultados. Mas, principalmente,
-              da porta para fora, compartilhando e sendo donos dos desafios de
-              nossos clientes.
-            </p>
-            {/* <h4>
-              <img src={icon08} alt="" /> Maior precificação do seu deal.
-            </h4> */}
+            <h1 className="yellow">Melhor transação possível</h1>
             <div className="bottom">
-              <div className="right">
-                <ul>
-                  {/* <img src={icon01} alt="" /> */}
-                  <div className="container">
-                    <li className="firstLine">
-                      {/* {servicePage &&
-                        servicePage.dif &&
-                        servicePage.dif.differential_1}{" "} */}
-                      +25 anos <br /> <span>de transações de sucesso</span>
-                    </li>
-                    <li className="secondLine">
-                      {servicePage &&
-                        servicePage.dif &&
-                        servicePage.dif.differential_1_description}
-                    </li>
-                  </div>
-                </ul>
-                <ul>
-                  {/* <img src={icon02} alt="" /> */}
-                  <div className="container">
-                    <li className="firstLine">
-                      {/* {servicePage &&
-                        servicePage.dif &&
-                        servicePage.dif.differential_3} */}
-                      +50% <br />
-                      <span>de transações com players estrangeiros</span>
-                    </li>
-                    <li className="secondLine">
-                      {servicePage &&
-                        servicePage.dif &&
-                        servicePage.dif.differential_3_description}
-                    </li>
-                  </div>
-                </ul>
-                <ul className="mobileExtraLine">
-                  {/* <img src={icon04} alt="" /> */}
-                  <div className="container">
-                    <li className="firstLine">
-                      {/* {servicePage &&
-                        servicePage.dif &&
-                        servicePage.dif.differential_2} */}
-                      +330 <br />
-                      <span>deals realizados em m&a</span>
-                    </li>
-                    <li className="secondLine">
-                      {servicePage &&
-                        servicePage.dif &&
-                        servicePage.dif.differential_2_description}
-                    </li>
-                  </div>
-                </ul>
-                {/* <ul>
-                  <img src={icon03} alt="" />
-                  <div className="container">
-                    <li className="firstLine">
-                      {servicePage &&
-                        servicePage.dif &&
-                        servicePage.dif.differential_5}
-                    </li>
-                    <li className="secondLine">
-                      {servicePage &&
-                        servicePage.dif &&
-                        servicePage.dif.differential_5_description}
-                    </li>
-                  </div>
-                </ul> */}
-              </div>
-              <div className="left">
-                <ul>
-                  {/* <img src={icon04} alt="" /> */}
-                  <div className="container">
-                    <li className="firstLine">
-                      {/* {servicePage &&
-                        servicePage.dif &&
-                        servicePage.dif.differential_2} */}
-                      +330 <br />
-                      <span>deals realizados em m&a</span>
-                    </li>
-                    <li className="secondLine">
-                      {servicePage &&
-                        servicePage.dif &&
-                        servicePage.dif.differential_2_description}
-                    </li>
-                  </div>
-                </ul>
-                {/* <ul>
-                  <img src={icon05} alt="" />
-                  <div className="container">
-                    <li className="firstLine">
-                      {servicePage &&
-                        servicePage.dif &&
-                        servicePage.dif.differential_4}
-                    </li>
-                    <li className="secondLine">
-                      {servicePage &&
-                        servicePage.dif &&
-                        servicePage.dif.differential_4_description}
-                    </li>
-                  </div>
-                </ul> */}
-                {/* <ul>
-                  <img src={icon06} alt="" />
-                  <div className="container">
-                    <li className="firstLine">
-                      {servicePage &&
-                        servicePage.dif &&
-                        servicePage.dif.differential_6}
-                    </li>
-                    <li className="secondLine">
-                      {servicePage &&
-                        servicePage.dif &&
-                        servicePage.dif.differential_6_description}
-                    </li>
-                  </div>
-                </ul> */}
-              </div>
+              <h1 className="blue">Maior taxa de conversão do mercado.</h1>
             </div>
           </div>
           <div className="leftContainer">
-            {/* <h4>{servicePage && servicePage.chart_title}</h4> */}
+            <div className="bottom">
+              <div className="left">
+                <ul>
+                  <div className="container">
+                    <li className="firstLine">
+                      <h3>De dono para dono</h3>
+                      <span>28 sócios</span>
+                    </li>
+                    <li className="firstLine">
+                      <h3>Alta perfomance</h3>
+                      <span>+330 transações realizadas em M&A </span>
+                    </li>
+                    <li className="firstLine">
+                      <h3>Global</h3>
+                      <span>
+                        +50% das transações com players internacionais
+                      </span>
+                    </li>
+                  </div>
+                </ul>
+              </div>
+              <div className="right">
+                <ul>
+                  <div className="container">
+                    <li className="firstLine">
+                      <h3>Sem conflito de interesse</h3>
+                      <span>sempre no sell-side</span>
+                    </li>
+                    <li className="firstLine">
+                      <h3>Especialização setorial</h3>
+                      <span>sócios dedicados setorialmente</span>
+                    </li>
+                    <li className="firstLine">
+                      <h3>Time de suporte</h3>
+                      <span>antecipação dos problemas de sua transação.</span>
+                    </li>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="chartContainer">
+        <div className="theContainer">
+          <div className="desktop">
+            <div className="brandsArea">
+              <h4 style={{ color: "#cbaa58" }}>igc partners</h4>
+              <h4>
+                BTG
+                <br /> Pactual
+              </h4>
+              <h4>Itaú BBA</h4>
+              <h4>
+                Boutiques
+                <br /> de M&A
+              </h4>
+              <h4>
+                Bradesco
+                <br /> BBI
+              </h4>
+              <h4>
+                Bradesco
+                <br /> BBI
+              </h4>
+              <h4>
+                Bradesco
+                <br /> BBI
+              </h4>
+            </div>
+          </div>
+          <div className="mobile">
             <div className="brandsArea">
               <h4 style={{ color: "#cbaa58" }}>igc partners</h4>
               <h4>
@@ -433,19 +381,12 @@ function Services() {
                 <br /> BBI
               </h4>
             </div>
-            {/* {servicePage &&
-              servicePage.chart &&
-              servicePage.chart.map((item, index) => (
-                <div className="theBrand" key={item.id}>
-                  <p className={`brand ${index === 0 ? "main" : ""}`}>
-                    {item.name}
-                  </p>
-                  <p className="number">{item.value}</p>
-                </div>
-              ))} */}
-            <BarChart data={data} />
-            <p className="font">{servicePage && servicePage.font}</p>
           </div>
+          <BarChart data={data} />
+          <p className="font">
+            A igc é líder em número de transações M&A sell-side*
+          </p>
+          <p className="dataFont">*Últimos 36 meses. Fonte: TTR Data.</p>
         </div>
       </div>
 
