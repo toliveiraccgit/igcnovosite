@@ -3,7 +3,9 @@ import Slider from "react-slick";
 import bannerAgro from "../../assets/bannerAgro.jpg";
 import arrowLeft from "../../assets/slider/arrowLeft.svg";
 import arrowRight from "../../assets/slider/arrowRight.svg";
+import closeButton from "../../assets/closeButton.png";
 import CardCase from "../../components/CardCase/cardCase";
+import Modal from "react-modal";
 import "./Agro.scss";
 
 // TODO: remover esse import e seu arquivo
@@ -15,6 +17,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { api_agro, api_transactions } from "../../api";
+import config from "../../config/env";
 import alert from "../../utils/systemAlert";
 
 function Agro() {
@@ -29,6 +32,54 @@ function Agro() {
   const [pageExists, setPageExists] = useState(false);
 
   const [search, setSearch] = useState("");
+
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
+  const isMobile = window.innerWidth <= 768;
+
+  const openModal = (e, item) => {
+    e.preventDefault();
+    setSelectedTransaction(item.id);
+  };
+
+  const closeModal = () => {
+    setSelectedTransaction(null);
+  };
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      maxWidth: "807px",
+      height: "382px",
+      width: "100%",
+    },
+    closeButtonModal: {
+      top: "20px",
+      right: "20px",
+    },
+  };
+
+  const customMobileStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      maxWidth: "75%",
+      height: "auto",
+      width: "100%",
+    },
+    closeButtonModal: {
+      top: "20px",
+      right: "20px",
+    },
+  };
 
   useEffect(() => {
     api_agro
@@ -141,8 +192,8 @@ function Agro() {
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 5,
+          slidesToScroll: 5,
           infinite: true,
           dots: false,
         },
@@ -268,8 +319,8 @@ function Agro() {
             <img src={bannerAgro} alt="" />
             <div className="bannerText">
               <div className="theContainer">
-                <h2>{page && page.title}</h2>
-                <p>{page && page.description}</p>
+                <p>{page && page.title}</p>
+                <h3>{page && page.description}</h3>
               </div>
             </div>
           </div>
@@ -302,15 +353,112 @@ function Agro() {
                   {transactions &&
                     transactions.length > 0 &&
                     transactions.map((item, index) => (
-                      <CardCase
-                        key={index}
-                        image={`${item.attributes.image.data.attributes.url}`}
-                      />
+                      <a
+                        style={{ cursor: "pointer", marginBottom: 20 }}
+                        onClick={(e) => openModal(e, item)}
+                      >
+                        <CardCase
+                          key={index}
+                          image={`${item.attributes.image.data.attributes.url}`}
+                        />
+                      </a>
                     ))}
                 </Slider>
                 {transactions && transactions.length === 0 && (
                   <div className="noData">Nenhum case encontrado</div>
                 )}
+              </div>
+
+              {!isMobile &&
+                transactions &&
+                transactions.map((item) => (
+                  <Modal
+                    isOpen={selectedTransaction === item.id}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                    key={item.id}
+                  >
+                    <>
+                      <div className="ContainerModal">
+                        <div className="leftContainerModal">
+                          <div className="cardSocial-container">
+                            <img
+                              className="CardSocialImg"
+                              src={`${config.api.BASE}${item.attributes.image.data.attributes.url}`}
+                              alt="Logo"
+                            />
+                          </div>
+                        </div>
+                        <div className="rightContainerModal">
+                          <h2 className="titleModal">{item.attributes.name}</h2>
+                          <button
+                            style={customStyles.closeButtonModal}
+                            className="closeButtonModal"
+                            onClick={closeModal}
+                          >
+                            <img src={closeButton} alt="" />
+                          </button>
+                          <div className="DescriptionContainerModal">
+                            <p className="Description">
+                              {item.attributes.description}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  </Modal>
+                ))}
+
+              <div className="bottomMobile">
+                {isMobile &&
+                  transactions &&
+                  transactions.map((item) => (
+                    <>
+                      <div onClick={(e) => openModal(e, item)} key={item.id}>
+                        <CardCase
+                          image={item.attributes.image.data.attributes.url}
+                          key={item.index}
+                        />
+                      </div>
+                      <Modal
+                        isOpen={selectedTransaction === item.id}
+                        onRequestClose={closeModal}
+                        style={customMobileStyles}
+                        contentLabel="Example Modal"
+                        key={item.id}
+                      >
+                        <div className="ContainerModalMobile">
+                          <div className="rightContainerModal">
+                            <button
+                              style={customStyles.closeButtonModal}
+                              className="closeButtonModal"
+                              onClick={closeModal}
+                            >
+                              <img src={closeButton} alt="" />
+                            </button>
+                            <div className="DescriptionContainerModal">
+                              <p className="Description">
+                                <div className="Img">
+                                  <div className="cardSocial-container">
+                                    <img
+                                      className="CardSocialImg"
+                                      src={`${config.api.BASE}${item.attributes.image.data.attributes.url}`}
+                                      alt="Logo"
+                                    />
+                                  </div>
+                                </div>
+                                <h2 className="titleModal">
+                                  {item.attributes.name}
+                                </h2>
+                                {item.attributes.description}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </Modal>
+                    </>
+                  ))}
               </div>
             </div>
           </div>

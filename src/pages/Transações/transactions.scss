@@ -5,54 +5,39 @@
     overflow-y: hidden;
 
     img {
-      width: 100vw;
+      width: 99.99%;
+      min-height: 300px;
     }
 
     .imgBanner {
     }
+
     .bannerText {
       .theContainer {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-
-        @media (max-width: 1024px) {
-          position: inherit;
-          background-color: #a7acb4;
-          margin: 0;
-          transform: none;
-        }
-
-        h2 {
-          font-weight: 600;
-          font-size: 36px;
-          line-height: 44px;
-          display: flex;
-          align-items: center;
-          text-transform: lowercase;
-          color: #ffffff;
-          margin-bottom: 10px;
-          @media (max-width: 1024px) {
-            position: absolute;
-            top: 20px;
-            margin: 0px 25px;
-            font-size: 25px;
-            white-space: nowrap;
-          }
-        }
+        left: 0;
 
         p {
-          font-weight: 400;
-          font-size: 14px;
-          line-height: 21px;
-          display: flex;
-          align-items: center;
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 30px;
           text-transform: lowercase;
-
           color: #ffffff;
+        }
 
-          @media (max-width: 1024px) {
-            padding: 15px 25px;
+        h3 {
+          font-weight: 600;
+          font-size: 36px;
+          text-transform: lowercase;
+          color: #ffffff;
+          width: 90%;
+
+          @media (max-width: 600px) {
+            line-height: 30px;
+            font-size: 22px;
+            width: 100%;
           }
         }
       }
@@ -68,7 +53,17 @@
         justify-content: space-between;
 
         @media (max-width: 1024px) {
+          h4 {
+            margin-left: 2.5rem;
+          }
+        }
+
+        @media (max-width: 600px) {
           display: block;
+
+          h4 {
+            margin-left: 2rem;
+          }
         }
       }
 
@@ -83,7 +78,19 @@
           justify-content: center;
         }
 
-        @media (max-width: 345px) {
+        @media (max-width: 910px) {
+          display: none;
+        }
+      }
+
+      .caseCardsContainerMobile {
+        display: none;
+
+        @media (max-width: 910px) {
+          display: flex;
+          margin-top: 40px;
+          flex-wrap: wrap;
+          gap: 10px;
           justify-content: center;
         }
       }
@@ -94,7 +101,12 @@
       gap: 20px;
 
       @media (max-width: 1024px) {
+        margin-right: 2.5rem;
+      }
+
+      @media (max-width: 600px) {
         display: block;
+        margin: 0 2rem;
       }
 
       p {
@@ -120,6 +132,10 @@
         @media (max-width: 1024px) {
           width: 100%;
           margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+          margin-top: 1.5rem;
         }
 
         font-weight: 400;

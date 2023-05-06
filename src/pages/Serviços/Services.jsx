@@ -8,6 +8,7 @@ import icon08 from "../../assets/services/icon08.png";
 import Slider from "react-slick";
 import arrowLeft from "../../assets/slider/arrowLeft.svg";
 import arrowRight from "../../assets/slider/arrowRight.svg";
+
 import CardCase from "../../components/CardCase/cardCase";
 import Reviews from "../../components/Reviews/Review";
 import BarChart from "../../components/BarChart/BarChart";
@@ -242,19 +243,17 @@ function Services() {
       });
   };
 
-  const [modal, setModalData] = useState({});
-  const [modalIsOpen, setIsOpenModal] = useState(false);
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
+  const isMobile = window.innerWidth <= 768;
 
-  function openModal(e, data) {
+  const openModal = (e, transaction) => {
     e.preventDefault();
+    setSelectedTransaction(transaction.id);
+  };
 
-    setModalData(data);
-    setIsOpenModal(true);
-  }
-
-  function closeModal() {
-    setIsOpenModal(false);
-  }
+  const closeModal = () => {
+    setSelectedTransaction(null);
+  };
 
   const customStyles = {
     content: {
@@ -266,6 +265,29 @@ function Services() {
       transform: "translate(-50%, -50%)",
       maxWidth: "807px",
       height: "382px",
+      width: "100%",
+    },
+    closeButtonModal: {
+      top: "20px",
+      right: "20px",
+    },
+  };
+
+  const customMobileStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      maxWidth: "75%",
+      height: "auto",
+      width: "100%",
+    },
+    closeButtonModal: {
+      top: "20px",
+      right: "20px",
     },
   };
 
@@ -443,6 +465,105 @@ function Services() {
                 ))}
             </Slider>
           </div>
+
+          {!isMobile &&
+            transactions &&
+            transactions.map((transaction) => (
+              <Modal
+                isOpen={selectedTransaction === transaction.id}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+                key={transaction.id}
+              >
+                <>
+                  <div className="ContainerModal">
+                    <div className="leftContainerModal">
+                      <div className="cardSocial-container">
+                        <img
+                          className="CardSocialImg"
+                          src={`${config.api.BASE}${transaction.attributes.image.data.attributes.url}`}
+                          alt="Logo"
+                        />
+                      </div>
+                    </div>
+                    <div className="rightContainerModal">
+                      <h2 className="titleModal">
+                        {transaction.attributes.name}
+                      </h2>
+                      <button
+                        style={customStyles.closeButtonModal}
+                        className="closeButtonModal"
+                        onClick={closeModal}
+                      >
+                        <img src={closeButton} alt="" />
+                      </button>
+                      <div className="DescriptionContainerModal">
+                        <p className="Description">
+                          {transaction.attributes.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              </Modal>
+            ))}
+
+          <div className="bottomMobile">
+            <Slider ref={slider2} {...secondSlider}>
+              {isMobile &&
+                transactions &&
+                transactions.map((transaction) => (
+                  <>
+                    <div
+                      onClick={(e) => openModal(e, transaction)}
+                      key={transaction.id}
+                    >
+                      <CardCase
+                        image={transaction.attributes.image.data.attributes.url}
+                        key={transaction.index}
+                      />
+                    </div>
+                    <Modal
+                      isOpen={selectedTransaction === transaction.id}
+                      onRequestClose={closeModal}
+                      style={customMobileStyles}
+                      contentLabel="Example Modal"
+                      key={transaction.id}
+                    >
+                      <div className="ContainerModalMobile">
+                        <div className="rightContainerModal">
+                          <button
+                            style={customStyles.closeButtonModal}
+                            className="closeButtonModal"
+                            onClick={closeModal}
+                          >
+                            <img src={closeButton} alt="" />
+                          </button>
+                          <div className="DescriptionContainerModal">
+                            <p className="Description">
+                              <div className="Img">
+                                <div className="cardSocial-container">
+                                  <img
+                                    className="CardSocialImg"
+                                    src={`${config.api.BASE}${transaction.attributes.image.data.attributes.url}`}
+                                    alt="Logo"
+                                  />
+                                </div>
+                              </div>
+                              <h2 className="titleModal">
+                                {transaction.attributes.name}
+                              </h2>
+                              {transaction.attributes.description}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </Modal>
+                  </>
+                ))}
+            </Slider>
+          </div>
         </div>
       </div>
 
@@ -547,72 +668,6 @@ function Services() {
           </div>
         </div>
       </div>
-
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <div className="ContainerModal">
-          <div className="leftContainerModal">
-            <img
-              src={`${config.api.BASE}${
-                modal &&
-                modal.attributes &&
-                modal.attributes.image &&
-                modal.attributes.image.data &&
-                modal.attributes.image.data.attributes &&
-                modal.attributes.image.data.attributes.url
-              }`}
-              alt=""
-            />
-          </div>
-          <div className="rightContainerModal">
-            <h2 className="titleModal">
-              {modal && modal.attributes && modal.attributes.name}
-            </h2>
-            <button className="closeButtonModal" onClick={closeModal}>
-              <img src={closeButton} alt="" />
-            </button>
-            <div className="DescriptionContainerModal">
-              <p className="Description">
-                {modal && modal.attributes && modal.attributes.description}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="ContainerModalMobile">
-          <div className="rightContainerModal">
-            <button className="closeButtonModal" onClick={closeModal}>
-              <img src={closeButton} alt="" />
-            </button>
-            <div className="DescriptionContainerModal">
-              <p className="Description">
-                <div className="Img">
-                  <img
-                    className="SocialMobile"
-                    src={`${config.api.BASE}${
-                      modal &&
-                      modal.attributes &&
-                      modal.attributes.image &&
-                      modal.attributes.image.data &&
-                      modal.attributes.image.data.attributes &&
-                      modal.attributes.image.data.attributes.url
-                    }`}
-                    alt=""
-                  />
-                </div>
-                <h2 className="titleModal">
-                  {modal && modal.attributes && modal.attributes.name}
-                </h2>
-                {modal && modal.attributes && modal.attributes.description}
-              </p>
-            </div>
-          </div>
-        </div>
-      </Modal>
     </div>
   );
 }

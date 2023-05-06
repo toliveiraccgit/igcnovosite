@@ -21,6 +21,10 @@ import TheNews from "../../components/news/theNews";
 
 import "./CapitalSolution.scss";
 
+import Modal from "react-modal";
+import closeButton from "../../assets/closeButton.png";
+import config from "../../config/env";
+
 import { useSelector } from "react-redux";
 import {
   api_capital_solution,
@@ -411,6 +415,54 @@ function CapitalSolution() {
     ],
   };
 
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
+  const isMobile = window.innerWidth <= 768;
+
+  const openModal = (e, transaction) => {
+    e.preventDefault();
+    setSelectedTransaction(transaction.id);
+  };
+
+  const closeModal = () => {
+    setSelectedTransaction(null);
+  };
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      maxWidth: "807px",
+      height: "382px",
+      width: "100%",
+    },
+    closeButtonModal: {
+      top: "20px",
+      right: "20px",
+    },
+  };
+
+  const customMobileStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      maxWidth: "75%",
+      height: "auto",
+      width: "100%",
+    },
+    closeButtonModal: {
+      top: "20px",
+      right: "20px",
+    },
+  };
+
   return (
     <div className="capitalSolutionContainer">
       <div className="bannerContainer">
@@ -557,10 +609,111 @@ function CapitalSolution() {
             <Slider ref={slider2} {...secondSlider}>
               {transactions &&
                 transactions.map((transaction) => (
-                  <CardCase
-                    key={transaction.id}
-                    image={transaction.attributes.image.data.attributes.url}
-                  />
+                  <a onClick={(e) => openModal(e, transaction)}>
+                    <CardCase
+                      key={transaction.id}
+                      image={`${transaction?.attributes?.image?.data?.attributes?.url}`}
+                    />
+                  </a>
+                ))}
+            </Slider>
+          </div>
+
+          {!isMobile &&
+            transactions &&
+            transactions.map((transaction) => (
+              <Modal
+                isOpen={selectedTransaction === transaction.id}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+                key={transaction.id}
+              >
+                <>
+                  <div className="ContainerModal">
+                    <div className="leftContainerModal">
+                      <div className="cardSocial-container">
+                        <img
+                          className="CardSocialImg"
+                          src={`${config.api.BASE}${transaction.attributes.image.data.attributes.url}`}
+                          alt="Logo"
+                        />
+                      </div>
+                    </div>
+                    <div className="rightContainerModal">
+                      <h2 className="titleModal">
+                        {transaction.attributes.name}
+                      </h2>
+                      <button
+                        style={customStyles.closeButtonModal}
+                        className="closeButtonModal"
+                        onClick={closeModal}
+                      >
+                        <img src={closeButton} alt="" />
+                      </button>
+                      <div className="DescriptionContainerModal">
+                        <p className="Description">
+                          {transaction.attributes.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              </Modal>
+            ))}
+
+          <div className="bottomMobile">
+            <Slider ref={slider2} {...secondSlider}>
+              {isMobile &&
+                transactions &&
+                transactions.map((transaction) => (
+                  <>
+                    <div
+                      onClick={(e) => openModal(e, transaction)}
+                      key={transaction.id}
+                    >
+                      <CardCase
+                        image={transaction.attributes.image.data.attributes.url}
+                        key={transaction.index}
+                      />
+                    </div>
+                    <Modal
+                      isOpen={selectedTransaction === transaction.id}
+                      onRequestClose={closeModal}
+                      style={customMobileStyles}
+                      contentLabel="Example Modal"
+                      key={transaction.id}
+                    >
+                      <div className="ContainerModalMobile">
+                        <div className="rightContainerModal">
+                          <button
+                            style={customStyles.closeButtonModal}
+                            className="closeButtonModal"
+                            onClick={closeModal}
+                          >
+                            <img src={closeButton} alt="" />
+                          </button>
+                          <div className="DescriptionContainerModal">
+                            <p className="Description">
+                              <div className="Img">
+                                <div className="cardSocial-container">
+                                  <img
+                                    className="CardSocialImg"
+                                    src={`${config.api.BASE}${transaction.attributes.image.data.attributes.url}`}
+                                    alt="Logo"
+                                  />
+                                </div>
+                              </div>
+                              <h2 className="titleModal">
+                                {transaction.attributes.name}
+                              </h2>
+                              {transaction.attributes.description}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </Modal>
+                  </>
                 ))}
             </Slider>
           </div>
