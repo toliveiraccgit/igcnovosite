@@ -295,7 +295,7 @@
         margin-left: 3.5rem;
 
         @media (max-width: 1680px) {
-          gap: 8.3rem;
+          gap: 6.5rem;
           margin-left: 4rem;
         }
 
@@ -309,11 +309,15 @@
           margin-left: 0.5rem;
         }
 
-        h4 {
+        .chartTitle {
           font-weight: 700;
           font-size: 16px;
           line-height: 22px;
           color: #c9c9d6;
+        }
+
+        .chartTitle:first-child {
+          color: #cbaa58;
         }
       }
 

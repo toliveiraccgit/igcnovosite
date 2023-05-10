@@ -150,11 +150,6 @@ function news() {
               ))}
         </div>
         <div className="moreNews">
-          {/* {newsAll && displayCount < newsAll.length && (
-            <button onClick={handleLoadMore}>
-              carregar mais <img src={rightArrow} alt="" />{" "}
-            </button>
-          )} */}
           <button onClick={handleLoadMore}>
             carregar mais <img src={rightArrow} alt="" />{" "}
           </button>

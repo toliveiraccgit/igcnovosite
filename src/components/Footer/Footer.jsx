@@ -7,23 +7,45 @@ import icon1 from "../../assets/icon1.svg";
 import LogoMobile from "../../assets/logo.png";
 import LogoW from "../../assets/igcLogoW.png";
 import original from "../../assets/original.svg";
+import arrowRight from "../../assets/services/rightarrow.svg";
 import "./footer.scss";
 
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { api_agro, api_footer } from "../../api";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import config from "../../config/env";
+import APINavigation from "./../../api/navigation";
 
 function Footer() {
   const locale = useSelector((state) => state.locales.locale);
 
   const [footer, setFooter] = useState({});
   const [dynamic, setDynamic] = useState({});
+  const [navigation, setNavigation] = useState([]);
+  const [service, setService] = useState([]);
 
   useEffect(() => {
     api_footer.get({ locale }).then((res) => {
       setFooter(res.data.data.attributes);
     });
+
+    APINavigation.get_footer_igc({ locale })
+      .then((response) => {
+        setNavigation(response.data);
+        console.log(response.data);
+      })
+      .catch(() => {
+        setNavigation([]);
+      });
+
+    APINavigation.get_footer_service({ locale })
+      .then((response) => {
+        setService(response.data);
+      })
+      .catch(() => {
+        setService([]);
+      });
 
     api_agro.page({ locale }).then((res) => {
       setDynamic(res.data.data.attributes);
@@ -31,42 +53,38 @@ function Footer() {
   }, [locale]);
 
   return (
-    <>
+    <Router>
       <div className="main-container">
         <div className="theContainer">
           <div className="footer-list0">
             <h2>IGC</h2>
             <ul>
-              <li>
-                <a href="/quem-somos">Quem somos</a>
-              </li>
-              <li>
-                <a href="/noticias">Notícias</a>
-              </li>
-              <li>
-                <a href="/social">Social</a>
-              </li>
-              <li>
-                <a href="https://carreirasigcp.gupy.io/">Carreiras</a>
-              </li>
-              <li>
-                <a href="#">Política de privacidade</a>
-              </li>
+              {navigation.map((item) => {
+                return (
+                  <li>
+                    {item.type === "WRAPPER" ? (
+                      <Link to={item.path}>{item.title}</Link>
+                    ) : (
+                      <a target="_blank" href="https://carreirasigcp.gupy.io/">
+                        {item.title}
+                      </a>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
           <div className="footer-list">
             <h2>Serviços</h2>
             <ul>
-              <li>
-                <a href="/servicos">M&A</a>
-              </li>
-              {/* <li>
-                <a href="/ipo-advisor">IPO Advisor</a>
-              </li> */}
-              <li>
-                <a href="/capitacao-recursos">Capital Solution</a>
-              </li>
+              {service.map((item) => {
+                return (
+                  <li>
+                    <Link to={item.path}>{item.title}</Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -74,7 +92,6 @@ function Footer() {
             <h2>Nossas transações</h2>
             <div className="secondListFooter">
               <ul>
-                {/* {dynamic && dynamic?.screens?.length > 0 && <h3>Setores</h3>} */}
                 {dynamic &&
                   dynamic?.screens?.map((e) => {
                     return (
@@ -84,24 +101,6 @@ function Footer() {
                     );
                   })}
               </ul>
-              {/* <ul>
-                <h3>Buyers</h3>
-                <li>
-                  <a href="#">Parceiros estratégicos</a>
-                </li>
-                <li>
-                  <a href="#">Fundos de investimento</a>
-                </li>
-              </ul>
-              <ul>
-                <h3>Origem</h3>
-                <li>
-                  <a href="#">Nacional</a>
-                </li>
-                <li>
-                  <a href="#">Internacionais</a>
-                </li>
-              </ul> */}
             </div>
           </div>
 
@@ -109,22 +108,15 @@ function Footer() {
             <h2>Fale com a gente</h2>
             <ul>
               {footer && footer.contact && footer.contact.phone && (
-                <li>
-                  <a href="#"> {/* <img src={icon3} /> */}</a>
-                  {footer.contact.phone}
-                </li>
+                <li>{footer.contact.phone}</li>
               )}
 
               {footer && footer.contact && footer.contact.email && (
-                <li>
-                  <a href="#">{/* <img src={icon4} /> */}</a>
-                  {footer.contact.email}
-                </li>
+                <li>{footer.contact.email}</li>
               )}
 
               {footer && footer.contact && footer.contact.address && (
                 <li style={{ maxWidth: 230, marginTop: 42 }}>
-                  <a href="#">{/* <img src={icon5} /> */}</a>
                   {footer.contact.address}
                 </li>
               )}
@@ -141,32 +133,29 @@ function Footer() {
             <h2>ACOMPANHE</h2>
             <ul>
               <li>
-                <a
-                  href="https://www.instagram.com/igcpartners_/"
-                  target="blank"
-                >
-                  <img src={icon3} />
-                </a>
+                {footer && footer.social && footer.social.instagram && (
+                  <a href={footer.social.instagram}>
+                    <img src={icon3} />
+                  </a>
+                )}
               </li>
 
               <li>
-                <a
-                  href="https://www.linkedin.com/company/igc-partners/"
-                  target="blank"
-                >
-                  <img src={icon4} />
-                </a>
+                {footer && footer.social && footer.social.linkedin && (
+                  <a href={footer.social.linkedin}>
+                    <img src={icon4} />
+                  </a>
+                )}
               </li>
             </ul>
-
-            {/* <a href="#">
-              <img src={icon5} />
-            </a> */}
           </div>
 
           <div className="float-content">
             <div className="float-logo">
-              <img src={LogoW} />
+              <img
+                src={config.api.BASE + footer?.brand?.data?.attributes?.url}
+                alt=""
+              />
             </div>
             <div className="float-text">
               <h1>
@@ -181,7 +170,7 @@ function Footer() {
           <div className="theContainer">
             <p>© {new Date().getFullYear()} IGC</p>
             <span>
-              <a href="#">
+              <a href="/politica-privacidade">
                 <p>POLÍTICAS E TERMOS</p>
               </a>
             </span>
@@ -192,21 +181,24 @@ function Footer() {
       <div className="MobileContainer">
         <div className="ContainerMobile">
           <div className="HeaderMobile">
-            {/* <img src={LogoMobile} alt="" /> */}
             <div className="float-content">
               <div className="float-logo">
-                <img src={LogoW} />
+                <img
+                  src={config.api.BASE + footer?.brand?.data?.attributes?.url}
+                  alt=""
+                />
               </div>
               <div className="social-media">
-                <a href="#">
-                  <img src={icon3} />
-                </a>
-                <a href="#">
-                  <img src={icon4} />
-                </a>
-                {/* <a href="#">
-                  <img src={icon5} />
-                </a> */}
+                {footer && footer.social && footer.social.instagram && (
+                  <a href={footer.social.instagram}>
+                    <img src={icon3} />
+                  </a>
+                )}
+                {footer && footer.social && footer.social.linkedin && (
+                  <a href={footer.social.linkedin}>
+                    <img src={icon4} />
+                  </a>
+                )}
               </div>
             </div>
             <div className="float-text">
@@ -219,36 +211,26 @@ function Footer() {
           <div className="footer-list0">
             <h2>IGC</h2>
             <ul>
-              <li>
-                <a href="/quem-somos">Quem somos</a>
-              </li>
-              <li>
-                <a href="/noticias">Notícias</a>
-              </li>
-              <li>
-                <a href="/social">Social</a>
-              </li>
-              <li>
-                <a href="https://carreirasigcp.gupy.io/">Carreiras</a>
-              </li>
-              <li>
-                <a href="#">Política de privacidade</a>
-              </li>
+              {navigation.map((item) => {
+                return (
+                  <li>
+                    <Link to={item.path}>{item.title}</Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
           <div className="footer-list">
             <h2>Serviços</h2>
             <ul>
-              <li>
-                <a href="/servicos">M&A</a>
-              </li>
-              {/* <li>
-                <a href="/ipo-advisor">IPO Advisor</a>
-              </li> */}
-              <li>
-                <a href="/capitacao-recursos">Capital Solution</a>
-              </li>
+              {service.map((item) => {
+                return (
+                  <li>
+                    <Link to={item.path}>{item.title}</Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -256,7 +238,6 @@ function Footer() {
             <h2>NOSSAS TRANSAÇÕES</h2>
             <div className="secondListFooter">
               <ul>
-                {/* {dynamic && dynamic?.screens?.length > 0 && <h3>Setores</h3>} */}
                 {dynamic &&
                   dynamic?.screens?.map((e) => {
                     return (
@@ -266,24 +247,6 @@ function Footer() {
                     );
                   })}
               </ul>
-              {/* <ul>
-                <h3>Buyers</h3>
-                <li>
-                  <a href="#">Parceiros estratégicos</a>
-                </li>
-                <li>
-                  <a href="#">Fundos de investimento</a>
-                </li>
-              </ul>
-              <ul>
-                <h3>Origem</h3>
-                <li>
-                  <a href="#">Nacional</a>
-                </li>
-                <li>
-                  <a href="#">Internacionais</a>
-                </li>
-              </ul> */}
             </div>
           </div>
 
@@ -291,22 +254,15 @@ function Footer() {
             <h2>Fale com a gente</h2>
             <ul>
               {footer && footer.contact && footer.contact.phone && (
-                <li>
-                  <a href="#"> {/* <img src={icon3} /> */}</a>
-                  {footer.contact.phone}
-                </li>
+                <li>{footer.contact.phone}</li>
               )}
 
               {footer && footer.contact && footer.contact.email && (
-                <li>
-                  <a href="#">{/* <img src={icon4} /> */}</a>
-                  {footer.contact.email}
-                </li>
+                <li>{footer.contact.email}</li>
               )}
 
               {footer && footer.contact && footer.contact.address && (
                 <li style={{ maxWidth: 230, marginTop: 42 }}>
-                  <a href="#">{/* <img src={icon5} /> */}</a>
                   {footer.contact.address}
                 </li>
               )}
@@ -322,14 +278,14 @@ function Footer() {
           <div className="final-footer">
             <div className="theContainer">
               <p>© {new Date().getFullYear()} IGC</p>
-              <a href="#">
+              <a href="/politica-privacidade">
                 <p>POLÍTICAS E TERMOS</p>
               </a>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </Router>
   );
 }
 

@@ -244,7 +244,7 @@ function home() {
         res.data.data.attributes.transaction.transactions.data.slice(0, 10);
 
       setTransactions(limitData);
-      console.log(limitData);
+      // console.log(limitData);
       // setTestimony(res.data.data.attributes.testmonys.data);
       api_testmony
         .get({ locale })
@@ -288,17 +288,9 @@ function home() {
             <h4>
               {transactions_api_title && transactions_api_title.transaction}
             </h4>
-            <Link to="/transacoes">
+            <Link to="/transacoes/todas">
               {transactions_api_title && transactions_api_title.more}
             </Link>
-            {/* <div className="slicks">
-              <button onClick={handlePrevClick}>
-                <img src={arrowLeft} alt="" />
-              </button>
-              <button onClick={handleNextClick}>
-                <img src={arrowRight} alt="" />
-              </button>
-            </div> */}
           </div>
           <div className="bottom">
             {transactions &&

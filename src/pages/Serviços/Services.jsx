@@ -29,6 +29,7 @@ function Services() {
   const locale = useSelector((state) => state.locales.locale);
 
   const [servicePage, setServicePage] = useState({});
+  const [serviceChart, setServiceChart] = useState({});
   const [testimony, setTestimony] = useState([]);
   const [transactions, setTransactions] = useState([]);
 
@@ -62,6 +63,10 @@ function Services() {
       .page({ locale })
       .then((res) => {
         setServicePage(res.data.data?.attributes);
+        setServiceChart(
+          res.data.data?.attributes && res.data.data?.attributes.chart
+        );
+        console.log(res.data.data?.attributes);
       })
       .catch(() => {
         setServicePage({});
@@ -296,8 +301,8 @@ function Services() {
       <div className="bannerContainer">
         <img src={Banner} alt="" />
         <div className="theContainer">
-          <p>{servicePage && servicePage.title}</p>
-          <h3>{servicePage && servicePage.description}</h3>
+          <h3>{servicePage && servicePage.title}</h3>
+          <p>{servicePage && servicePage.description}</p>
         </div>
       </div>
 
@@ -319,17 +324,39 @@ function Services() {
                 <ul>
                   <div className="container">
                     <li className="firstLine">
-                      <h3>De dono para dono</h3>
-                      <span>28 sócios</span>
-                    </li>
-                    <li className="firstLine">
-                      <h3>Alta perfomance</h3>
-                      <span>+330 transações realizadas em M&A </span>
-                    </li>
-                    <li className="firstLine">
-                      <h3>Global</h3>
+                      <h3>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_1}
+                      </h3>
                       <span>
-                        +50% das transações com players internacionais
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_1_description}
+                      </span>
+                    </li>
+                    <li className="firstLine">
+                      <h3>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_2}
+                      </h3>
+                      <span>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_2_description}
+                      </span>
+                    </li>
+                    <li className="firstLine">
+                      <h3>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_3}
+                      </h3>
+                      <span>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_3_description}
                       </span>
                     </li>
                   </div>
@@ -339,16 +366,40 @@ function Services() {
                 <ul>
                   <div className="container">
                     <li className="firstLine">
-                      <h3>Sem conflito de interesse</h3>
-                      <span>sempre no sell-side</span>
+                      <h3>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_4}
+                      </h3>
+                      <span>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_4_description}
+                      </span>
                     </li>
                     <li className="firstLine">
-                      <h3>Especialização setorial</h3>
-                      <span>sócios dedicados setorialmente</span>
+                      <h3>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_5}
+                      </h3>
+                      <span>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_5_description}
+                      </span>
                     </li>
                     <li className="firstLine">
-                      <h3>Time de suporte</h3>
-                      <span>antecipação dos problemas de sua transação.</span>
+                      <h3>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_6}
+                      </h3>
+                      <span>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_6_description}
+                      </span>
                     </li>
                   </div>
                 </ul>
@@ -362,53 +413,32 @@ function Services() {
         <div className="theContainer">
           <div className="desktop">
             <div className="brandsArea">
-              <h4 style={{ color: "#cbaa58" }}>igc partners</h4>
-              <h4>
-                BTG
-                <br /> Pactual
-              </h4>
-              <h4>Itaú BBA</h4>
-              <h4>
-                Boutiques
-                <br /> de M&A
-              </h4>
-              <h4>
-                Bradesco
-                <br /> BBI
-              </h4>
-              <h4>
-                Bradesco
-                <br /> BBI
-              </h4>
-              <h4>
-                Bradesco
-                <br /> BBI
-              </h4>
+              {Array.isArray(serviceChart) &&
+                serviceChart.map((service) => (
+                  <h4 key={service.id} className="chartTitle">
+                    {service.name}
+                  </h4>
+                ))}
             </div>
           </div>
           <div className="mobile">
             <div className="brandsArea">
-              <h4 style={{ color: "#cbaa58" }}>igc partners</h4>
-              <h4>
-                BTG
-                <br /> Pactual
-              </h4>
-              <h4>Itaú BBA</h4>
-              <h4>
-                Boutiques
-                <br /> de M&A
-              </h4>
-              <h4>
-                Bradesco
-                <br /> BBI
-              </h4>
+              {Array.isArray(serviceChart) &&
+                serviceChart.slice(0, 5).map((service) => (
+                  <h4 key={service.id} className="chartTitle">
+                    {service.name}
+                  </h4>
+                ))}
             </div>
           </div>
+
           <BarChart data={data} />
+
           <p className="font">
             A igc é líder em número de transações M&A sell-side*
           </p>
-          <p className="dataFont">*Últimos 36 meses. Fonte: TTR Data.</p>
+
+          <p className="dataFont">{servicePage && servicePage.font}</p>
         </div>
       </div>
 

@@ -110,7 +110,7 @@ function QuemSomos() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2,
+          initialSlide: 0,
         },
       },
       {
@@ -124,6 +124,7 @@ function QuemSomos() {
   };
 
   const sliderPartnerMobile = {
+    dots: true,
     className: "center",
     centerMode: true,
     infinite: false,
@@ -212,39 +213,49 @@ function QuemSomos() {
           </div>
           <div className="left">
             {aboutUs?.media?.data && (
-              <OverlayTrigger
-                placement="top"
-                delay={{ show: 250, hide: 400 }}
-                overlay={renderTooltip}
-              >
-                <video
-                  ref={refVideo}
-                  autoPlay
-                  muted
-                  playsInline
-                  loop
-                  className="video"
-                  onClick={unMute}
-                >
-                  <source
-                    src={`${config.api.BASE}${
-                      aboutUs &&
-                      aboutUs.media &&
-                      aboutUs.media.data &&
-                      aboutUs.media.data.attributes &&
-                      aboutUs.media.data.attributes.url
-                    }`}
-                    type={
-                      aboutUs &&
-                      aboutUs.media &&
-                      aboutUs.media.data &&
-                      aboutUs.media.data.attributes &&
-                      aboutUs.media.data.attributes.mime
-                    }
-                  ></source>
-                  Your browser does not support HTML5 video.
-                </video>
-              </OverlayTrigger>
+              // <OverlayTrigger
+              //   placement="top"
+              //   delay={{ show: 250, hide: 400 }}
+              //   overlay={renderTooltip}
+              // >
+              //   <video
+              //     ref={refVideo}
+              //     autoPlay
+              //     muted
+              //     playsInline
+              //     loop
+              //     className="video"
+              //     onClick={unMute}
+              //   >
+              //     <source
+              //       src={`${config.api.BASE}${
+              //         aboutUs &&
+              //         aboutUs.media &&
+              //         aboutUs.media.data &&
+              //         aboutUs.media.data.attributes &&
+              //         aboutUs.media.data.attributes.url
+              //       }`}
+              //       type={
+              //         aboutUs &&
+              //         aboutUs.media &&
+              //         aboutUs.media.data &&
+              //         aboutUs.media.data.attributes &&
+              //         aboutUs.media.data.attributes.mime
+              //       }
+              //     ></source>
+              //     Your browser does not support HTML5 video.
+              //   </video>
+              // </OverlayTrigger>
+              <img
+                src={`${config.api.BASE}${
+                  aboutUs &&
+                  aboutUs.media &&
+                  aboutUs.media.data &&
+                  aboutUs.media.data.attributes &&
+                  aboutUs.media.data.attributes.url
+                }`}
+                alt=""
+              />
             )}
           </div>
         </div>

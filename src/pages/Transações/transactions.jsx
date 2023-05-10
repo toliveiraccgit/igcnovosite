@@ -106,8 +106,8 @@ function transactions() {
         <img src={banner} alt="" />
         <div className="bannerText">
           <div className="theContainer">
-            <p>{transactionPage && transactionPage.title}</p>
-            <h3>{transactionPage && transactionPage.description}</h3>
+            <h3>{transactionPage && transactionPage.title}</h3>
+            <p>{transactionPage && transactionPage.description}</p>
           </div>
         </div>
       </div>

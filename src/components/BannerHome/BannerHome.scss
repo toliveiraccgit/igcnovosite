@@ -6,6 +6,10 @@
   display: flex;
   justify-content: center;
 
+  @media (max-width: 794px) {
+    height: 20rem;
+  }
+
   .theContainer {
     position: absolute;
     top: 50%;
@@ -55,6 +59,10 @@
 
       img {
         margin-left: 10px;
+
+        @media (max-width: 794px) {
+          width: 100%;
+        }
       }
     }
   }

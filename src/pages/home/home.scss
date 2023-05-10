@@ -59,6 +59,11 @@
 
   .slick-dots {
     bottom: 50px;
+
+    @media (max-width: 910px) {
+      bottom: 30px;
+    }
+
     .slick-active {
       button {
         &::before {

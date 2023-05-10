@@ -1,0 +1,110 @@
+.PoliticaPrivacidadeContainer {
+  .topPage {
+    background: #f5f5f5;
+    font-family: "Poppins";
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 54px;
+    text-transform: lowercase;
+    height: 94px;
+    display: flex;
+    align-items: center;
+    color: #d3a93d;
+  }
+
+  .FirstSectionContainer {
+    margin-top: 130px;
+    margin-bottom: 80px;
+
+    .theContainer {
+      h4 {
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 44px;
+        color: #222f44;
+        margin-bottom: 20px;
+        margin-top: 80px;
+      }
+
+      p {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        color: #7a828f;
+        margin-right: 25px;
+        margin-bottom: 1.5rem;
+      }
+
+      ol {
+        font-weight: 600;
+        color: #7a828f;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+
+        li {
+          font-size: 16px;
+          margin-right: 25px;
+          margin-bottom: 1rem;
+
+          a {
+            color: #7a828f;
+            text-decoration: none;
+          }
+
+          a:hover {
+            color: #545962;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .theContainer {
+    margin: 0 45px;
+  }
+}
+
+@media (max-width: 1074px) {
+  .theContainer {
+    margin: 0 15px;
+    flex-wrap: wrap;
+  }
+
+  .FirstSectionContaine {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 998px) {
+  .topPage {
+    font-size: 22px;
+    height: 73px;
+    .theContainer {
+      margin: 0 20px;
+    }
+  }
+
+  .FirstSectionContaine {
+    h4 {
+      margin-top: 30px;
+      font-size: 21px;
+    }
+
+    p {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    ol {
+      li {
+        a {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}

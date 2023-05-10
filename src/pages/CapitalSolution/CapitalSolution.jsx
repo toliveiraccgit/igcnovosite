@@ -164,6 +164,7 @@ function CapitalSolution() {
 
   const slider = useRef(null);
   const slider2 = useRef(null);
+  const slider2Mobile = useRef(null);
   const slider3 = useRef(null);
   const slider3Mobile = useRef(null);
   const sliderNews = useRef(null);
@@ -189,6 +190,15 @@ function CapitalSolution() {
       />
     );
   }
+
+  const handlePrevClick = () => {
+    slider2.current.slickPrev();
+  };
+
+  const handleNextClick = () => {
+    slider2.current.slickNext();
+    console.log(slider2);
+  };
 
   const firstSlider = {
     dots: false,
@@ -228,7 +238,7 @@ function CapitalSolution() {
     arrows: false,
     slidesToShow:
       transactions && transactions.length > 5 ? 5 : transactions.length,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -468,8 +478,8 @@ function CapitalSolution() {
       <div className="bannerContainer">
         <img src={Banner} alt="" />
         <div className="theContainer">
-          <p>{capitalSolution && capitalSolution.title}</p>
-          <h3>{capitalSolution && capitalSolution.description}</h3>
+          <h3>{capitalSolution && capitalSolution.title}</h3>
+          <p>{capitalSolution && capitalSolution.description}</p>
         </div>
       </div>
 
@@ -597,10 +607,10 @@ function CapitalSolution() {
               </h3>
             </div>
             <div className="slicks">
-              <button onClick={() => slider2.current.slickPrev()}>
+              <button onClick={handlePrevClick}>
                 <img src={arrowLeft} alt="" />
               </button>
-              <button onClick={() => slider2.current.slickNext()}>
+              <button onClick={handleNextClick}>
                 <img src={arrowRight} alt="" />
               </button>
             </div>
@@ -663,7 +673,7 @@ function CapitalSolution() {
             ))}
 
           <div className="bottomMobile">
-            <Slider ref={slider2} {...secondSlider}>
+            <Slider ref={slider2Mobile} {...secondSlider}>
               {isMobile &&
                 transactions &&
                 transactions.map((transaction) => (
@@ -719,80 +729,6 @@ function CapitalSolution() {
           </div>
         </div>
       </div>
-
-      {/* <div className="specialistContainer">
-        <div className="theContainer">
-          <div className="top">
-            <div className="left">
-              <h3>
-                {(capitalSolution && capitalSolution.partner) ||
-                  `fale com nossos sócios especialistas`}
-              </h3>
-            </div>
-            <div className="slicks">
-              <button onClick={() => slider3.current.slickPrev()}>
-                <img src={arrowLeft} alt="" />
-              </button>
-              <button onClick={() => slider3.current.slickNext()}>
-                <img src={arrowRight} alt="" />
-              </button>
-            </div>
-          </div>
-          <div className="bottom">
-            <Slider ref={slider3} {...thirdSlider}>
-              {partners &&
-                partners.map((partner) => (
-                  <>
-                    <Specialists partner={partner.attributes} />
-                  </>
-                ))}
-            </Slider>
-          </div>
-
-          <div className="bottomMobile">
-            <Slider ref={slider3Mobile} {...thirdSliderMobile}>
-              {partners &&
-                partners.map((partner) => (
-                  <>
-                    <Specialists partner={partner.attributes} />
-                  </>
-                ))}
-            </Slider>
-          </div>
-        </div>
-      </div> */}
-
-      {/* <div className="newsContainer">
-        <div className="theContainer">
-          <div className="top">
-            <div className="left">
-              <h3>últimas notícias</h3>
-            </div>
-            <div className="slicks">
-              <button onClick={() => sliderNews.current.slickPrev()}>
-                <img src={arrowLeft} alt="" />
-              </button>
-              <button onClick={() => sliderNews.current.slickNext()}>
-                <img src={arrowRight} alt="" />
-              </button>
-            </div>
-          </div>
-          <div className="bottom">
-            <Slider ref={sliderNews} {...newsSlick}>
-              {newsAll &&
-                newsAll.map((item, index) => (
-                  <TheNews
-                    key={index}
-                    data={item}
-                    postDate={moment(item.attributes.createdAt).format(
-                      "DD MMMM, YYYY"
-                    )}
-                  />
-                ))}
-            </Slider>
-          </div>
-        </div>
-      </div> */}
 
       <div className="containerForm">
         <div className="theContainer">

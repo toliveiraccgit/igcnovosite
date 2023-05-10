@@ -22,6 +22,7 @@ import alert from "../../utils/systemAlert";
 
 function Agro() {
   const { id } = useParams();
+  console.log(id);
   const locale = useSelector((state) => state.locales.locale);
 
   const [page, setPage] = useState({});
@@ -319,8 +320,8 @@ function Agro() {
             <img src={bannerAgro} alt="" />
             <div className="bannerText">
               <div className="theContainer">
-                <p>{page && page.title}</p>
-                <h3>{page && page.description}</h3>
+                <h3>{page && page.title}</h3>
+                <p>{page && page.description}</p>
               </div>
             </div>
           </div>

@@ -14,6 +14,7 @@ import QuemSomos from "./pages/Quem-Somos/QueSomos";
 import Services from "./pages/Serviços/Services";
 import Social from "./pages/Social/Social";
 import Transactions from "./pages/Transações/transactions";
+import PoliticaPrivacidade from "./pages/politicaPrivacidade/politicaPrivacidade";
 
 import store from "./store/store";
 
@@ -34,7 +35,11 @@ function App() {
             <Header />
             <Routes>
               <Route element={<FaleConosco />} path="/fale-conosco" exact />
-              <Route element={<Transactions />} path="/transacoes" exact />
+              <Route
+                element={<Transactions />}
+                path="/transacoes/todas"
+                exact
+              />
               <Route element={<Social />} path="/social" exact />
               <Route element={<News />} path="/noticias" />
               <Route element={<Network />} path="/buscar" />
@@ -48,6 +53,10 @@ function App() {
               <Route element={<IpoAdivisor />} path="/servicos/ipo-advisor" />
               <Route element={<NotíciaSelecionada />} path="/noticias/:id" />
               <Route element={<QuemSomos />} path="/quem-somos" />
+              <Route
+                element={<PoliticaPrivacidade />}
+                path="/politica-privacidade"
+              />
             </Routes>
           </BrowserRouter>
           <Footer />

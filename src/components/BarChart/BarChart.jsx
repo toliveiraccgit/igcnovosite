@@ -1,43 +1,84 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { api_services } from "../../api";
 import "./BarChart.css";
 
 const BarChart = ({ data }) => {
-  const maxVal = Math.max(...data);
+  const locale = useSelector((state) => state.locales.locale);
+  const [servicePage, setServicePage] = useState({});
+
+  useEffect(() => {
+    api_services
+      .page({ locale })
+      .then((res) => {
+        setServicePage(
+          res.data.data?.attributes && res.data.data?.attributes.chart
+        );
+      })
+      .catch(() => {
+        setServicePage({});
+      });
+  });
 
   return (
     <>
       <div className="desktop">
         <div className="bar-chart">
-          {/* {data.map((value, index) => (
-        <div
-          key={index}
-          className="bar"
-          style={{ height: `${(value / maxVal) * 100}%` }}
-        >
-          <span className="value">{value}</span>
-        </div>
-      ))} */}
-
           <div className="bar" style={{ height: "1rem" }}>
-            <span className="value">48</span>
+            {Array.isArray(servicePage) &&
+              servicePage
+                .slice(6, 7)
+                .map((service) => (
+                  <span className="value">{service.value}</span>
+                ))}
           </div>
           <div className="bar" style={{ height: "3rem" }}>
-            <span className="value">48</span>
+            {Array.isArray(servicePage) &&
+              servicePage
+                .slice(5, 6)
+                .map((service) => (
+                  <span className="value">{service.value}</span>
+                ))}
           </div>
           <div className="bar" style={{ height: "6rem" }}>
-            <span className="value">48</span>
+            {Array.isArray(servicePage) &&
+              servicePage
+                .slice(4, 5)
+                .map((service) => (
+                  <span className="value">{service.value}</span>
+                ))}
           </div>
           <div className="bar" style={{ height: "9rem" }}>
-            <span className="value">56</span>
+            {Array.isArray(servicePage) &&
+              servicePage
+                .slice(3, 4)
+                .map((service) => (
+                  <span className="value">{service.value}</span>
+                ))}
           </div>
           <div className="bar" style={{ height: "13rem" }}>
-            <span className="value">65</span>
+            {Array.isArray(servicePage) &&
+              servicePage
+                .slice(2, 3)
+                .map((service) => (
+                  <span className="value">{service.value}</span>
+                ))}
           </div>
           <div className="bar" style={{ height: "17rem" }}>
-            <span className="value">67</span>
+            {Array.isArray(servicePage) &&
+              servicePage
+                .slice(1, 2)
+                .map((service) => (
+                  <span className="value">{service.value}</span>
+                ))}
           </div>
           <div className="bar" style={{ height: "22rem" }}>
-            <span className="value">69</span>
+            {Array.isArray(servicePage) &&
+              servicePage
+                .slice(0, 1)
+                .map((service) => (
+                  <span className="value">{service.value}</span>
+                ))}
           </div>
         </div>
       </div>
@@ -45,19 +86,44 @@ const BarChart = ({ data }) => {
       <div className="mobile">
         <div className="bar-chart">
           <div className="bar" style={{ height: "6rem" }}>
-            <span className="value">48</span>
+            {Array.isArray(servicePage) &&
+              servicePage
+                .slice(4, 5)
+                .map((service) => (
+                  <span className="value">{service.value}</span>
+                ))}
           </div>
           <div className="bar" style={{ height: "9rem" }}>
-            <span className="value">56</span>
+            {Array.isArray(servicePage) &&
+              servicePage
+                .slice(3, 4)
+                .map((service) => (
+                  <span className="value">{service.value}</span>
+                ))}
           </div>
           <div className="bar" style={{ height: "12rem" }}>
-            <span className="value">65</span>
+            {Array.isArray(servicePage) &&
+              servicePage
+                .slice(2, 3)
+                .map((service) => (
+                  <span className="value">{service.value}</span>
+                ))}
           </div>
           <div className="bar" style={{ height: "16rem" }}>
-            <span className="value">67</span>
+            {Array.isArray(servicePage) &&
+              servicePage
+                .slice(1, 2)
+                .map((service) => (
+                  <span className="value">{service.value}</span>
+                ))}
           </div>
           <div className="bar" style={{ height: "19rem" }}>
-            <span className="value">69</span>
+            {Array.isArray(servicePage) &&
+              servicePage
+                .slice(0, 1)
+                .map((service) => (
+                  <span className="value">{service.value}</span>
+                ))}
           </div>
         </div>
       </div>
