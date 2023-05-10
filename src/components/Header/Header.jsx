@@ -56,10 +56,10 @@ function HeaderTop() {
                       <div className="dropdown-content">
                         <div className="container">
                           {item.items.map((subitem) => (
-                            <Link to={subitem.path}>
+                            <a href={subitem.path}>
                               <p>{subitem.title}</p>{" "}
                               <img src={arrowRight} alt="" />
-                            </Link>
+                            </a>
                           ))}
                         </div>
                       </div>

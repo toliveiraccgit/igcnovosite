@@ -63,7 +63,7 @@ function Footer() {
                 return (
                   <li>
                     {item.type === "WRAPPER" ? (
-                      <Link to={item.path}>{item.title}</Link>
+                      <a href={item.path}>{item.title}</a>
                     ) : (
                       <a target="_blank" href="https://carreirasigcp.gupy.io/">
                         {item.title}
@@ -81,7 +81,7 @@ function Footer() {
               {service.map((item) => {
                 return (
                   <li>
-                    <Link to={item.path}>{item.title}</Link>
+                    <a href={item.path}>{item.title}</a>
                   </li>
                 );
               })}

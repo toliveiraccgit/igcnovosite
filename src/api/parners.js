@@ -6,6 +6,6 @@ export default {
       ...(locale && { locale }),
     });
 
-    return client.get(`/partners?populate=*&${query}`);
+    return client.get(`/partners?populate=*&${query}&sort=name`);
   },
 };

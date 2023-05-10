@@ -133,6 +133,7 @@ function QuemSomos() {
     speed: 500,
     rows: 3,
     slidesPerRow: 1,
+    variableWidth: true,
   };
 
   const sliderPrinciplesContainer = {
@@ -213,49 +214,49 @@ function QuemSomos() {
           </div>
           <div className="left">
             {aboutUs?.media?.data && (
-              // <OverlayTrigger
-              //   placement="top"
-              //   delay={{ show: 250, hide: 400 }}
-              //   overlay={renderTooltip}
-              // >
-              //   <video
-              //     ref={refVideo}
-              //     autoPlay
-              //     muted
-              //     playsInline
-              //     loop
-              //     className="video"
-              //     onClick={unMute}
-              //   >
-              //     <source
-              //       src={`${config.api.BASE}${
-              //         aboutUs &&
-              //         aboutUs.media &&
-              //         aboutUs.media.data &&
-              //         aboutUs.media.data.attributes &&
-              //         aboutUs.media.data.attributes.url
-              //       }`}
-              //       type={
-              //         aboutUs &&
-              //         aboutUs.media &&
-              //         aboutUs.media.data &&
-              //         aboutUs.media.data.attributes &&
-              //         aboutUs.media.data.attributes.mime
-              //       }
-              //     ></source>
-              //     Your browser does not support HTML5 video.
-              //   </video>
-              // </OverlayTrigger>
-              <img
-                src={`${config.api.BASE}${
-                  aboutUs &&
-                  aboutUs.media &&
-                  aboutUs.media.data &&
-                  aboutUs.media.data.attributes &&
-                  aboutUs.media.data.attributes.url
-                }`}
-                alt=""
-              />
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={renderTooltip}
+              >
+                <video
+                  ref={refVideo}
+                  autoPlay
+                  muted
+                  playsInline
+                  loop
+                  className="video"
+                  onClick={unMute}
+                >
+                  <source
+                    src={`${config.api.BASE}${
+                      aboutUs &&
+                      aboutUs.media &&
+                      aboutUs.media.data &&
+                      aboutUs.media.data.attributes &&
+                      aboutUs.media.data.attributes.url
+                    }`}
+                    type={
+                      aboutUs &&
+                      aboutUs.media &&
+                      aboutUs.media.data &&
+                      aboutUs.media.data.attributes &&
+                      aboutUs.media.data.attributes.mime
+                    }
+                  ></source>
+                  Your browser does not support HTML5 video.
+                </video>
+              </OverlayTrigger>
+              // <img
+              //   src={`${config.api.BASE}${
+              //     aboutUs &&
+              //     aboutUs.media &&
+              //     aboutUs.media.data &&
+              //     aboutUs.media.data.attributes &&
+              //     aboutUs.media.data.attributes.url
+              //   }`}
+              //   alt=""
+              // />
             )}
           </div>
         </div>

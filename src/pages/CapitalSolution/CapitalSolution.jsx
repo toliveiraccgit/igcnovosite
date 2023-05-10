@@ -485,15 +485,21 @@ function CapitalSolution() {
 
       <div className="nossosDiferenciais">
         <div className="theContainer">
-          <div className="top">
+          <div className="rightContainer">
             <h4>
               {(capitalSolution && capitalSolution.differential) ||
                 `nossos diferenciais`}
             </h4>
+            <h1 className="yellow">Melhor transação possível</h1>
+            <div className="bottom">
+              <h1 className="blue">Maior taxa de conversão do mercado.</h1>
+            </div>
           </div>
-          <div className="bottom">
-            <div className="left">
-              {/* <ul>
+
+          <div className="leftContainer">
+            <div className="bottom">
+              <div className="left">
+                {/* <ul>
                 {capitalSolution &&
                   capitalSolution.differentials &&
                   capitalSolution.differentials.differential_1 && (
@@ -517,19 +523,22 @@ function CapitalSolution() {
                   )}
               </ul> */}
 
-              <ul>
-                <li>
-                  <h3>De dono para dono</h3>
-                  <span>28 sócios</span>
-                </li>
-                <li>
-                  <h3>Alta perfomance</h3>
-                  <span>+330 transações realizadas em M&A</span>
-                </li>
-              </ul>
-            </div>
-            <div className="right">
-              {/* <ul>
+                <ul>
+                  <div className="container">
+                    <li className="firstLine">
+                      <h3>De dono para dono</h3>
+                      <span>28 sócios</span>
+                    </li>
+                    <li className="firstLine">
+                      <h3>Alta perfomance</h3>
+                      <span>+330 transações realizadas em M&A</span>
+                    </li>
+                  </div>
+                </ul>
+              </div>
+
+              <div className="right">
+                {/* <ul>
                 {capitalSolution &&
                   capitalSolution.differentials &&
                   capitalSolution.differentials.differential_2 && (
@@ -553,16 +562,19 @@ function CapitalSolution() {
                   )}
               </ul> */}
 
-              <ul>
-                <li>
-                  <h3>Sem conflito de interesse</h3>
-                  <span>sempre no sell-side</span>
-                </li>
-                <li>
-                  <h3>Especialização setorial</h3>
-                  <span>sócios dedicados setorialmente</span>
-                </li>
-              </ul>
+                <ul>
+                  <div className="container">
+                    <li className="firstLine">
+                      <h3>Sem conflito de interesse</h3>
+                      <span>sempre no sell-side</span>
+                    </li>
+                    <li className="firstLine">
+                      <h3>Especialização setorial</h3>
+                      <span>sócios dedicados setorialmente</span>
+                    </li>
+                  </div>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

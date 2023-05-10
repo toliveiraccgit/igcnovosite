@@ -10,6 +10,11 @@
       line-height: 30px;
       text-transform: lowercase;
       color: #ffffff;
+
+      @media (max-width: 600px) {
+        font-size: 16px;
+        line-height: 24px;
+      }
     }
 
     img {
@@ -104,11 +109,6 @@
         .yellow {
           line-height: 41px;
           color: #cba958;
-
-          @media (max-width: 560px) {
-            text-align: center;
-            margin: 4.5rem auto 0;
-          }
         }
 
         .blue {
@@ -121,7 +121,6 @@
 
           @media (max-width: 560px) {
             flex-wrap: wrap;
-            text-align: center;
             justify-content: center;
 
             h1 {
@@ -147,7 +146,7 @@
           margin-top: 0;
 
           .bottom {
-            display: flex;
+            display: block;
             justify-content: center;
           }
         }
@@ -162,6 +161,10 @@
 
           @media (max-width: 520px) {
             width: 100%;
+
+            ul {
+              margin-top: 0rem !important;
+            }
           }
         }
 
@@ -216,8 +219,8 @@
                 margin-bottom: 1rem;
 
                 @media (max-width: 520px) {
-                  font-size: 16px;
-                  line-height: 18px;
+                  font-size: 20px;
+                  line-height: 21px;
                   margin-bottom: 0.5rem;
                 }
               }
@@ -229,14 +232,13 @@
                 color: #5d5d5d;
 
                 @media (max-width: 520px) {
-                  font-size: 12px;
-                  line-height: 18px;
+                  font-size: 16px;
+                  line-height: 20px;
                 }
               }
 
               @media (max-width: 520px) {
                 margin-bottom: 1.5rem;
-                text-align: center;
               }
             }
 
