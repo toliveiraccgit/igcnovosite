@@ -214,49 +214,49 @@ function QuemSomos() {
           </div>
           <div className="left">
             {aboutUs?.media?.data && (
-              <OverlayTrigger
-                placement="top"
-                delay={{ show: 250, hide: 400 }}
-                overlay={renderTooltip}
-              >
-                <video
-                  ref={refVideo}
-                  autoPlay
-                  muted
-                  playsInline
-                  loop
-                  className="video"
-                  onClick={unMute}
-                >
-                  <source
-                    src={`${config.api.BASE}${
-                      aboutUs &&
-                      aboutUs.media &&
-                      aboutUs.media.data &&
-                      aboutUs.media.data.attributes &&
-                      aboutUs.media.data.attributes.url
-                    }`}
-                    type={
-                      aboutUs &&
-                      aboutUs.media &&
-                      aboutUs.media.data &&
-                      aboutUs.media.data.attributes &&
-                      aboutUs.media.data.attributes.mime
-                    }
-                  ></source>
-                  Your browser does not support HTML5 video.
-                </video>
-              </OverlayTrigger>
-              // <img
-              //   src={`${config.api.BASE}${
-              //     aboutUs &&
-              //     aboutUs.media &&
-              //     aboutUs.media.data &&
-              //     aboutUs.media.data.attributes &&
-              //     aboutUs.media.data.attributes.url
-              //   }`}
-              //   alt=""
-              // />
+              // <OverlayTrigger
+              //   placement="top"
+              //   delay={{ show: 250, hide: 400 }}
+              //   overlay={renderTooltip}
+              // >
+              //   <video
+              //     ref={refVideo}
+              //     autoPlay
+              //     muted
+              //     playsInline
+              //     loop
+              //     className="video"
+              //     onClick={unMute}
+              //   >
+              //     <source
+              //       src={`${config.api.BASE}${
+              //         aboutUs &&
+              //         aboutUs.media &&
+              //         aboutUs.media.data &&
+              //         aboutUs.media.data.attributes &&
+              //         aboutUs.media.data.attributes.url
+              //       }`}
+              //       type={
+              //         aboutUs &&
+              //         aboutUs.media &&
+              //         aboutUs.media.data &&
+              //         aboutUs.media.data.attributes &&
+              //         aboutUs.media.data.attributes.mime
+              //       }
+              //     ></source>
+              //     Your browser does not support HTML5 video.
+              //   </video>
+              // </OverlayTrigger>
+              <img
+                src={`${config.api.BASE}${
+                  aboutUs &&
+                  aboutUs.media &&
+                  aboutUs.media.data &&
+                  aboutUs.media.data.attributes &&
+                  aboutUs.media.data.attributes.url
+                }`}
+                alt=""
+              />
             )}
           </div>
         </div>
@@ -324,7 +324,7 @@ function QuemSomos() {
               )}
             </div>
 
-            <div className="slider">
+            {/* <div className="slider">
               {partners &&
               partners.filter((partner) => {
                 if (!filter.group) {
@@ -378,6 +378,26 @@ function QuemSomos() {
                       ))}
                 </div>
               )}
+            </div> */}
+
+            <div className="partner-container">
+              {partners &&
+                partners
+                  .filter((partner) => {
+                    if (!filter.group) {
+                      return true;
+                    }
+                    return (
+                      partner &&
+                      partner.attributes &&
+                      partner.attributes.grupo &&
+                      partner.attributes.grupo.data &&
+                      partner.attributes.grupo.data.id === group
+                    );
+                  })
+                  .map((partner) => (
+                    <Partner key={partner.id} partner={partner} />
+                  ))}
             </div>
           </>
 

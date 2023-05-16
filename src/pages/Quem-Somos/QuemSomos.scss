@@ -268,7 +268,8 @@
           }
         }
         .slicks {
-          display: flex;
+          display: none;
+          // display: flex;
           gap: 20px;
           float: right;
           margin-right: 2.5rem;
@@ -308,6 +309,17 @@
           display: grid;
           grid-template-columns: 30% 30% 30%;
           grid-gap: 15px;
+        }
+      }
+
+      .partner-container {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 20px;
+
+        @media (max-width: 660px) {
+          display: none;
         }
       }
     }

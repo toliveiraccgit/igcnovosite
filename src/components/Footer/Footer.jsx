@@ -214,7 +214,7 @@ function Footer() {
               {navigation.map((item) => {
                 return (
                   <li>
-                    <Link to={item.path}>{item.title}</Link>
+                    <a href={item.path}>{item.title}</a>
                   </li>
                 );
               })}
@@ -227,7 +227,7 @@ function Footer() {
               {service.map((item) => {
                 return (
                   <li>
-                    <Link to={item.path}>{item.title}</Link>
+                    <a href={item.path}>{item.title}</a>
                   </li>
                 );
               })}
