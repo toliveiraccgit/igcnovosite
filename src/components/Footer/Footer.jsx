@@ -33,7 +33,6 @@ function Footer() {
     APINavigation.get_footer_igc({ locale })
       .then((response) => {
         setNavigation(response.data);
-        console.log(response.data);
       })
       .catch(() => {
         setNavigation([]);
@@ -57,7 +56,7 @@ function Footer() {
       <div className="main-container">
         <div className="theContainer">
           <div className="footer-list0">
-            <h2>IGC</h2>
+            <h2>{footer && footer.title_igc}</h2>
             <ul>
               {navigation.map((item) => {
                 return (
@@ -76,7 +75,7 @@ function Footer() {
           </div>
 
           <div className="footer-list">
-            <h2>Serviços</h2>
+            <h2>{footer && footer.title_service}</h2>
             <ul>
               {service.map((item) => {
                 return (
@@ -89,7 +88,7 @@ function Footer() {
           </div>
 
           <div className="footer-list2">
-            <h2>Nossas transações</h2>
+            <h2>{footer && footer.title_transactions}</h2>
             <div className="secondListFooter">
               <ul>
                 {dynamic &&
@@ -105,7 +104,7 @@ function Footer() {
           </div>
 
           <div className="footer-list3">
-            <h2>Fale com a gente</h2>
+            <h2>{footer && footer.title_contact}</h2>
             <ul>
               {footer && footer.contact && footer.contact.phone && (
                 <li>{footer.contact.phone}</li>
@@ -130,7 +129,7 @@ function Footer() {
           </div>
 
           <div className="social-media">
-            <h2>ACOMPANHE</h2>
+            <h2>{footer && footer.title_social}</h2>
             <ul>
               <li>
                 {footer && footer.social && footer.social.instagram && (

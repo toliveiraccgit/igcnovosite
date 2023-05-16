@@ -59,6 +59,18 @@
         border-top: 1px solid #e9eaec;
         margin-top: 100px;
 
+        button {
+          width: 100%;
+          background: none;
+          border: none;
+          display: flex;
+          justify-content: space-between;
+          justify-items: center;
+          align-items: center;
+          align-content: center;
+          text-align: left;
+        }
+
         p {
           margin-bottom: 0;
         }

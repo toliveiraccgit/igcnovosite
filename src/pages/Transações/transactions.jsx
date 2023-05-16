@@ -103,7 +103,7 @@ function transactions() {
   return (
     <div className="transactionsContainer">
       <div className="bannerContainer">
-        <img src={banner} alt="" />
+        <img src={transactionPage && transactionPage.bunner} alt="" />
         <div className="bannerText">
           <div className="theContainer">
             <h3>{transactionPage && transactionPage.title}</h3>

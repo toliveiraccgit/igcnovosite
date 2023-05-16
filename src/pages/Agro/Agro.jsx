@@ -317,7 +317,7 @@ function Agro() {
       {(pageExists && (
         <>
           <div className="bannerContainer">
-            <img src={bannerAgro} alt="" />
+            <img src={page && page.bunner} alt="" />
             <div className="bannerText">
               <div className="theContainer">
                 <h3>{page && page.title}</h3>

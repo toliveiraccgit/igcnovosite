@@ -55,6 +55,8 @@ function CapitalSolution() {
   const [newsAll, setNewsAll] = useState([]);
   const [highlight, setHighlight] = useState({});
 
+  const [filter, setFilter] = useState({});
+
   const locale = useSelector((state) => state.locales.locale);
 
   useEffect(() => {
@@ -67,8 +69,13 @@ function CapitalSolution() {
         setCapitalSolution({});
       });
 
-    api_transactions.get({ locale }).then((res) => {
-      setTransactions(res.data.data);
+    api_transactions.get({ locale, filter }).then((res) => {
+      const data = res.data.data;
+      const typeData = data.filter((element) => {
+        const servico = element.attributes?.servico?.data?.attributes?.name;
+        return servico == "Capital Solutions";
+      });
+      setTransactions(typeData);
     });
 
     api_partners
@@ -119,7 +126,7 @@ function CapitalSolution() {
         setNewsAll(res.data.data);
       }
     });
-  }, [locale]);
+  }, [locale, filter]);
 
   const handlerSubmit = (e) => {
     e.preventDefault();
@@ -490,87 +497,83 @@ function CapitalSolution() {
               {(capitalSolution && capitalSolution.differential) ||
                 `nossos diferenciais`}
             </h4>
-            <h1 className="yellow">Melhor transação possível</h1>
+            <h1 className="yellow">
+              {capitalSolution &&
+                capitalSolution.differentials &&
+                capitalSolution.differentials.highlight_1}
+            </h1>
             <div className="bottom">
-              <h1 className="blue">Maior taxa de conversão do mercado.</h1>
+              <h1 className="blue">
+                {capitalSolution &&
+                  capitalSolution.differentials &&
+                  capitalSolution.differentials.highlight_2}
+              </h1>
             </div>
           </div>
 
           <div className="leftContainer">
             <div className="bottom">
               <div className="left">
-                {/* <ul>
-                {capitalSolution &&
-                  capitalSolution.differentials &&
-                  capitalSolution.differentials.differential_1 && (
-                    <li>
-                      <img src={Icon01} alt="" />
-                      {capitalSolution &&
-                        capitalSolution.differentials &&
-                        capitalSolution.differentials.differential_1}
-                    </li>
-                  )}
-
-                {capitalSolution &&
-                  capitalSolution.differentials &&
-                  capitalSolution.differentials.differential_3 && (
-                    <li>
-                      <img src={Icon02} alt="" />
-                      {capitalSolution &&
-                        capitalSolution.differentials &&
-                        capitalSolution.differentials.differential_3}
-                    </li>
-                  )}
-              </ul> */}
-
                 <ul>
                   <div className="container">
                     <li className="firstLine">
-                      <h3>De dono para dono</h3>
-                      <span>28 sócios</span>
+                      <h3>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials.differential_1}
+                      </h3>
+                      <span>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials
+                            .differential_1_description}
+                      </span>
                     </li>
                     <li className="firstLine">
-                      <h3>Alta perfomance</h3>
-                      <span>+330 transações realizadas em M&A</span>
+                      <h3>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials.differential_3}
+                      </h3>
+                      <span>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials
+                            .differential_3_description}
+                      </span>
                     </li>
                   </div>
                 </ul>
               </div>
 
               <div className="right">
-                {/* <ul>
-                {capitalSolution &&
-                  capitalSolution.differentials &&
-                  capitalSolution.differentials.differential_2 && (
-                    <li>
-                      <img src={Icon03} alt="" />
-                      {capitalSolution &&
-                        capitalSolution.differentials &&
-                        capitalSolution.differentials.differential_2}
-                    </li>
-                  )}
-
-                {capitalSolution &&
-                  capitalSolution.differentials &&
-                  capitalSolution.differentials.differential_2 && (
-                    <li>
-                      <img src={Icon04} alt="" />
-                      {capitalSolution &&
-                        capitalSolution.differentials &&
-                        capitalSolution.differentials.differential_4}
-                    </li>
-                  )}
-              </ul> */}
-
                 <ul>
                   <div className="container">
                     <li className="firstLine">
-                      <h3>Sem conflito de interesse</h3>
-                      <span>sempre no sell-side</span>
+                      <h3>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials.differential_2}
+                      </h3>
+                      <span>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials
+                            .differential_2_description}
+                      </span>
                     </li>
                     <li className="firstLine">
-                      <h3>Especialização setorial</h3>
-                      <span>sócios dedicados setorialmente</span>
+                      <h3>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials.differential_4}
+                      </h3>
+                      <span>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials
+                            .differential_4_description}
+                      </span>
                     </li>
                   </div>
                 </ul>

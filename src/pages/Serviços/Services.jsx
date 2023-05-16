@@ -38,6 +38,7 @@ function Services() {
   const [transactionSpecialties, setTransactionSpecialties] = useState([]);
   const [transactionOrigen, setTransactionOrigen] = useState([]);
   const [transactionPerfil, setTransactionPerfil] = useState([]);
+  const [transactionType, setTransactionType] = useState([]);
 
   const [contacts, setContacts] = useState({});
 
@@ -66,7 +67,6 @@ function Services() {
         setServiceChart(
           res.data.data?.attributes && res.data.data?.attributes.chart
         );
-        console.log(res.data.data?.attributes);
       })
       .catch(() => {
         setServicePage({});
@@ -96,7 +96,12 @@ function Services() {
     api_transactions
       .get({ locale, filter })
       .then((res) => {
-        setTransactions(res.data.data);
+        const data = res.data.data;
+        const typeData = data.filter((element) => {
+          const servico = element.attributes?.servico?.data?.attributes?.name;
+          return servico == "M&A";
+        });
+        setTransactions(typeData);
       })
       .catch(() => {
         setTransactions([]);
@@ -313,9 +318,13 @@ function Services() {
               {(servicePage && servicePage.dif && servicePage.dif.title) ||
                 `nossos diferenciais`}
             </h4>
-            <h1 className="yellow">Melhor transação possível</h1>
+            <h1 className="yellow">
+              {servicePage && servicePage.dif && servicePage.dif.highlight_1}
+            </h1>
             <div className="bottom">
-              <h1 className="blue">Maior taxa de conversão do mercado.</h1>
+              <h1 className="blue">
+                {servicePage && servicePage.dif && servicePage.dif.highlight_2}
+              </h1>
             </div>
           </div>
           <div className="leftContainer">
