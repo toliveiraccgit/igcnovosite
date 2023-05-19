@@ -449,8 +449,9 @@
       margin-bottom: 60px;
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 910px) {
       margin-top: 0;
+      height: 60vh;
     }
 
     .theContainer {
@@ -510,7 +511,7 @@
         }
 
         .slick-dots {
-          bottom: 25%;
+          bottom: -30%;
           right: 0;
         }
 
