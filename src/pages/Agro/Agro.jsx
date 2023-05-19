@@ -113,7 +113,7 @@ function Agro() {
           res.data.data.attributes;
 
         setPage({
-          bunner: getScreen.bunner || "",
+          banner: getScreen.banner || "",
           title: getScreen.title || "",
           description: getScreen.description || "",
           cases: apiData.cases || "",
@@ -321,11 +321,7 @@ function Agro() {
           <div className="bannerContainer">
             <img
               src={`${config.api.BASE}${
-                page &&
-                page.banner &&
-                page.banner.data &&
-                page.banner.data.attributes &&
-                page.banner.data.attributes.url
+                page && page.banner?.data?.attributes?.url
               }`}
               alt="Banner"
             />

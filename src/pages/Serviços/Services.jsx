@@ -32,6 +32,7 @@ function Services() {
   const locale = useSelector((state) => state.locales.locale);
 
   const [servicePage, setServicePage] = useState({});
+  const [serviceImg, setServiceImg] = useState({});
   const [serviceChart, setServiceChart] = useState({});
   const [testimony, setTestimony] = useState([]);
   const [transactions, setTransactions] = useState([]);
@@ -67,7 +68,7 @@ function Services() {
       .page({ locale })
       .then((res) => {
         setServicePage(res.data.data?.attributes);
-        console.log(res.data.data?.attributes);
+        setServiceImg(res.data.data?.attributes.chart_img_desk.data.attributes);
         setServiceChart(
           res.data.data?.attributes && res.data.data?.attributes.chart
         );
@@ -433,27 +434,23 @@ function Services() {
           <div className="imgArea">
             {!isMobile && (
               <img
-                src={`${config.api.BASE}
-                  ${
-                    servicePage &&
-                    servicePage.chart_img_desk &&
-                    servicePage.chart_img_desk.data &&
-                    servicePage.chart_img_desk.data.attributes &&
-                    servicePage.chart_img_desk.data.attributes.url
-                  }`}
+                src={`${config.api.BASE}${
+                  servicePage &&
+                  servicePage.chart_img_desk &&
+                  servicePage.chart_img_desk.data &&
+                  servicePage.chart_img_desk.data.attributes.url
+                }`}
                 alt="imgDesktop"
               />
             )}
             {isMobile && (
               <img
-                src={`${config.api.BASE}
-                  ${
-                    servicePage &&
-                    servicePage.chart_img_mobile &&
-                    servicePage.chart_img_mobile.data &&
-                    servicePage.chart_img_mobile.data.attributes &&
-                    servicePage.chart_img_mobile.data.attributes.url
-                  }`}
+                src={`${config.api.BASE}${
+                  servicePage &&
+                  servicePage.chart_img_mobile &&
+                  servicePage.chart_img_mobile.data &&
+                  servicePage.chart_img_mobile.data.attributes.url
+                }`}
                 alt="imgMobile"
               />
             )}

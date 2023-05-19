@@ -108,7 +108,6 @@ function transactions() {
             transactionPage &&
             transactionPage.banner &&
             transactionPage.banner.data &&
-            transactionPage.banner.data.attributes &&
             transactionPage.banner.data.attributes.url
           }`}
           alt="Banner"

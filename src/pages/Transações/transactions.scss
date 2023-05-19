@@ -4,13 +4,23 @@
     overflow-x: hidden;
     overflow-y: hidden;
     background-color: black;
+    width: 100%;
+    max-height: 300px;
 
     img {
-      width: 99.99%;
-      min-height: 300px;
-    }
+      width: 100%;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      filter: brightness(50%);
 
-    .imgBanner {
+      @media (max-width: 1024px) {
+        transform: translateY(-40%);
+      }
+
+      @media (max-width: 600px) {
+        transform: translateY(0);
+      }
     }
 
     .bannerText {
@@ -26,6 +36,11 @@
           line-height: 30px;
           text-transform: lowercase;
           color: #ffffff;
+
+          @media (max-width: 600px) {
+            font-size: 16px;
+            line-height: 24px;
+          }
         }
 
         h3 {
