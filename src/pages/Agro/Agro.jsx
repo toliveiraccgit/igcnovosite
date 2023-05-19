@@ -22,7 +22,6 @@ import alert from "../../utils/systemAlert";
 
 function Agro() {
   const { id } = useParams();
-  console.log(id);
   const locale = useSelector((state) => state.locales.locale);
 
   const [page, setPage] = useState({});
@@ -114,6 +113,7 @@ function Agro() {
           res.data.data.attributes;
 
         setPage({
+          bunner: getScreen.bunner || "",
           title: getScreen.title || "",
           description: getScreen.description || "",
           cases: apiData.cases || "",
@@ -260,8 +260,10 @@ function Agro() {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToScroll: 1,
+          initialSlide: 0,
+          dots: true,
+          variableWidth: true,
         },
       },
     ],
@@ -317,7 +319,16 @@ function Agro() {
       {(pageExists && (
         <>
           <div className="bannerContainer">
-            <img src={page && page.bunner} alt="" />
+            <img
+              src={`${config.api.BASE}${
+                page &&
+                page.banner &&
+                page.banner.data &&
+                page.banner.data.attributes &&
+                page.banner.data.attributes.url
+              }`}
+              alt="Banner"
+            />
             <div className="bannerText">
               <div className="theContainer">
                 <h3>{page && page.title}</h3>
@@ -479,13 +490,24 @@ function Agro() {
               </div>
               <div className="rev">
                 <Slider ref={slider} {...firstSlider}>
-                  {testimony &&
+                  {!isMobile &&
+                    testimony &&
                     testimony.map((test) => (
                       <Reviews
                         key={test.id}
-                        name={test.attributes.name}
-                        company={test.attributes.company}
-                        testimony={test.attributes.testimony}
+                        name={test?.attributes?.name}
+                        company={test?.attributes?.company}
+                        testimony={test?.attributes?.testimony}
+                      />
+                    ))}
+                  {isMobile &&
+                    testimony &&
+                    testimony.map((test) => (
+                      <Reviews
+                        key={test.id}
+                        name={test?.attributes?.name}
+                        company={test?.attributes?.company}
+                        testimony={test?.attributes?.testimony}
                       />
                     ))}
                 </Slider>

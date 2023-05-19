@@ -26,6 +26,10 @@
         margin-top: 80px;
       }
 
+      .intro_title {
+        margin-top: 0;
+      }
+
       p {
         font-style: normal;
         font-weight: 400;
@@ -36,11 +40,13 @@
         margin-bottom: 1.5rem;
       }
 
-      ol {
+      ul {
         font-weight: 600;
         color: #7a828f;
         margin-top: 3rem;
         margin-bottom: 3rem;
+        padding-left: 2rem;
+        list-style: none;
 
         li {
           font-size: 16px;
@@ -88,7 +94,9 @@
     }
   }
 
-  .FirstSectionContaine {
+  .FirstSectionContainer {
+    margin-top: 60px !important;
+
     h4 {
       margin-top: 30px;
       font-size: 21px;

@@ -71,7 +71,6 @@ function home() {
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-    dots: false,
     responsive: [
       {
         breakpoint: 1200,
@@ -87,7 +86,9 @@ function home() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          initialSlide: 1,
+          initialSlide: 0,
+          dots: true,
+          variableWidth: true,
         },
       },
     ],
@@ -422,7 +423,18 @@ function home() {
           </div>
           <div className="rev">
             <Slider ref={slider} {...firstSlider}>
-              {testimony &&
+              {!isMobile &&
+                testimony &&
+                testimony.map((test) => (
+                  <Reviews
+                    key={test.id}
+                    name={test?.attributes?.name}
+                    company={test?.attributes?.company}
+                    testimony={test?.attributes?.testimony}
+                  />
+                ))}
+              {isMobile &&
+                testimony &&
                 testimony.map((test) => (
                   <Reviews
                     key={test.id}

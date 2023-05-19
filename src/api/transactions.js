@@ -29,7 +29,7 @@ export default {
       ...(locale && { locale }),
     });
 
-    return client.get(`/pagina-transacoe?${query}`);
+    return client.get(`/pagina-transacoe?populate=*&${query}`);
   },
 
   get_origem: ({ locale }) => {

@@ -1,24 +1,32 @@
 .capitalSolutionContainer {
   .reviewsContainer {
-    background-color: #f5f5f5;
     margin-top: 130px;
-    padding-bottom: 60px;
+    background-color: #f5f5f5;
 
     @media (max-width: 1024px) {
       margin-top: 80px;
     }
 
+    @media (max-width: 450px) {
+      margin-top: 0;
+    }
+
     .theContainer {
-      height: 350px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      padding: 60px 0;
+
+      @media (max-width: 910px) {
+        padding: 60px 0 0 0;
+      }
+
       .top {
         position: relative;
         display: flex;
         justify-content: space-between;
-        margin-bottom: 40px;
-        padding-top: 40px;
+        margin-bottom: 65px;
+
         p {
           font-weight: 500;
           font-size: 28px;
@@ -52,8 +60,35 @@
           }
         }
       }
+
       .rev {
         width: 100%;
+
+        .slick-initialized .slick-slide {
+          padding: 0 20px 0 0;
+        }
+
+        .slick-dots {
+          bottom: 25%;
+          right: 0;
+        }
+
+        .slick-dots li {
+          margin: 0;
+          width: 20px;
+          height: 2px;
+          background-color: #ccc;
+          // border-radius: 4px;
+          cursor: pointer;
+        }
+
+        .slick-dots li.slick-active {
+          background-color: #333;
+        }
+
+        .slick-dots li button {
+          display: none;
+        }
       }
     }
   }

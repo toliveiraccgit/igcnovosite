@@ -103,7 +103,16 @@ function transactions() {
   return (
     <div className="transactionsContainer">
       <div className="bannerContainer">
-        <img src={transactionPage && transactionPage.bunner} alt="" />
+        <img
+          src={`${config.api.BASE}${
+            transactionPage &&
+            transactionPage.banner &&
+            transactionPage.banner.data &&
+            transactionPage.banner.data.attributes &&
+            transactionPage.banner.data.attributes.url
+          }`}
+          alt="Banner"
+        />
         <div className="bannerText">
           <div className="theContainer">
             <h3>{transactionPage && transactionPage.title}</h3>

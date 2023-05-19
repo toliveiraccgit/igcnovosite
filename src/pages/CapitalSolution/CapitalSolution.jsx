@@ -94,7 +94,12 @@ function CapitalSolution() {
     api_testmony
       .get({ locale })
       .then((res) => {
-        setTestimony(res.data.data);
+        const data = res.data.data;
+        const typeData = data.filter((e) => {
+          const servico = e.attributes?.type;
+          return servico == "Capital Solutions";
+        });
+        setTestimony(typeData);
       })
       .catch(() => {
         setTestimony([]);
@@ -231,8 +236,9 @@ function CapitalSolution() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: true,
-          dots: false,
+          initialSlide: 0,
+          dots: true,
+          variableWidth: true,
         },
       },
     ],
@@ -598,13 +604,24 @@ function CapitalSolution() {
           </div>
           <div className="rev">
             <Slider ref={slider} {...firstSlider}>
-              {testimony &&
+              {!isMobile &&
+                testimony &&
                 testimony.map((test) => (
                   <Reviews
                     key={test.id}
-                    name={test.attributes.name}
-                    company={test.attributes.company}
-                    testimony={test.attributes.testimony}
+                    name={test?.attributes?.name}
+                    company={test?.attributes?.company}
+                    testimony={test?.attributes?.testimony}
+                  />
+                ))}
+              {isMobile &&
+                testimony &&
+                testimony.map((test) => (
+                  <Reviews
+                    key={test.id}
+                    name={test?.attributes?.name}
+                    company={test?.attributes?.company}
+                    testimony={test?.attributes?.testimony}
                   />
                 ))}
             </Slider>

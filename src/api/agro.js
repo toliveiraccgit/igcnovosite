@@ -7,7 +7,7 @@ export default {
     });
 
     return client.get(
-      `/pagina-agro?populate=screens.news&populate=screens.transactions.image&populate=screens.news&populate=screens.testimonies&${query}`
+      `/pagina-agro?populate=screens.news&populate=screens.transactions.image&populate=screens.news&populate=screens.testimonies&populate=screens.banner&${query}`
     );
   },
 };

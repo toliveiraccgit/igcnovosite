@@ -16,6 +16,7 @@ import api_services from "./services";
 import api_social from "./social";
 import api_testmony from "./testmony";
 import api_transactions from "./transactions";
+import api_policies from "./privacy-policie";
 
 export {
   api_about_us,
@@ -36,4 +37,5 @@ export {
   api_ipo,
   api_group,
   api_footer,
+  api_policies,
 };

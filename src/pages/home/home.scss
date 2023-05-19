@@ -188,6 +188,10 @@
       justify-content: center;
       padding: 60px 0;
 
+      @media (max-width: 910px) {
+        padding: 60px 0 0 0;
+      }
+
       .top {
         position: relative;
         display: flex;
@@ -224,6 +228,32 @@
       }
       .rev {
         width: 100%;
+
+        .slick-initialized .slick-slide {
+          padding: 0 20px 0 0;
+        }
+
+        .slick-dots {
+          bottom: 25%;
+          right: 0;
+        }
+
+        .slick-dots li {
+          margin: 0;
+          width: 20px;
+          height: 2px;
+          background-color: #ccc;
+          // border-radius: 4px;
+          cursor: pointer;
+        }
+
+        .slick-dots li.slick-active {
+          background-color: #333;
+        }
+
+        .slick-dots li button {
+          display: none;
+        }
       }
 
       @media (max-width: 1000px) {

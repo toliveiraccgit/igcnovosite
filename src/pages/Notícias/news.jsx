@@ -74,7 +74,8 @@ function news() {
         <div className="theContainer">
           <div className="area">
             <h1>
-              Seja bem-vindo ao hub de notícias, <span>igc.</span>
+              {page && page.latest}
+              <span>{page && page.highlights}</span>
             </h1>
           </div>
         </div>

@@ -5,6 +5,9 @@ import "./Services.scss";
 import icon07 from "../../assets/services/icon07.png";
 import icon08 from "../../assets/services/icon08.png";
 
+import chartDesk from "../../assets/chart-desk.png";
+import chartMob from "../../assets/chart-mobile.png";
+
 import Slider from "react-slick";
 import arrowLeft from "../../assets/slider/arrowLeft.svg";
 import arrowRight from "../../assets/slider/arrowRight.svg";
@@ -52,7 +55,7 @@ function Services() {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const data = [48, 48, 48, 56, 65, 67, 69];
+  // const data = [48, 48, 48, 56, 65, 67, 69];
 
   const handleFilterChange = (event, type) => {
     const filterValue = event.target.value;
@@ -64,6 +67,7 @@ function Services() {
       .page({ locale })
       .then((res) => {
         setServicePage(res.data.data?.attributes);
+        console.log(res.data.data?.attributes);
         setServiceChart(
           res.data.data?.attributes && res.data.data?.attributes.chart
         );
@@ -75,7 +79,12 @@ function Services() {
     api_testmony
       .get({ locale })
       .then((res) => {
-        setTestimony(res.data.data);
+        const data = res.data.data;
+        const typeData = data.filter((e) => {
+          const servico = e.attributes?.type;
+          return servico == "M&A";
+        });
+        setTestimony(typeData);
       })
       .catch(() => {
         setTestimony([]);
@@ -142,7 +151,7 @@ function Services() {
     infinite: true,
     speed: 500,
     arrows: false,
-    slidesToShow: 3,
+    slidesToShow: testimony && testimony.length > 3 ? 3 : testimony.length,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -161,8 +170,9 @@ function Services() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: true,
-          dots: false,
+          initialSlide: 0,
+          dots: true,
+          variableWidth: true,
         },
       },
     ],
@@ -420,7 +430,35 @@ function Services() {
 
       <div className="chartContainer">
         <div className="theContainer">
-          <div className="desktop">
+          <div className="imgArea">
+            {!isMobile && (
+              <img
+                src={`${config.api.BASE}
+                  ${
+                    servicePage &&
+                    servicePage.chart_img_desk &&
+                    servicePage.chart_img_desk.data &&
+                    servicePage.chart_img_desk.data.attributes &&
+                    servicePage.chart_img_desk.data.attributes.url
+                  }`}
+                alt="imgDesktop"
+              />
+            )}
+            {isMobile && (
+              <img
+                src={`${config.api.BASE}
+                  ${
+                    servicePage &&
+                    servicePage.chart_img_mobile &&
+                    servicePage.chart_img_mobile.data &&
+                    servicePage.chart_img_mobile.data.attributes &&
+                    servicePage.chart_img_mobile.data.attributes.url
+                  }`}
+                alt="imgMobile"
+              />
+            )}
+          </div>
+          {/* <div className="desktop">
             <div className="brandsArea">
               {Array.isArray(serviceChart) &&
                 serviceChart.map((service) => (
@@ -447,7 +485,7 @@ function Services() {
             A igc é líder em número de transações M&A sell-side*
           </p>
 
-          <p className="dataFont">{servicePage && servicePage.font}</p>
+          <p className="dataFont">{servicePage && servicePage.font}</p> */}
         </div>
       </div>
 
@@ -621,7 +659,18 @@ function Services() {
           </div>
           <div className="rev">
             <Slider ref={slider} {...firstSlider}>
-              {testimony &&
+              {!isMobile &&
+                testimony &&
+                testimony.map((test) => (
+                  <Reviews
+                    key={test.id}
+                    name={test?.attributes?.name}
+                    company={test?.attributes?.company}
+                    testimony={test?.attributes?.testimony}
+                  />
+                ))}
+              {isMobile &&
+                testimony &&
                 testimony.map((test) => (
                   <Reviews
                     key={test.id}
