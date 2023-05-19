@@ -2,19 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import Banner from "../../assets/servicesBanner.png";
 import "./Services.scss";
 
-import icon07 from "../../assets/services/icon07.png";
-import icon08 from "../../assets/services/icon08.png";
-
-import chartDesk from "../../assets/chart-desk.png";
-import chartMob from "../../assets/chart-mobile.png";
-
 import Slider from "react-slick";
 import arrowLeft from "../../assets/slider/arrowLeft.svg";
 import arrowRight from "../../assets/slider/arrowRight.svg";
 
 import CardCase from "../../components/CardCase/cardCase";
 import Reviews from "../../components/Reviews/Review";
-import BarChart from "../../components/BarChart/BarChart";
 
 import Modal from "react-modal";
 import closeButton from "../../assets/closeButton.png";
@@ -53,10 +46,6 @@ function Services() {
   const [formMessage, setFormMessage] = useState(undefined);
 
   const [statusMessage, setStatusMessage] = useState("");
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  // const data = [48, 48, 48, 56, 65, 67, 69];
 
   const handleFilterChange = (event, type) => {
     const filterValue = event.target.value;
@@ -455,34 +444,6 @@ function Services() {
               />
             )}
           </div>
-          {/* <div className="desktop">
-            <div className="brandsArea">
-              {Array.isArray(serviceChart) &&
-                serviceChart.map((service) => (
-                  <h4 key={service.id} className="chartTitle">
-                    {service.name}
-                  </h4>
-                ))}
-            </div>
-          </div>
-          <div className="mobile">
-            <div className="brandsArea">
-              {Array.isArray(serviceChart) &&
-                serviceChart.slice(0, 5).map((service) => (
-                  <h4 key={service.id} className="chartTitle">
-                    {service.name}
-                  </h4>
-                ))}
-            </div>
-          </div>
-
-          <BarChart data={data} />
-
-          <p className="font">
-            A igc é líder em número de transações M&A sell-side*
-          </p>
-
-          <p className="dataFont">{servicePage && servicePage.font}</p> */}
         </div>
       </div>
 

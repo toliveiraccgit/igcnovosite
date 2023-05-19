@@ -1,8 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Accordion from "react-bootstrap/Accordion";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import { isMobile } from "react-device-detect";
 import Modal from "react-modal";
 import closeButton from "../../assets/closeButton.png";
 import Partner from "../../components/Partner/Partner";
@@ -61,20 +58,12 @@ function QuemSomos() {
   const sliderPartnersMobile = useRef(null);
   const sliderPrinciplesContainers = useRef(null);
 
-  // const [filter, setFilter] = useState({ group: "" });
   const [filter, setFilter] = useState({});
 
   const handleFilterChange = (event, type) => {
     const filterValue = event.target.value;
     setFilter({ ...filter, [type]: filterValue });
   };
-
-  function openModal(e, data) {
-    e.preventDefault();
-
-    setModalData(data);
-    setIsOpenModal(true);
-  }
 
   function closeModal() {
     setIsOpenModal(false);
@@ -86,41 +75,6 @@ function QuemSomos() {
 
   const handleNextClick = () => {
     sliderPartners.current.slickNext();
-  };
-
-  const sliderPartner = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 5,
-    initialSlide: 0,
-    dots: false,
-    responsive: [
-      {
-        breakpoint: 1074,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 0,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
   };
 
   const sliderPartnerMobile = {
@@ -183,16 +137,6 @@ function QuemSomos() {
         setGroups([]);
       });
   }, [locale, filter]);
-
-  const unMute = () => {
-    refVideo.current.muted = !refVideo.current.muted;
-  };
-
-  const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      clique para ativar o áudio
-    </Tooltip>
-  );
 
   return (
     <div className="QuemSomosContainer">
@@ -290,62 +234,6 @@ function QuemSomos() {
                 <div className="slicks"></div>
               )}
             </div>
-
-            {/* <div className="slider">
-              {partners &&
-              partners.filter((partner) => {
-                if (!filter.group) {
-                  return true;
-                }
-                return (
-                  partner &&
-                  partner.attributes &&
-                  partner.attributes.grupo &&
-                  partner.attributes.grupo.data &&
-                  partner.attributes.grupo.data.id === group
-                );
-              }).length >= 5 ? (
-                <Slider ref={sliderPartners} {...sliderPartner}>
-                  {partners &&
-                    partners
-                      .filter((partner) => {
-                        if (!filter.group) {
-                          return true;
-                        }
-                        return (
-                          partner &&
-                          partner.attributes &&
-                          partner.attributes.grupo &&
-                          partner.attributes.grupo.data &&
-                          partner.attributes.grupo.data.id === group
-                        );
-                      })
-                      .map((partner) => (
-                        <Partner key={partner.id} partner={partner} />
-                      ))}
-                </Slider>
-              ) : (
-                <div className="noSlider">
-                  {partners &&
-                    partners
-                      .filter((partner) => {
-                        if (!filter.group) {
-                          return true;
-                        }
-                        return (
-                          partner &&
-                          partner.attributes &&
-                          partner.attributes.grupo &&
-                          partner.attributes.grupo.data &&
-                          partner.attributes.grupo.data.id === group
-                        );
-                      })
-                      .map((partner) => (
-                        <Partner key={partner.id} partner={partner} />
-                      ))}
-                </div>
-              )}
-            </div> */}
 
             <div className="partner-container">
               {partners &&

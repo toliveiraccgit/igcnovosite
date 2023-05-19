@@ -1,14 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Banner from "../../assets/CapitalSolutionsBanner.png";
 
-import Icon01 from "../../assets/CapitalSolutions/icon01.png";
-import Icon02 from "../../assets/CapitalSolutions/icon02.png";
-import Icon03 from "../../assets/CapitalSolutions/icon03.png";
-import Icon04 from "../../assets/CapitalSolutions/icon04.png";
-
 import Slider from "react-slick";
 
-import moment from "moment";
 import "moment/dist/locale/es";
 import "moment/dist/locale/pt-br";
 
@@ -16,8 +10,6 @@ import arrowLeft from "../../assets/slider/arrowLeft.svg";
 import arrowRight from "../../assets/slider/arrowRight.svg";
 import CardCase from "../../components/CardCase/cardCase";
 import Reviews from "../../components/Reviews/Review";
-import Specialists from "../../components/Specialists/Specialist";
-import TheNews from "../../components/news/theNews";
 
 import "./CapitalSolution.scss";
 
@@ -177,9 +169,6 @@ function CapitalSolution() {
   const slider = useRef(null);
   const slider2 = useRef(null);
   const slider2Mobile = useRef(null);
-  const slider3 = useRef(null);
-  const slider3Mobile = useRef(null);
-  const sliderNews = useRef(null);
 
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -304,135 +293,6 @@ function CapitalSolution() {
           dots: false,
           centerMode: true,
           centerPadding: "10px",
-        },
-      },
-    ],
-  };
-
-  const thirdSlider = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    arrows: false,
-    slidesToShow: partners && partners.length > 4 ? 4 : partners.length,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    responsive: [
-      {
-        breakpoint: 1360,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 1150,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 850,
-        settings: {
-          className: "center",
-          centerMode: true,
-          infinite: false,
-          centerPadding: "60px",
-          slidesToShow: 1,
-          speed: 500,
-          rows: 3,
-          slidesPerRow: 1,
-        },
-      },
-      {
-        breakpoint: 776,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-          centerMode: true,
-          centerPadding: "0px",
-        },
-      },
-      {
-        breakpoint: 675,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-          centerMode: true,
-          centerPadding: "130px",
-        },
-      },
-      {
-        breakpoint: 427,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-          centerMode: true,
-          centerPadding: "30px",
-        },
-      },
-      {
-        breakpoint: 376,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-          centerMode: true,
-          centerPadding: "10px",
-        },
-      },
-    ],
-  };
-
-  const thirdSliderMobile = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    variableWidth: true,
-  };
-
-  const newsSlick = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    arrows: false,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    responsive: [
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: true,
         },
       },
     ],

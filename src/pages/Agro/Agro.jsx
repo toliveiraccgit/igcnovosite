@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import Slider from "react-slick";
-import bannerAgro from "../../assets/bannerAgro.jpg";
 import arrowLeft from "../../assets/slider/arrowLeft.svg";
 import arrowRight from "../../assets/slider/arrowRight.svg";
 import closeButton from "../../assets/closeButton.png";
@@ -510,27 +509,6 @@ function Agro() {
               </div>
             </div>
           </div>
-
-          {/* <div className="newsContainer">
-            <div className="theContainer">
-              <div className="top">
-                <h4>{page && page.news}</h4>
-                <a href="/noticias">{page && page.more}</a>
-              </div>
-              <div className="bottom">
-                <Slider {...fourSlider}>
-                  {news &&
-                    news.map((neww) => (
-                      <NewsCard
-                        key={neww.id}
-                        data={neww.attributes}
-                        id={neww.id}
-                      />
-                    ))}
-                </Slider>
-              </div>
-            </div>
-          </div> */}
         </>
       )) || <div className="noData">Página não encontrada</div>}
     </div>

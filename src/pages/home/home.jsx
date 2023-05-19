@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import homeBanner from "../../assets/homeBanner.png";
 import rightArrow from "../../assets/homeBanners/arrowRight.png";
 import arrowLeft from "../../assets/slider/arrowLeft.svg";
 import arrowRight from "../../assets/slider/arrowRight.svg";
@@ -92,14 +91,6 @@ function home() {
         },
       },
     ],
-  };
-
-  const handlePrevClick = () => {
-    slider4.current.slickPrev();
-  };
-
-  const handleNextClick = () => {
-    slider4.current.slickNext();
   };
 
   const fourSlider = {
@@ -245,8 +236,6 @@ function home() {
         res.data.data.attributes.transaction.transactions.data.slice(0, 10);
 
       setTransactions(limitData);
-      // console.log(limitData);
-      // setTestimony(res.data.data.attributes.testmonys.data);
       api_testmony
         .get({ locale })
         .then((res) => {
@@ -256,7 +245,6 @@ function home() {
           setTestimony([]);
         });
 
-      // set services, transactions and clients translations
       set_services_api_title(res.data.data.attributes.services);
       set_transactions_api_title(res.data.data.attributes.transaction);
       set_clients_api_title(res.data.data.attributes.clients);
@@ -271,7 +259,7 @@ function home() {
   return (
     <div className="homeContainer">
       <Slider {...settings}>
-        {(banners &&
+        {banners &&
           banners.length > 0 &&
           banners.map((banner) => (
             <BannerHome
@@ -281,7 +269,7 @@ function home() {
               label={banner.metrics && banner.metrics.label}
               link={banner.metrics && banner.metrics.link}
             />
-          ))) || <BannerHome image={homeBanner} />}
+          ))}
       </Slider>
       <div className="lastTransactions">
         <div className="theContainer">

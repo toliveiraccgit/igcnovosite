@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Calendar from "../../assets/NoticiaSelecionada/icon-calendario.png";
-import LastNews from "../../components/lastNews/lastNews";
 import "./NotíciaSelecionada.scss";
 
 import moment from "moment";

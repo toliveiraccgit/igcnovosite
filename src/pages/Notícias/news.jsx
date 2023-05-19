@@ -1,7 +1,5 @@
-import Calendar from "../../assets/icon-calendario.svg";
 import "./news.scss";
 
-import LastNews from "../../components/lastNews/lastNews";
 import TheNews from "../../components/news/theNews";
 
 import moment from "moment";

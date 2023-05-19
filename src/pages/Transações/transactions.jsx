@@ -1,4 +1,3 @@
-import banner from "../../assets/bannertransactions.jpg";
 import CardCase from "../../components/CardCase/cardCase";
 import "./transactions.scss";
 
@@ -140,7 +139,10 @@ function transactions() {
                   </option>
                 ))}
               </select>
-              <select
+
+              {/* V Filtro de origem V */}
+
+              {/* <select
                 name=""
                 id=""
                 onChange={(e) => handleFilterChange(e, "origen")}
@@ -151,8 +153,11 @@ function transactions() {
                 {transactionOrigen.map((origen) => (
                   <option value={origen.id}>{origen.attributes.origem}</option>
                 ))}
-              </select>
-              <select
+              </select> */}
+
+              {/* V Filtro de perfil V */}
+
+              {/* <select
                 name=""
                 id=""
                 onChange={(e) => handleFilterChange(e, "perfil")}
@@ -163,7 +168,7 @@ function transactions() {
                 {transactionPerfil.map((perfil) => (
                   <option value={perfil.id}>{perfil.attributes.name}</option>
                 ))}
-              </select>
+              </select> */}
             </div>
           </div>
           <div className="caseCardsContainer">

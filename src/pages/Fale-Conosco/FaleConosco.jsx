@@ -103,9 +103,6 @@ function FaleConosco() {
               </select>
             </div>
 
-            {/* <div
-              dangerouslySetInnerHTML={{ __html: pageContact.description }}
-            ></div> */}
             <div className="form">
               <form action="">
                 <div className="form1">
