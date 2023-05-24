@@ -122,7 +122,7 @@ function transactions() {
       <div className="caseContainer">
         <div className="theContainer">
           <div className="topCase">
-            <h4>cases</h4>
+            <h4>Transações</h4>
             <div className="filterContainer">
               <p>Filtros:</p>
               <select

@@ -93,7 +93,13 @@ function FaleConosco() {
               <select
                 className="partner"
                 onChange={(e) => setFormPartner(e.target.value)}
+                value={formPartner || ""}
               >
+                {!formPartner && (
+                  <option value="" selected disabled>
+                    Selecione um sócio
+                  </option>
+                )}
                 {partners &&
                   partners.map((partner, index) => (
                     <option key={index} value={partner.id}>
@@ -127,7 +133,7 @@ function FaleConosco() {
                 </div>
                 <div className="form1">
                   <div className="form11">
-                    <label htmlFor="">Telefone</label>
+                    <label htmlFor="">Celular</label>
                     <input
                       placeholder="Digite aqui"
                       type="number"
@@ -136,7 +142,7 @@ function FaleConosco() {
                     />
                   </div>
                   <div className="form11">
-                    <label htmlFor="">CPF / CNPJ</label>
+                    <label htmlFor="">Nome da sua empresa</label>
                     <input
                       placeholder="Digite aqui"
                       type="number"

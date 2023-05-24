@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import LogoMobile from "../../assets/HeaderMobile/logo.png";
-import logo from "../../assets/logo2.svg";
+import logo from "../../assets/logo.svg";
 import arrowRight from "../../assets/services/rightarrow.svg";
 import "./Header.scss";
 

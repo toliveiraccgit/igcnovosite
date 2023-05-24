@@ -1,4 +1,8 @@
 .homeContainer {
+  .slick-list {
+    max-height: 680px;
+  }
+
   .slick-next {
     z-index: 0;
     background-color: transparent !important;
