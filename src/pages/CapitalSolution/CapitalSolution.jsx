@@ -382,15 +382,13 @@ function CapitalSolution() {
                 capitalSolution.differentials &&
                 capitalSolution.differentials.highlight_1}
             </h1>
-            {!isMobile && (
-              <div className="bottom">
-                <h1 className="blue">
-                  {capitalSolution &&
-                    capitalSolution.differentials &&
-                    capitalSolution.differentials.highlight_2}
-                </h1>
-              </div>
-            )}
+            <div className="bottom">
+              <h1 className="blue">
+                {capitalSolution &&
+                  capitalSolution.differentials &&
+                  capitalSolution.differentials.highlight_2}
+              </h1>
+            </div>
             <Link className="buttonContact" to="/fale-conosco">
               {/* {service.attributes.button.label}{" "} */}
               fale com a gente
@@ -429,6 +427,19 @@ function CapitalSolution() {
                             .differential_3_description}
                       </h3>
                     </div>
+                    <div className="card">
+                      <span>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials.differential_5}
+                      </span>
+                      <h3>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials
+                            .differential_5_description}
+                      </h3>
+                    </div>
                   </div>
                   <div className="row">
                     <div className="card">
@@ -455,6 +466,19 @@ function CapitalSolution() {
                           capitalSolution.differentials &&
                           capitalSolution.differentials
                             .differential_4_description}
+                      </h3>
+                    </div>
+                    <div className="card">
+                      <span>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials.differential_6}
+                      </span>
+                      <h3>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials
+                            .differential_6_description}
                       </h3>
                     </div>
                   </div>
@@ -515,15 +539,34 @@ function CapitalSolution() {
                             .differential_4_description}
                       </h3>
                     </div>
+                    <div className="card">
+                      <span>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials.differential_5}
+                      </span>
+                      <h3>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials
+                            .differential_5_description}
+                      </h3>
+                    </div>
+                    <div className="card">
+                      <span>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials.differential_6}
+                      </span>
+                      <h3>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials
+                            .differential_6_description}
+                      </h3>
+                    </div>
                   </Slider>
                 </div>
-              )}
-              {isMobile && (
-                <h1 className="blue">
-                  {capitalSolution &&
-                    capitalSolution.differentials &&
-                    capitalSolution.differentials.highlight_2}
-                </h1>
               )}
             </div>
           </div>

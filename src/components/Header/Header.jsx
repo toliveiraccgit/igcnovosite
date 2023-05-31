@@ -23,6 +23,7 @@ function HeaderTop() {
     APINavigation.get_navigation({ locale })
       .then((response) => {
         setNavigation(response.data);
+        console.log(response);
       })
       .catch(() => {
         setNavigation([]);

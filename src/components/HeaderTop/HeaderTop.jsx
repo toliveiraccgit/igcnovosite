@@ -18,12 +18,11 @@ function HeaderTop() {
     APIHeader.get({ locale })
       .then((response) => {
         setHeader(response.data.data.attributes.button);
-        dispatch(set_locale("pt-BR"));
       })
       .catch((error) => {
         setHeader([]);
       });
-  }, [locale]);
+  }, [locale, dispatch]);
 
   const handleLocaleChange = (event) => {
     const locale = event.target.value;

@@ -8,7 +8,6 @@
     }
 
     @media (max-width: 910px) {
-      margin-top: 0;
       height: 60vh;
     }
 
@@ -171,7 +170,7 @@
       }
 
       .rightContainer {
-        width: 45%;
+        width: 40%;
 
         @media (max-width: 1124px) {
           width: 50%;
@@ -238,7 +237,6 @@
 
           @media (max-width: 520px) {
             width: 75%;
-            margin: 1rem 0 4rem 0;
             font-size: 35px;
             line-height: 40px;
           }
@@ -288,7 +286,7 @@
       }
 
       .leftContainer {
-        width: 55%;
+        width: 60%;
         position: relative;
 
         @media (max-width: 1124px) {
@@ -350,18 +348,6 @@
             font-size: 16px;
             line-height: 21px;
             color: #5d5d5d;
-          }
-        }
-
-        .blue {
-          line-height: 43px;
-          color: #222f43;
-
-          @media (max-width: 520px) {
-            width: 75%;
-            margin: 5rem 0 4rem 0;
-            font-size: 35px;
-            line-height: 40px;
           }
         }
 
