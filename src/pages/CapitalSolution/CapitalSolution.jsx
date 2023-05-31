@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import Banner from "../../assets/CapitalSolutionsBanner.png";
 
 import Slider from "react-slick";
@@ -8,6 +9,7 @@ import "moment/dist/locale/pt-br";
 
 import arrowLeft from "../../assets/slider/arrowLeft.svg";
 import arrowRight from "../../assets/slider/arrowRight.svg";
+import rightArrow from "../../assets/homeBanners/arrowRight.png";
 import CardCase from "../../components/CardCase/cardCase";
 import Reviews from "../../components/Reviews/Review";
 
@@ -169,6 +171,7 @@ function CapitalSolution() {
   const slider = useRef(null);
   const slider2 = useRef(null);
   const slider2Mobile = useRef(null);
+  const highlightsMobile = useRef(null);
 
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -214,7 +217,8 @@ function CapitalSolution() {
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 3,
+          slidesToShow:
+            testimony && testimony.length > 3 ? 3 : testimony.length,
           slidesToScroll: 1,
           infinite: true,
           dots: false,
@@ -298,6 +302,16 @@ function CapitalSolution() {
     ],
   };
 
+  const highlightMobile = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    variableWidth: true,
+  };
+
   const [selectedTransaction, setSelectedTransaction] = useState(null);
   const isMobile = window.innerWidth <= 768;
 
@@ -368,82 +382,149 @@ function CapitalSolution() {
                 capitalSolution.differentials &&
                 capitalSolution.differentials.highlight_1}
             </h1>
-            <div className="bottom">
-              <h1 className="blue">
-                {capitalSolution &&
-                  capitalSolution.differentials &&
-                  capitalSolution.differentials.highlight_2}
-              </h1>
-            </div>
+            {!isMobile && (
+              <div className="bottom">
+                <h1 className="blue">
+                  {capitalSolution &&
+                    capitalSolution.differentials &&
+                    capitalSolution.differentials.highlight_2}
+                </h1>
+              </div>
+            )}
+            <Link className="buttonContact" to="/fale-conosco">
+              {/* {service.attributes.button.label}{" "} */}
+              fale com a gente
+              <img src={rightArrow} alt="" />{" "}
+            </Link>
           </div>
 
           <div className="leftContainer">
             <div className="bottom">
-              <div className="left">
-                <ul>
-                  <div className="container">
-                    <li className="firstLine">
-                      <h3>
+              {!isMobile && (
+                <div className="cardGrid">
+                  <div className="row">
+                    <div className="card">
+                      <span>
                         {capitalSolution &&
                           capitalSolution.differentials &&
                           capitalSolution.differentials.differential_1}
-                      </h3>
-                      <span>
+                      </span>
+                      <h3>
                         {capitalSolution &&
                           capitalSolution.differentials &&
                           capitalSolution.differentials
                             .differential_1_description}
-                      </span>
-                    </li>
-                    <li className="firstLine">
-                      <h3>
+                      </h3>
+                    </div>
+                    <div className="card">
+                      <span>
                         {capitalSolution &&
                           capitalSolution.differentials &&
                           capitalSolution.differentials.differential_3}
-                      </h3>
-                      <span>
+                      </span>
+                      <h3>
                         {capitalSolution &&
                           capitalSolution.differentials &&
                           capitalSolution.differentials
                             .differential_3_description}
-                      </span>
-                    </li>
+                      </h3>
+                    </div>
                   </div>
-                </ul>
-              </div>
-
-              <div className="right">
-                <ul>
-                  <div className="container">
-                    <li className="firstLine">
-                      <h3>
+                  <div className="row">
+                    <div className="card">
+                      <span>
                         {capitalSolution &&
                           capitalSolution.differentials &&
                           capitalSolution.differentials.differential_2}
-                      </h3>
-                      <span>
+                      </span>
+                      <h3>
                         {capitalSolution &&
                           capitalSolution.differentials &&
                           capitalSolution.differentials
                             .differential_2_description}
-                      </span>
-                    </li>
-                    <li className="firstLine">
-                      <h3>
+                      </h3>
+                    </div>
+                    <div className="card">
+                      <span>
                         {capitalSolution &&
                           capitalSolution.differentials &&
                           capitalSolution.differentials.differential_4}
-                      </h3>
-                      <span>
+                      </span>
+                      <h3>
                         {capitalSolution &&
                           capitalSolution.differentials &&
                           capitalSolution.differentials
                             .differential_4_description}
-                      </span>
-                    </li>
+                      </h3>
+                    </div>
                   </div>
-                </ul>
-              </div>
+                </div>
+              )}
+              {isMobile && (
+                <div className="cardGrid">
+                  <Slider ref={highlightsMobile} {...highlightMobile}>
+                    <div className="card">
+                      <span>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials.differential_1}
+                      </span>
+                      <h3>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials
+                            .differential_1_description}
+                      </h3>
+                    </div>
+                    <div className="card">
+                      <span>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials.differential_3}
+                      </span>
+                      <h3>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials
+                            .differential_3_description}
+                      </h3>
+                    </div>
+                    <div className="card">
+                      <span>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials.differential_2}
+                      </span>
+                      <h3>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials
+                            .differential_2_description}
+                      </h3>
+                    </div>
+                    <div className="card">
+                      <span>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials.differential_4}
+                      </span>
+                      <h3>
+                        {capitalSolution &&
+                          capitalSolution.differentials &&
+                          capitalSolution.differentials
+                            .differential_4_description}
+                      </h3>
+                    </div>
+                  </Slider>
+                </div>
+              )}
+              {isMobile && (
+                <h1 className="blue">
+                  {capitalSolution &&
+                    capitalSolution.differentials &&
+                    capitalSolution.differentials.highlight_2}
+                </h1>
+              )}
             </div>
           </div>
         </div>

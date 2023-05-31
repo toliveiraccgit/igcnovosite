@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import Banner from "../../assets/servicesBanner.png";
 import "./Services.scss";
 
 import Slider from "react-slick";
 import arrowLeft from "../../assets/slider/arrowLeft.svg";
 import arrowRight from "../../assets/slider/arrowRight.svg";
+import rightArrow from "../../assets/homeBanners/arrowRight.png";
 
 import CardCase from "../../components/CardCase/cardCase";
 import Reviews from "../../components/Reviews/Review";
@@ -46,6 +48,8 @@ function Services() {
   const [formMessage, setFormMessage] = useState(undefined);
 
   const [statusMessage, setStatusMessage] = useState("");
+
+  const isMobile = window.innerWidth <= 768;
 
   const handleFilterChange = (event, type) => {
     const filterValue = event.target.value;
@@ -113,6 +117,7 @@ function Services() {
 
   const slider = useRef(null);
   const slider2 = useRef(null);
+  const highlightsMobile = useRef(null);
 
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -212,6 +217,16 @@ function Services() {
     ],
   };
 
+  const highlightMobile = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    variableWidth: true,
+  };
+
   const handlerSubmit = (e) => {
     e.preventDefault();
 
@@ -254,7 +269,6 @@ function Services() {
   };
 
   const [selectedTransaction, setSelectedTransaction] = useState(null);
-  const isMobile = window.innerWidth <= 768;
 
   const openModal = (e, transaction) => {
     e.preventDefault();
@@ -322,97 +336,173 @@ function Services() {
               {servicePage && servicePage.dif && servicePage.dif.highlight_1}
             </h1>
             <div className="bottom">
-              <h1 className="blue">
-                {servicePage && servicePage.dif && servicePage.dif.highlight_2}
-              </h1>
+              <Link className="buttonContact" to="/fale-conosco">
+                {/* {service.attributes.button.label}{" "} */}
+                fale com a gente
+                <img src={rightArrow} alt="" />{" "}
+              </Link>
             </div>
           </div>
           <div className="leftContainer">
             <div className="bottom">
-              <div className="left">
-                <ul>
-                  <div className="container">
-                    <li className="firstLine">
-                      <h3>
+              {!isMobile && (
+                <div className="cardGrid">
+                  <div className="row">
+                    <div className="card">
+                      <span>
                         {servicePage &&
                           servicePage.dif &&
                           servicePage.dif.differential_1}
-                      </h3>
-                      <span>
+                      </span>
+                      <h3>
                         {servicePage &&
                           servicePage.dif &&
                           servicePage.dif.differential_1_description}
-                      </span>
-                    </li>
-                    <li className="firstLine">
-                      <h3>
-                        {servicePage &&
-                          servicePage.dif &&
-                          servicePage.dif.differential_2}
                       </h3>
+                    </div>
+                    <div className="card">
                       <span>
-                        {servicePage &&
-                          servicePage.dif &&
-                          servicePage.dif.differential_2_description}
-                      </span>
-                    </li>
-                    <li className="firstLine">
-                      <h3>
                         {servicePage &&
                           servicePage.dif &&
                           servicePage.dif.differential_3}
-                      </h3>
-                      <span>
+                      </span>
+                      <h3>
                         {servicePage &&
                           servicePage.dif &&
                           servicePage.dif.differential_3_description}
-                      </span>
-                    </li>
-                  </div>
-                </ul>
-              </div>
-              <div className="right">
-                <ul>
-                  <div className="container">
-                    <li className="firstLine">
-                      <h3>
-                        {servicePage &&
-                          servicePage.dif &&
-                          servicePage.dif.differential_4}
                       </h3>
+                    </div>
+                    <div className="card">
                       <span>
                         {servicePage &&
                           servicePage.dif &&
-                          servicePage.dif.differential_4_description}
+                          servicePage.dif.differential_2}
                       </span>
-                    </li>
-                    <li className="firstLine">
                       <h3>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_2_description}
+                      </h3>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="card">
+                      <span>
                         {servicePage &&
                           servicePage.dif &&
                           servicePage.dif.differential_5}
-                      </h3>
-                      <span>
-                        {servicePage &&
-                          servicePage.dif &&
-                          servicePage.dif.differential_5_description}
                       </span>
-                    </li>
-                    <li className="firstLine">
                       <h3>
                         {servicePage &&
                           servicePage.dif &&
-                          servicePage.dif.differential_6}
+                          servicePage.dif.differential_5_description}
                       </h3>
+                    </div>
+                    <div className="card">
                       <span>
                         {servicePage &&
                           servicePage.dif &&
-                          servicePage.dif.differential_6_description}
+                          servicePage.dif.differential_4}
                       </span>
-                    </li>
+                      <h3>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_4_description}
+                      </h3>
+                    </div>
+                    <div className="card">
+                      <span>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_6}
+                      </span>
+                      <h3>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_6_description}
+                      </h3>
+                    </div>
                   </div>
-                </ul>
-              </div>
+                </div>
+              )}
+              {isMobile && (
+                <div className="cardGrid">
+                  <Slider ref={highlightsMobile} {...highlightMobile}>
+                    <div className="card">
+                      <span>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_1}
+                      </span>
+                      <h3>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_1_description}
+                      </h3>
+                    </div>
+                    <div className="card">
+                      <span>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_3}
+                      </span>
+                      <h3>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_3_description}
+                      </h3>
+                    </div>
+                    <div className="card">
+                      <span>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_2}
+                      </span>
+                      <h3>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_2_description}
+                      </h3>
+                    </div>
+                    <div className="card">
+                      <span>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_5}
+                      </span>
+                      <h3>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_5_description}
+                      </h3>
+                    </div>
+                    <div className="card">
+                      <span>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_4}
+                      </span>
+                      <h3>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_4_description}
+                      </h3>
+                    </div>
+                    <div className="card">
+                      <span>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_6}
+                      </span>
+                      <h3>
+                        {servicePage &&
+                          servicePage.dif &&
+                          servicePage.dif.differential_6_description}
+                      </h3>
+                    </div>
+                  </Slider>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -420,6 +510,9 @@ function Services() {
 
       <div className="chartContainer">
         <div className="theContainer">
+          <h1 className="blue">
+            {servicePage && servicePage.dif && servicePage.dif.highlight_2}
+          </h1>
           <div className="imgArea">
             {!isMobile && (
               <img
