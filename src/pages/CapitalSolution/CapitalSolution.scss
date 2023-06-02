@@ -357,9 +357,22 @@
           }
         }
 
+        @media (max-width: 1440px) {
+          .card {
+            width: 260px;
+            height: 280px;
+          }
+        }
+
+        @media (max-width: 1370px) {
+          .card {
+            width: 240px;
+          }
+        }
+
         @media (max-width: 1024px) {
           .card {
-            width: 160px;
+            width: 180px;
             height: 200px;
 
             span {
