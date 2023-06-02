@@ -255,6 +255,12 @@
           }
         }
 
+        @media (max-width: 1280px) {
+          .card {
+            width: 230px;
+          }
+        }
+
         @media (max-width: 1024px) {
           .card {
             width: 180px;
