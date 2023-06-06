@@ -780,7 +780,7 @@ function CapitalSolution() {
               </div>
               <div className="form1">
                 <div className="form11">
-                  <label htmlFor="">Telefone</label>
+                  <label htmlFor="">Celular</label>
                   <input
                     placeholder="Digite aqui"
                     type="number"
@@ -789,7 +789,7 @@ function CapitalSolution() {
                   />
                 </div>
                 <div className="form11">
-                  <label htmlFor="">CPF / CNPJ</label>
+                  <label htmlFor="">Nome da sua empresa</label>
                   <input
                     placeholder="Digite aqui"
                     type="number"
