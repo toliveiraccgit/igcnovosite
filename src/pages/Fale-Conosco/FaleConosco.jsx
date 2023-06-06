@@ -136,7 +136,7 @@ function FaleConosco() {
                     <label htmlFor="">Celular</label>
                     <input
                       placeholder="Digite aqui"
-                      type="number"
+                      type="tel"
                       value={formPhone}
                       onChange={(e) => setFormPhone(e.target.value)}
                     />
@@ -145,7 +145,7 @@ function FaleConosco() {
                     <label htmlFor="">Nome da sua empresa</label>
                     <input
                       placeholder="Digite aqui"
-                      type="number"
+                      type="text"
                       value={formCpfCnpj}
                       onChange={(e) => setFormCpfCnpj(e.target.value)}
                     />
