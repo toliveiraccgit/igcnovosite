@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "../src/components/Footer/Footer";
 import "./App.scss";
 import Header from "./components/Header/Header";
+import CookiesPopup from "./components/CookiesPopup/CookiesPopup";
+import { useCookies } from "react-cookie";
 import HeaderTop from "./components/HeaderTop/HeaderTop";
 import Agro from "./pages/Agro/Agro";
 import Capital from "./pages/CapitalSolution/CapitalSolution";
@@ -26,8 +28,13 @@ import NotíciaSelecionada from "./pages/Notícia-Selecionada/NotíciaSelecionad
 let persistor = persistStore(store);
 
 function App() {
+  const [cookies] = useCookies(["cookiesAccepted"]);
+
   return (
     <div className="App">
+      {/* Conditionally render the CookiesPopup */}
+      {!cookies.cookiesAccepted && <CookiesPopup />}
+
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <BrowserRouter>

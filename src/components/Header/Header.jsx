@@ -13,13 +13,28 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { useEffect, useState } from "react";
 import APINavigation from "./../../api/navigation";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { get_async_locale, set_locale } from "../../store/locales";
 
 function HeaderTop() {
   const [navigation, setNavigation] = useState([]);
-  const locale = useSelector((state) => state.locales.locale);
+  // const locale = useSelector((state) => state.locales.locale);
+  const dispatch = useDispatch();
+  const { locales, locale } = useSelector((state) => state.locales);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleDropdownClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleLocaleClick = (locale) => {
+    dispatch(set_locale(locale));
+    setIsOpen(false);
+  };
 
   useEffect(() => {
+    dispatch(get_async_locale());
+
     APINavigation.get_navigation({ locale })
       .then((response) => {
         setNavigation(response.data);
@@ -28,7 +43,7 @@ function HeaderTop() {
       .catch(() => {
         setNavigation([]);
       });
-  }, [locale]);
+  }, [locale, dispatch]);
 
   return (
     <>
@@ -86,47 +101,89 @@ function HeaderTop() {
               <Navbar.Brand href="/">
                 <img src={LogoMobile} alt="Logo da IGC" />
               </Navbar.Brand>
-              <Navbar.Toggle
-                className="ButtonMenuOpen"
-                aria-controls={`offcanvasNavbar-expand-${expand}`}
-              />
-              <Navbar.Offcanvas
-                id={`offcanvasNavbar-expand-${expand}`}
-                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                placement="end"
-                className="MenuOppend"
-              >
-                <Offcanvas.Header closeButton>
-                  <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                    <img src={LogoMobile} alt="Logo da IGC" />
-                  </Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                  <Nav className="justify-content-end flex-grow-1 pe-3">
-                    {navigation.map((item) =>
-                      item.items.length === 0 ? (
-                        <Nav.Link
-                          className="quemSomos action bold"
-                          href={item.path}
+              <div className="dropdown-area">
+                <div className={`dropdown ${isOpen ? "dropdownOpen" : ""}`}>
+                  <div
+                    className="dropdown-toggle"
+                    onClick={handleDropdownClick}
+                  >
+                    {locales.find((loc) => loc.code === locale)
+                      ? locales.find((loc) => loc.code === locale).name
+                      : ""}
+                  </div>
+                  {isOpen && (
+                    <ul className="dropdown-menu">
+                      {locales.map((locale_i) => (
+                        <li
+                          key={locale_i.id}
+                          onClick={() => handleLocaleClick(locale_i.code)}
+                          style={{
+                            display:
+                              locale_i.code === locale ? "none" : "block",
+                          }}
                         >
-                          {item.title}
-                        </Nav.Link>
-                      ) : (
-                        <NavDropdown
-                          title={item.title}
-                          id={`offcanvasNavbarDropdown-expand-${expand}`}
-                        >
-                          {item.items.map((subitem) => (
-                            <NavDropdown.Item href={subitem.path}>
-                              {subitem.title}
-                            </NavDropdown.Item>
-                          ))}
-                        </NavDropdown>
-                      )
-                    )}
-                  </Nav>
-                </Offcanvas.Body>
-              </Navbar.Offcanvas>
+                          <div
+                            className={
+                              (locale_i.name === "EN" ||
+                                locale_i.name == "ES") &&
+                              locale != "pt-BR"
+                                ? "line"
+                                : locale == "pt-BR" && locale_i.name === "EN"
+                                ? "line"
+                                : "no-line"
+                            }
+                          >
+                            {locale_i.name}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+                <Navbar.Toggle
+                  className="ButtonMenuOpen"
+                  aria-controls={`offcanvasNavbar-expand-${expand}`}
+                />
+                <Navbar.Offcanvas
+                  id={`offcanvasNavbar-expand-${expand}`}
+                  aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                  placement="end"
+                  className="MenuOppend"
+                >
+                  <Offcanvas.Header closeButton>
+                    <Offcanvas.Title
+                      id={`offcanvasNavbarLabel-expand-${expand}`}
+                    >
+                      <img src={LogoMobile} alt="Logo da IGC" />
+                    </Offcanvas.Title>
+                  </Offcanvas.Header>
+                  <Offcanvas.Body>
+                    <Nav className="justify-content-end flex-grow-1 pe-3">
+                      {navigation.map((item) =>
+                        item.items.length === 0 ? (
+                          <Nav.Link
+                            className="quemSomos action bold"
+                            href={item.path}
+                          >
+                            {item.title}
+                          </Nav.Link>
+                        ) : (
+                          <NavDropdown
+                            title={item.title}
+                            id={`offcanvasNavbarDropdown-expand-${expand}`}
+                          >
+                            {item.items.map((subitem) => (
+                              <NavDropdown.Item href={subitem.path}>
+                                {subitem.title}
+                              </NavDropdown.Item>
+                            ))}
+                          </NavDropdown>
+                        )
+                      )}
+                    </Nav>
+                  </Offcanvas.Body>
+                </Navbar.Offcanvas>
+              </div>
             </Container>
           </Navbar>
         ))}

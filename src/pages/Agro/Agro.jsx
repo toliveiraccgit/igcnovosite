@@ -359,17 +359,31 @@ function Agro() {
                 <Slider ref={slider2} {...secondSlider}>
                   {transactions &&
                     transactions.length > 0 &&
-                    transactions.map((item, index) => (
-                      <a
-                        style={{ cursor: "pointer", marginBottom: 20 }}
-                        onClick={(e) => openModal(e, item)}
-                      >
-                        <CardCase
-                          key={index}
-                          image={`${item.attributes.image.data.attributes.url}`}
-                        />
-                      </a>
-                    ))}
+                    transactions
+                      .sort((a, b) => {
+                        const priorityOrder = {
+                          "Muito alta": 1,
+                          Alta: 2,
+                          Normal: 3,
+                          Baixa: 4,
+                        };
+
+                        const priorityA = priorityOrder[a.attributes.priority];
+                        const priorityB = priorityOrder[b.attributes.priority];
+
+                        return priorityA - priorityB;
+                      })
+                      .map((item, index) => (
+                        <a
+                          style={{ cursor: "pointer", marginBottom: 20 }}
+                          onClick={(e) => openModal(e, item)}
+                        >
+                          <CardCase
+                            key={index}
+                            image={`${item.attributes.image.data.attributes.url}`}
+                          />
+                        </a>
+                      ))}
                 </Slider>
                 {transactions && transactions.length === 0 && (
                   <div className="noData">Nenhum case encontrado</div>
@@ -420,52 +434,66 @@ function Agro() {
               <div className="bottomMobile">
                 {isMobile &&
                   transactions &&
-                  transactions.map((item) => (
-                    <>
-                      <div onClick={(e) => openModal(e, item)} key={item.id}>
-                        <CardCase
-                          image={item.attributes.image.data.attributes.url}
-                          key={item.index}
-                        />
-                      </div>
-                      <Modal
-                        isOpen={selectedTransaction === item.id}
-                        onRequestClose={closeModal}
-                        style={customMobileStyles}
-                        contentLabel="Example Modal"
-                        key={item.id}
-                      >
-                        <div className="ContainerModalMobile">
-                          <div className="rightContainerModal">
-                            <button
-                              style={customStyles.closeButtonModal}
-                              className="closeButtonModal"
-                              onClick={closeModal}
-                            >
-                              <img src={closeButton} alt="" />
-                            </button>
-                            <div className="DescriptionContainerModal">
-                              <p className="Description">
-                                <div className="Img">
-                                  <div className="cardSocial-container">
-                                    <img
-                                      className="CardSocialImg"
-                                      src={`${config.api.BASE}${item.attributes.image.data.attributes.url}`}
-                                      alt="Logo"
-                                    />
+                  transactions
+                    .sort((a, b) => {
+                      const priorityOrder = {
+                        "Muito alta": 1,
+                        Alta: 2,
+                        Normal: 3,
+                        Baixa: 4,
+                      };
+
+                      const priorityA = priorityOrder[a.attributes.priority];
+                      const priorityB = priorityOrder[b.attributes.priority];
+
+                      return priorityA - priorityB;
+                    })
+                    .map((item) => (
+                      <>
+                        <div onClick={(e) => openModal(e, item)} key={item.id}>
+                          <CardCase
+                            image={item.attributes.image.data.attributes.url}
+                            key={item.index}
+                          />
+                        </div>
+                        <Modal
+                          isOpen={selectedTransaction === item.id}
+                          onRequestClose={closeModal}
+                          style={customMobileStyles}
+                          contentLabel="Example Modal"
+                          key={item.id}
+                        >
+                          <div className="ContainerModalMobile">
+                            <div className="rightContainerModal">
+                              <button
+                                style={customStyles.closeButtonModal}
+                                className="closeButtonModal"
+                                onClick={closeModal}
+                              >
+                                <img src={closeButton} alt="" />
+                              </button>
+                              <div className="DescriptionContainerModal">
+                                <p className="Description">
+                                  <div className="Img">
+                                    <div className="cardSocial-container">
+                                      <img
+                                        className="CardSocialImg"
+                                        src={`${config.api.BASE}${item.attributes.image.data.attributes.url}`}
+                                        alt="Logo"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <h2 className="titleModal">
-                                  {item.attributes.name}
-                                </h2>
-                                {item.attributes.description}
-                              </p>
+                                  <h2 className="titleModal">
+                                    {item.attributes.name}
+                                  </h2>
+                                  {item.attributes.description}
+                                </p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </Modal>
-                    </>
-                  ))}
+                        </Modal>
+                      </>
+                    ))}
               </div>
             </div>
           </div>
@@ -510,7 +538,12 @@ function Agro() {
             </div>
           </div>
         </>
-      )) || <div className="noData">Página não encontrada</div>}
+      )) || (
+        <div className="noData">
+          <div class="loading-icon"></div>
+          <span>Loading...</span>
+        </div>
+      )}
     </div>
   );
 }

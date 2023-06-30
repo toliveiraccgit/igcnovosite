@@ -206,7 +206,7 @@ body {
       display: none;
     }
 
-    margin-top: 5rem;
+    // margin-top: 5rem;
 
     .theContainer {
       display: flex;
@@ -260,36 +260,30 @@ body {
         img {
           height: 25px;
         }
+
+        .icon-download:hover {
+          transform: scale(1.2);
+          transition: transform 0.3s ease;
+          opacity: 0.8;
+        }
       }
     }
 
     li:first-child {
       margin-left: 0;
     }
-
-    // a {
-    //   margin: 0 18px;
-
-    //   img {
-    //     height: 25px;
-    //   }
-    // }
-
-    // a:last-child {
-    //   margin-right: 0;
-    // }
   }
 
   .float-logo {
     position: absolute;
     left: 0;
-    bottom: -30px;
+    bottom: 70px;
   }
 
   .float-content {
     .float-text {
       position: absolute;
-      bottom: -50px;
+      bottom: 50px;
       right: 0;
 
       h1 {
@@ -490,7 +484,7 @@ body {
   }
 
   .final-footer {
-    margin-top: 5rem;
+    // margin-top: 5rem;
 
     .theContainer {
       margin: 0;

@@ -240,6 +240,7 @@ function home() {
         .get({ locale })
         .then((res) => {
           setTestimony(res.data.data);
+          // console.log(res.data.data);
         })
         .catch(() => {
           setTestimony([]);
