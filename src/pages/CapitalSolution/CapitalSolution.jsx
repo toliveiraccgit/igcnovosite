@@ -17,7 +17,6 @@ import "./CapitalSolution.scss";
 
 import Modal from "react-modal";
 import closeButton from "../../assets/closeButton.png";
-import config from "../../config/env";
 
 import { useSelector } from "react-redux";
 import {
@@ -131,17 +130,17 @@ function CapitalSolution() {
     e.preventDefault();
 
     if (!formName || formName === "") {
-      setStatusMessage("O campo nome é obrigatório");
+      setStatusMessage(contacts && contacts.required_field);
       return;
     }
 
     if (!formEmail || formEmail === "") {
-      setStatusMessage("O campo e-mail é obrigatório");
+      setStatusMessage(contacts && contacts.required_field);
       return;
     }
 
     if (!formMessage || formMessage === "") {
-      setStatusMessage("O campo mensagem é obrigatório");
+      setStatusMessage(contacts && contacts.required_field);
       return;
     }
 
@@ -156,7 +155,7 @@ function CapitalSolution() {
     api_contact
       .send({ data })
       .then(() => {
-        setStatusMessage("Mensagem enviada com sucesso");
+        setStatusMessage(contacts && contacts.aprovado);
         setFormName(undefined);
         setFormEmail(undefined);
         setFormPhone(undefined);
@@ -164,7 +163,7 @@ function CapitalSolution() {
         setFormMessage(undefined);
       })
       .catch(() => {
-        setStatusMessage("Ocorreu um erro ao enviar a mensagem");
+        setStatusMessage(contacts && contacts.erro);
       });
   };
 
@@ -373,10 +372,7 @@ function CapitalSolution() {
       <div className="nossosDiferenciais">
         <div className="theContainer">
           <div className="rightContainer">
-            <h4>
-              {(capitalSolution && capitalSolution.differential) ||
-                `nossos diferenciais`}
-            </h4>
+            <h4>{capitalSolution && capitalSolution.differential}</h4>
             <h1 className="yellow">
               {capitalSolution &&
                 capitalSolution.differentials &&
@@ -390,8 +386,7 @@ function CapitalSolution() {
               </h1>
             </div>
             <Link className="buttonContact" to="/fale-conosco">
-              {/* {service.attributes.button.label}{" "} */}
-              fale com a gente
+              {capitalSolution && capitalSolution.button}
               <img src={rightArrow} alt="" />{" "}
             </Link>
           </div>
@@ -576,7 +571,7 @@ function CapitalSolution() {
       <div className="reviewsContainer">
         <div className="theContainer">
           <div className="top">
-            <p>depoimentos</p>
+            <p>{capitalSolution && capitalSolution.clients}</p>
             <div className="slicks">
               <button onClick={() => slider.current.slickPrev()}>
                 <img src={arrowLeft} alt="" />
@@ -590,24 +585,52 @@ function CapitalSolution() {
             <Slider ref={slider} {...firstSlider}>
               {!isMobile &&
                 testimony &&
-                testimony.map((test) => (
-                  <Reviews
-                    key={test.id}
-                    name={test?.attributes?.name}
-                    company={test?.attributes?.company}
-                    testimony={test?.attributes?.testimony}
-                  />
-                ))}
+                testimony
+                  .sort((a, b) => {
+                    const priorityOrder = {
+                      "Muito alta": 1,
+                      Alta: 2,
+                      Normal: 3,
+                      Baixa: 4,
+                    };
+
+                    const priorityA = priorityOrder[a.attributes.priority];
+                    const priorityB = priorityOrder[b.attributes.priority];
+
+                    return priorityA - priorityB;
+                  })
+                  .map((test) => (
+                    <Reviews
+                      key={test.id}
+                      name={test?.attributes?.name}
+                      company={test?.attributes?.company}
+                      testimony={test?.attributes?.testimony}
+                    />
+                  ))}
               {isMobile &&
                 testimony &&
-                testimony.map((test) => (
-                  <Reviews
-                    key={test.id}
-                    name={test?.attributes?.name}
-                    company={test?.attributes?.company}
-                    testimony={test?.attributes?.testimony}
-                  />
-                ))}
+                testimony
+                  .sort((a, b) => {
+                    const priorityOrder = {
+                      "Muito alta": 1,
+                      Alta: 2,
+                      Normal: 3,
+                      Baixa: 4,
+                    };
+
+                    const priorityA = priorityOrder[a.attributes.priority];
+                    const priorityB = priorityOrder[b.attributes.priority];
+
+                    return priorityA - priorityB;
+                  })
+                  .map((test) => (
+                    <Reviews
+                      key={test.id}
+                      name={test?.attributes?.name}
+                      company={test?.attributes?.company}
+                      testimony={test?.attributes?.testimony}
+                    />
+                  ))}
             </Slider>
           </div>
         </div>
@@ -647,100 +670,135 @@ function CapitalSolution() {
 
           {!isMobile &&
             transactions &&
-            transactions.map((transaction) => (
-              <Modal
-                isOpen={selectedTransaction === transaction.id}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="Example Modal"
-                key={transaction.id}
-              >
-                <>
-                  <div className="ContainerModal">
-                    <div className="leftContainerModal">
-                      <div className="cardSocial-container">
-                        <img
-                          className="CardSocialImg"
-                          src={`${config.api.BASE}${transaction.attributes.image.data.attributes.url}`}
-                          alt="Logo"
-                        />
+            transactions
+              .sort((a, b) => {
+                const priorityOrder = {
+                  "Muito alta": 1,
+                  Alta: 2,
+                  Normal: 3,
+                  Baixa: 4,
+                };
+
+                const priorityA = priorityOrder[a.attributes.priority];
+                const priorityB = priorityOrder[b.attributes.priority];
+
+                return priorityA - priorityB;
+              })
+              .map((transaction) => (
+                <Modal
+                  isOpen={selectedTransaction === transaction.id}
+                  onRequestClose={closeModal}
+                  style={customStyles}
+                  contentLabel="Example Modal"
+                  key={transaction.id}
+                >
+                  <>
+                    <div className="ContainerModal">
+                      <div className="leftContainerModal">
+                        <div className="cardSocial-container">
+                          <img
+                            className="CardSocialImg"
+                            src={
+                              transaction.attributes.image.data.attributes.url
+                            }
+                            alt="Logo"
+                          />
+                        </div>
+                      </div>
+                      <div className="rightContainerModal">
+                        <h2 className="titleModal">
+                          {transaction.attributes.name}
+                        </h2>
+                        <button
+                          style={customStyles.closeButtonModal}
+                          className="closeButtonModal"
+                          onClick={closeModal}
+                        >
+                          <img src={closeButton} alt="" />
+                        </button>
+                        <div className="DescriptionContainerModal">
+                          <p className="Description">
+                            {transaction.attributes.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                    <div className="rightContainerModal">
-                      <h2 className="titleModal">
-                        {transaction.attributes.name}
-                      </h2>
-                      <button
-                        style={customStyles.closeButtonModal}
-                        className="closeButtonModal"
-                        onClick={closeModal}
-                      >
-                        <img src={closeButton} alt="" />
-                      </button>
-                      <div className="DescriptionContainerModal">
-                        <p className="Description">
-                          {transaction.attributes.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </>
-              </Modal>
-            ))}
+                  </>
+                </Modal>
+              ))}
 
           <div className="bottomMobile">
             <Slider ref={slider2Mobile} {...secondSlider}>
               {isMobile &&
                 transactions &&
-                transactions.map((transaction) => (
-                  <>
-                    <div
-                      onClick={(e) => openModal(e, transaction)}
-                      key={transaction.id}
-                    >
-                      <CardCase
-                        image={transaction.attributes.image.data.attributes.url}
-                        key={transaction.index}
-                      />
-                    </div>
-                    <Modal
-                      isOpen={selectedTransaction === transaction.id}
-                      onRequestClose={closeModal}
-                      style={customMobileStyles}
-                      contentLabel="Example Modal"
-                      key={transaction.id}
-                    >
-                      <div className="ContainerModalMobile">
-                        <div className="rightContainerModal">
-                          <button
-                            style={customStyles.closeButtonModal}
-                            className="closeButtonModal"
-                            onClick={closeModal}
-                          >
-                            <img src={closeButton} alt="" />
-                          </button>
-                          <div className="DescriptionContainerModal">
-                            <p className="Description">
-                              <div className="Img">
-                                <div className="cardSocial-container">
-                                  <img
-                                    className="CardSocialImg"
-                                    src={`${config.api.BASE}${transaction.attributes.image.data.attributes.url}`}
-                                    alt="Logo"
-                                  />
+                transactions
+                  .sort((a, b) => {
+                    const priorityOrder = {
+                      "Muito alta": 1,
+                      Alta: 2,
+                      Normal: 3,
+                      Baixa: 4,
+                    };
+
+                    const priorityA = priorityOrder[a.attributes.priority];
+                    const priorityB = priorityOrder[b.attributes.priority];
+
+                    return priorityA - priorityB;
+                  })
+                  .map((transaction) => (
+                    <>
+                      <div
+                        onClick={(e) => openModal(e, transaction)}
+                        key={transaction.id}
+                      >
+                        <CardCase
+                          image={
+                            transaction.attributes.image.data.attributes.url
+                          }
+                          key={transaction.index}
+                        />
+                      </div>
+                      <Modal
+                        isOpen={selectedTransaction === transaction.id}
+                        onRequestClose={closeModal}
+                        style={customMobileStyles}
+                        contentLabel="Example Modal"
+                        key={transaction.id}
+                      >
+                        <div className="ContainerModalMobile">
+                          <div className="rightContainerModal">
+                            <button
+                              style={customStyles.closeButtonModal}
+                              className="closeButtonModal"
+                              onClick={closeModal}
+                            >
+                              <img src={closeButton} alt="" />
+                            </button>
+                            <div className="DescriptionContainerModal">
+                              <p className="Description">
+                                <div className="Img">
+                                  <div className="cardSocial-container">
+                                    <img
+                                      className="CardSocialImg"
+                                      src={
+                                        transaction.attributes.image.data
+                                          .attributes.url
+                                      }
+                                      alt="Logo"
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                              <h2 className="titleModal">
-                                {transaction.attributes.name}
-                              </h2>
-                              {transaction.attributes.description}
-                            </p>
+                                <h2 className="titleModal">
+                                  {transaction.attributes.name}
+                                </h2>
+                                {transaction.attributes.description}
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </Modal>
-                  </>
-                ))}
+                      </Modal>
+                    </>
+                  ))}
             </Slider>
           </div>
         </div>
@@ -760,18 +818,18 @@ function CapitalSolution() {
             <form action="">
               <div className="form1">
                 <div className="form11">
-                  <label htmlFor="">Nome*</label>
+                  <label htmlFor="">{contacts && contacts.nome}</label>
                   <input
-                    placeholder="Digite aqui"
+                    placeholder={contacts && contacts.campo}
                     type="text"
                     value={formName}
                     onChange={(e) => setFormName(e.target.value)}
                   />
                 </div>
                 <div className="form11">
-                  <label htmlFor="">E-mail*</label>
+                  <label htmlFor="">{contacts && contacts.email}</label>
                   <input
-                    placeholder="Digite aqui"
+                    placeholder={contacts && contacts.campo}
                     type="email"
                     value={formEmail}
                     onChange={(e) => setFormEmail(e.target.value)}
@@ -780,18 +838,18 @@ function CapitalSolution() {
               </div>
               <div className="form1">
                 <div className="form11">
-                  <label htmlFor="">Celular</label>
+                  <label htmlFor="">{contacts && contacts.celular}</label>
                   <input
-                    placeholder="Digite aqui"
+                    placeholder={contacts && contacts.campo}
                     type="tel"
                     value={formPhone}
                     onChange={(e) => setFormPhone(e.target.value)}
                   />
                 </div>
                 <div className="form11">
-                  <label htmlFor="">Nome da sua empresa</label>
+                  <label htmlFor="">{contacts && contacts.empresa}</label>
                   <input
-                    placeholder="Digite aqui"
+                    placeholder={contacts && contacts.campo}
                     type="text"
                     value={formCpfCnpj}
                     onChange={(e) => setFormCpfCnpj(e.target.value)}
@@ -800,7 +858,7 @@ function CapitalSolution() {
               </div>
               <div className="messageForm">
                 <label className="messageLabel" htmlFor="">
-                  Mensagem*
+                  {contacts && contacts.mensagem}
                 </label>
                 <textarea
                   className="messageInput"

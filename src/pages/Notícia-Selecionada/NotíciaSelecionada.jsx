@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { api_news } from "../../api";
 
-import config from "../../config/env";
 import alert from "../../utils/systemAlert";
 
 import icon4 from "../../assets/icon-linkedinB.png";
@@ -70,7 +69,7 @@ function NotíciaSelecionada() {
             <div className="imgArea">
               <img
                 className="imgNews"
-                src={`${config.api.BASE}${
+                src={`${
                   news && news.banner && news.banner.data.attributes.url
                 }`}
                 alt=""
@@ -86,16 +85,16 @@ function NotíciaSelecionada() {
 
               <p
                 className="description"
-                dangerouslySetInnerHTML={{ __html: news && news.description }}
-              ></p>
+                dangerouslySetInnerHTML={{
+                  __html: news && news.description,
+                }}></p>
 
               <div className="iconsArea">
                 <ul>
                   <li>
                     <a
                       href="https://www.instagram.com/igcpartners_/"
-                      target="blank"
-                    >
+                      target="blank">
                       <img src={icon3} />
                     </a>
                   </li>
@@ -103,8 +102,7 @@ function NotíciaSelecionada() {
                   <li>
                     <a
                       href="https://www.linkedin.com/company/igc-partners/"
-                      target="blank"
-                    >
+                      target="blank">
                       <img src={icon4} />
                     </a>
                   </li>

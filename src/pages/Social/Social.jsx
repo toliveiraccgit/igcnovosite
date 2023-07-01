@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 
 import { useSelector } from "react-redux";
 import { api_social } from "../../api";
-import config from "../../config/env";
 
 import Modal from "react-modal";
 
@@ -66,7 +65,7 @@ function Social() {
           </div>
           <img
             className="SocialBanner"
-            src={`${config.api.BASE}${
+            src={`${
               social &&
               social.image &&
               social.image.data &&
@@ -97,8 +96,7 @@ function Social() {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
-      >
+        contentLabel="Example Modal">
         <div className="ContainerModal">
           <div className="leftContainerModal">
             <Cards

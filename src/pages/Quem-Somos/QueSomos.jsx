@@ -18,8 +18,6 @@ import {
   api_principles,
 } from "../../api";
 
-import config from "../../config/env";
-
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -153,13 +151,12 @@ function QuemSomos() {
             <p
               dangerouslySetInnerHTML={{
                 __html: aboutUs && aboutUs.description,
-              }}
-            ></p>
+              }}></p>
           </div>
           <div className="left">
             {aboutUs?.media?.data && (
               <img
-                src={`${config.api.BASE}${
+                src={`${
                   aboutUs &&
                   aboutUs.media &&
                   aboutUs.media.data &&
@@ -196,8 +193,7 @@ function QuemSomos() {
                     onChange={(e) => {
                       handleFilterChange(e, "group");
                       setGroup(Number(e.target.value));
-                    }}
-                  >
+                    }}>
                     <option value="">Todos</option>
                     {groups &&
                       groups.map((group) => (
@@ -335,8 +331,7 @@ function QuemSomos() {
           <div className="bottomMobile">
             <Slider
               ref={sliderPrinciplesContainers}
-              {...sliderPrinciplesContainer}
-            >
+              {...sliderPrinciplesContainer}>
               {principles &&
                 principles.map((principle) => (
                   <PartnerCardWhite
@@ -354,8 +349,7 @@ function QuemSomos() {
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
-        className={"ModalQuemSomos"}
-      >
+        className={"ModalQuemSomos"}>
         <div className="ContainerModalMobileQuemSomos">
           <div className="rightContainerModal">
             <button className="closeButtonModalQuemSomos" onClick={closeModal}>
@@ -367,7 +361,7 @@ function QuemSomos() {
                 <div className="Img">
                   <img
                     className="QuemSomosImage"
-                    src={`${config.api.BASE}${modal?.attributes?.photo?.data?.attributes?.url}`}
+                    src={modal?.attributes?.photo?.data?.attributes?.url}
                     alt=""
                   />
                 </div>

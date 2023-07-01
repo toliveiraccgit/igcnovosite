@@ -1,21 +1,12 @@
-import Accordion from "react-bootstrap/Accordion";
-import icon5 from "../../assets/icon-facebook.png";
 import icon4 from "../../assets/icon-linkedin.png";
 import icon3 from "../../assets/icon-insta.png";
 import download from "../../assets/download-icon.svg";
-import icon2 from "../../assets/icon2.svg";
-import icon1 from "../../assets/icon1.svg";
-import LogoMobile from "../../assets/logo.png";
-import LogoW from "../../assets/igcLogoW.png";
-import original from "../../assets/original.svg";
-import arrowRight from "../../assets/services/rightarrow.svg";
 import "./footer.scss";
 
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { api_agro, api_footer } from "../../api";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import config from "../../config/env";
 import APINavigation from "./../../api/navigation";
 
 function Footer() {
@@ -29,8 +20,6 @@ function Footer() {
   useEffect(() => {
     api_footer.get({ locale }).then((res) => {
       setFooter(res.data.data.attributes);
-      // console.log(res.data.data.attributes.download_file);
-      // console.log(res.data.data.attributes);
     });
 
     APINavigation.get_footer_igc({ locale })
@@ -185,10 +174,7 @@ function Footer() {
 
           <div className="float-content">
             <div className="float-logo">
-              <img
-                src={config.api.BASE + footer?.brand?.data?.attributes?.url}
-                alt=""
-              />
+              <img src={footer?.brand?.data?.attributes?.url} alt="" />
             </div>
             <div className="float-text">
               <h1>
@@ -216,10 +202,7 @@ function Footer() {
           <div className="HeaderMobile">
             <div className="float-content">
               <div className="float-logo">
-                <img
-                  src={config.api.BASE + footer?.brand?.data?.attributes?.url}
-                  alt=""
-                />
+                <img src={footer?.brand?.data?.attributes?.url} alt="" />
               </div>
               <div className="social-media">
                 {footer && footer.social && footer.social.instagram && (
@@ -284,7 +267,7 @@ function Footer() {
           </div>
 
           <div className="footer-list3">
-            <h2>{footer && footer.title_download}</h2>
+            <h2>{footer && footer.title_contact}</h2>
             <ul>
               {footer && footer.contact && footer.contact.phone && (
                 <li>{footer.contact.phone}</li>
@@ -305,7 +288,7 @@ function Footer() {
               )}
             </ul>
             <h2 style={{ maxWidth: "100%", marginTop: 65 }}>
-              {footer && footer.title_contact}
+              {footer && footer.title_download}
             </h2>
             <ul>
               <li>

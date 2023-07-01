@@ -25,6 +25,7 @@ function FaleConosco() {
       .page({ locale })
       .then((response) => {
         setPageContact(response.data.data.attributes);
+        console.log(response.data.data.attributes);
       })
       .catch(() => {
         setPageContact({});
@@ -39,17 +40,17 @@ function FaleConosco() {
     e.preventDefault();
 
     if (!formName || formName === "") {
-      setStatusMessage("O campo nome é obrigatório");
+      setStatusMessage(pageContact.required_field);
       return;
     }
 
     if (!formEmail || formEmail === "") {
-      setStatusMessage("O campo e-mail é obrigatório");
+      setStatusMessage(pageContact.required_field);
       return;
     }
 
     if (!formMessage || formMessage === "") {
-      setStatusMessage("O campo mensagem é obrigatório");
+      setStatusMessage(pageContact.required_field);
       return;
     }
 
@@ -65,7 +66,7 @@ function FaleConosco() {
     api_contact
       .send({ data })
       .then((response) => {
-        setStatusMessage("Mensagem enviada com sucesso");
+        setStatusMessage(pageContact.aprovado);
         setFormName("");
         setFormEmail("");
         setFormPhone("");
@@ -73,7 +74,7 @@ function FaleConosco() {
         setFormMessage("");
       })
       .catch((error) => {
-        setStatusMessage("Ocorreu um erro ao enviar a mensagem");
+        setStatusMessage(pageContact.erro);
       });
   };
 
@@ -89,7 +90,7 @@ function FaleConosco() {
           <div className="faleConosco">
             <h3>{pageContact.subtitle}</h3>
             <div className="choosePatner">
-              <p>Fale com o nosso sócio</p>
+              <p>{pageContact.socios}</p>
               <select
                 className="partner"
                 onChange={(e) => setFormPartner(e.target.value)}
@@ -97,7 +98,7 @@ function FaleConosco() {
               >
                 {!formPartner && (
                   <option value="" selected disabled>
-                    Selecione um sócio
+                    {pageContact.socios_label}
                   </option>
                 )}
                 {partners &&
@@ -113,18 +114,18 @@ function FaleConosco() {
               <form action="">
                 <div className="form1">
                   <div className="form11">
-                    <label htmlFor="">Nome*</label>
+                    <label htmlFor="">{pageContact.nome}</label>
                     <input
-                      placeholder="Digite aqui"
+                      placeholder={pageContact.campo}
                       type="text"
                       value={formName}
                       onChange={(e) => setFormName(e.target.value)}
                     />
                   </div>
                   <div className="form11">
-                    <label htmlFor="">E-mail*</label>
+                    <label htmlFor="">{pageContact.email}</label>
                     <input
-                      placeholder="Digite aqui"
+                      placeholder={pageContact.campo}
                       type="email"
                       value={formEmail}
                       onChange={(e) => setFormEmail(e.target.value)}
@@ -133,18 +134,18 @@ function FaleConosco() {
                 </div>
                 <div className="form1">
                   <div className="form11">
-                    <label htmlFor="">Celular</label>
+                    <label htmlFor="">{pageContact.celular}</label>
                     <input
-                      placeholder="Digite aqui"
+                      placeholder={pageContact.campo}
                       type="tel"
                       value={formPhone}
                       onChange={(e) => setFormPhone(e.target.value)}
                     />
                   </div>
                   <div className="form11">
-                    <label htmlFor="">Nome da sua empresa</label>
+                    <label htmlFor="">{pageContact.empresa}</label>
                     <input
-                      placeholder="Digite aqui"
+                      placeholder={pageContact.campo}
                       type="text"
                       value={formCpfCnpj}
                       onChange={(e) => setFormCpfCnpj(e.target.value)}
@@ -153,7 +154,7 @@ function FaleConosco() {
                 </div>
                 <div className="messageForm">
                   <label className="messageLabel" htmlFor="">
-                    Mensagem*
+                    {pageContact.mensagem}
                   </label>
                   <textarea
                     className="messageInput"
@@ -163,7 +164,11 @@ function FaleConosco() {
                 </div>
                 <div className="statusMessage">{statusMessage}</div>
                 <div className="buttonForm">
-                  <button onClick={(e) => handlerSubmit(e)}>Enviar</button>
+                  <button onClick={(e) => handlerSubmit(e)}>
+                    {pageContact &&
+                      pageContact.button &&
+                      pageContact.button.label}
+                  </button>
                 </div>
               </form>
             </div>

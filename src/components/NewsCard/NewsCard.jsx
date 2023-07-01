@@ -9,9 +9,8 @@ function NewsCard({ data, id }) {
       <h4>{data.title}</h4>
       <p
         className="short"
-        dangerouslySetInnerHTML={{ __html: data.description }}
-      ></p>
-      <a href={`${config.web.BASE}/noticias/${id}`}>Continuar lendo</a>
+        dangerouslySetInnerHTML={{ __html: data.description }}></p>
+      <a href={`/noticias/${id}`}>Continuar lendo</a>
     </div>
   );
 }

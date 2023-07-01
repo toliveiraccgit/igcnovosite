@@ -34,11 +34,9 @@ function HeaderTop() {
 
   useEffect(() => {
     dispatch(get_async_locale());
-
     APINavigation.get_navigation({ locale })
       .then((response) => {
         setNavigation(response.data);
-        console.log(response);
       })
       .catch(() => {
         setNavigation([]);

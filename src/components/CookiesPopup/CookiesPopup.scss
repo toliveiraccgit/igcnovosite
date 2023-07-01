@@ -96,4 +96,23 @@
       background-color: rgba(31, 31, 31, 0.2);
     }
   }
+
+  @media (max-width: 1024px) {
+    .cookies-popup-content {
+      width: 980px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cookies-popup-content {
+      flex-direction: column;
+      width: 350px;
+      height: 370px;
+
+      p {
+        width: 320px;
+        font-size: 22px;
+      }
+    }
+  }
 }

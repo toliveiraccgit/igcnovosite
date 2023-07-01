@@ -9,14 +9,13 @@ import "./Agro.scss";
 
 // TODO: remover esse import e seu arquivo
 
-import NewsCard from "../../components/NewsCard/NewsCard";
+// import NewsCard from "../../components/NewsCard/NewsCard";
 import Reviews from "../../components/Reviews/Review";
 
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { api_agro, api_transactions } from "../../api";
-import config from "../../config/env";
 import alert from "../../utils/systemAlert";
 
 function Agro() {
@@ -319,9 +318,7 @@ function Agro() {
         <>
           <div className="bannerContainer">
             <img
-              src={`${config.api.BASE}${
-                page && page.banner?.data?.attributes?.url
-              }`}
+              src={`${page && page.banner?.data?.attributes?.url}`}
               alt="Banner"
             />
             <div className="bannerText">
@@ -406,7 +403,7 @@ function Agro() {
                           <div className="cardSocial-container">
                             <img
                               className="CardSocialImg"
-                              src={`${config.api.BASE}${item.attributes.image.data.attributes.url}`}
+                              src={item.attributes.image.data.attributes.url}
                               alt="Logo"
                             />
                           </div>
@@ -478,7 +475,10 @@ function Agro() {
                                     <div className="cardSocial-container">
                                       <img
                                         className="CardSocialImg"
-                                        src={`${config.api.BASE}${item.attributes.image.data.attributes.url}`}
+                                        src={
+                                          item.attributes.image.data.attributes
+                                            .url
+                                        }
                                         alt="Logo"
                                       />
                                     </div>
@@ -515,24 +515,52 @@ function Agro() {
                 <Slider ref={slider} {...firstSlider}>
                   {!isMobile &&
                     testimony &&
-                    testimony.map((test) => (
-                      <Reviews
-                        key={test.id}
-                        name={test?.attributes?.name}
-                        company={test?.attributes?.company}
-                        testimony={test?.attributes?.testimony}
-                      />
-                    ))}
+                    testimony
+                      .sort((a, b) => {
+                        const priorityOrder = {
+                          "Muito alta": 1,
+                          Alta: 2,
+                          Normal: 3,
+                          Baixa: 4,
+                        };
+
+                        const priorityA = priorityOrder[a.attributes.priority];
+                        const priorityB = priorityOrder[b.attributes.priority];
+
+                        return priorityA - priorityB;
+                      })
+                      .map((test) => (
+                        <Reviews
+                          key={test.id}
+                          name={test?.attributes?.name}
+                          company={test?.attributes?.company}
+                          testimony={test?.attributes?.testimony}
+                        />
+                      ))}
                   {isMobile &&
                     testimony &&
-                    testimony.map((test) => (
-                      <Reviews
-                        key={test.id}
-                        name={test?.attributes?.name}
-                        company={test?.attributes?.company}
-                        testimony={test?.attributes?.testimony}
-                      />
-                    ))}
+                    testimony
+                      .sort((a, b) => {
+                        const priorityOrder = {
+                          "Muito alta": 1,
+                          Alta: 2,
+                          Normal: 3,
+                          Baixa: 4,
+                        };
+
+                        const priorityA = priorityOrder[a.attributes.priority];
+                        const priorityB = priorityOrder[b.attributes.priority];
+
+                        return priorityA - priorityB;
+                      })
+                      .map((test) => (
+                        <Reviews
+                          key={test.id}
+                          name={test?.attributes?.name}
+                          company={test?.attributes?.company}
+                          testimony={test?.attributes?.testimony}
+                        />
+                      ))}
                 </Slider>
               </div>
             </div>

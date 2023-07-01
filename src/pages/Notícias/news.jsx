@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 import { api_news } from "../../api";
 
 import { useNavigate } from "react-router-dom";
-import config from "../../config/env";
 import alert from "../../utils/systemAlert";
 
 import rightArrow from "../../assets/homeBanners/arrowRight.png";
@@ -38,6 +37,7 @@ function news() {
       .page({ locale })
       .then((res) => {
         setPage(res.data.data.attributes);
+        console.log("Page:", res.data.data.attributes);
       })
       .catch(() => {
         alert.localeNotFound(locale);
@@ -89,7 +89,7 @@ function news() {
               <div className="bannerNewsContainer">
                 <img
                   className="bannerNews"
-                  src={`${config.api.BASE}${
+                  src={`${
                     highlight &&
                     highlight.attributes &&
                     highlight.attributes.banner &&
@@ -126,7 +126,7 @@ function news() {
                 ></div>
               </p>
               <a href={`/noticias/${highlight && highlight.id}`}>
-                Ler conteúdo
+                {page && page.full_news}
               </a>
             </div>
           </div>
@@ -150,7 +150,7 @@ function news() {
         </div>
         <div className="moreNews">
           <button onClick={handleLoadMore}>
-            carregar mais <img src={rightArrow} alt="" />{" "}
+            {page && page.load_more} <img src={rightArrow} alt="" />{" "}
           </button>
         </div>
       </div>

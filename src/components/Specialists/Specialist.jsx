@@ -4,16 +4,18 @@ import emailicon from "../../assets/emailicon.svg";
 import linkedin from "../../assets/linkedinicon.svg";
 
 import React from "react";
-import config from "../../config/env";
 
 function Specialists({ partner }) {
   return (
     <div className="specialistCardContainer">
       <img
-        src={
-          config.api.BASE +
-          `${partner && partner?.photo?.data?.attributes?.url}`
-        }
+        src={`${
+          partner &&
+          partner?.photo?.data?.attributes?.url.replace(
+            "https//site-institucional-strapi-igc-development.s3.us-east-2.amazonaws.com",
+            ""
+          )
+        }`}
         alt=""
       />
       <div className="rightContainer">

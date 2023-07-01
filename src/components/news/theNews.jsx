@@ -1,9 +1,7 @@
 import React from "react";
-import Calendar from "../../assets/icon-calendario.png";
 import "./theNews.scss";
 
 import { useNavigate } from "react-router-dom";
-import config from "../../config/env";
 
 function theNews({ data, postDate }) {
   const navigate = new useNavigate();
@@ -12,7 +10,7 @@ function theNews({ data, postDate }) {
     <div className="containerNews">
       <img
         className="newsImagem"
-        src={`${config.api.BASE}${
+        src={`${
           data &&
           data.attributes &&
           data.attributes.banner &&

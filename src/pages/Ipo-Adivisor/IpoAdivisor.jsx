@@ -6,7 +6,6 @@ import CardWhite from "../../components/CardWhite/CardWhite";
 
 import { useSelector } from "react-redux";
 import { api_contact, api_ipo } from "../../api";
-import config from "../../config/env";
 
 import "./IpoAdivisor.scss";
 
@@ -138,7 +137,7 @@ function IpoAdivisor() {
           <div className="bottom">
             <img
               className="BannerGraphic"
-              src={`${config.api.BASE}${
+              src={`${
                 page &&
                 page.chart &&
                 page.chart.image &&
@@ -192,8 +191,7 @@ function IpoAdivisor() {
             <p
               dangerouslySetInnerHTML={{
                 __html: contact && contact.description,
-              }}
-            ></p>
+              }}></p>
           </div>
           <div className="form">
             <form action="">

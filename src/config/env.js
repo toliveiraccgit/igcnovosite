@@ -9,11 +9,9 @@ export default {
   // },
 
   // Original
-  web: {
-    BASE: import.meta.env.VITE_BASE_URL || "https://api.igcp.com.br",
-  },
   api: {
-    URL: import.meta.env.VITE_API_URL || "https://api.igcp.com.br/api",
-    BASE: import.meta.env.VITE_API_BASE || "https://api.igcp.com.br",
+    URL:
+      import.meta.env.VITE_API_URL ??
+      "http://site-institucional-strapi-igc-development.us-east-2.elasticbeanstalk.com/api",
   },
 };

@@ -15,7 +15,6 @@ import { useSelector } from "react-redux";
 import APIHome from "../../api/home";
 import APIServices from "../../api/services";
 import { api_testmony } from "../../api";
-import config from "../../config/env";
 
 import Modal from "react-modal";
 import closeButton from "../../assets/closeButton.png";
@@ -52,6 +51,7 @@ function home() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    initialSlide: 0,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
@@ -66,7 +66,7 @@ function home() {
     infinite: true,
     speed: 500,
     arrows: false,
-    slidesToShow: 3,
+    slidesToShow: testimony.length >= 3 ? 3 : testimony.length,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -85,7 +85,6 @@ function home() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          initialSlide: 0,
           dots: true,
           variableWidth: true,
         },
@@ -100,6 +99,7 @@ function home() {
     arrows: false,
     slidesToShow: transactions.length >= 5 ? 5 : transactions.length,
     slidesToScroll: 5,
+    initialSlide: 0,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -222,6 +222,20 @@ function home() {
 
   const locale = useSelector((state) => state.locales.locale);
 
+  const sortedTestimony = testimony.sort((a, b) => {
+    const priorityOrder = {
+      "Muito alta": 1,
+      Alta: 2,
+      Normal: 3,
+      Baixa: 4,
+    };
+
+    const priorityA = priorityOrder[a.attributes.priority];
+    const priorityB = priorityOrder[b.attributes.priority];
+
+    return priorityA - priorityB;
+  });
+
   useEffect(() => {
     APIHome.get({ locale }).then((res) => {
       setBanners(res.data.data.attributes.banner);
@@ -240,7 +254,6 @@ function home() {
         .get({ locale })
         .then((res) => {
           setTestimony(res.data.data);
-          // console.log(res.data.data);
         })
         .catch(() => {
           setTestimony([]);
@@ -265,7 +278,7 @@ function home() {
           banners.map((banner) => (
             <BannerHome
               key={banner.id}
-              image={`${config.api.BASE}${banner.image.data.attributes.url}`}
+              image={banner.image.data.attributes.url}
               title={banner.title}
               label={banner.metrics && banner.metrics.label}
               link={banner.metrics && banner.metrics.link}
@@ -312,7 +325,7 @@ function home() {
                       <div className="cardSocial-container">
                         <img
                           className="CardSocialImg"
-                          src={`${config.api.BASE}${transaction.attributes.image.data.attributes.url}`}
+                          src={transaction.attributes.image.data.attributes.url}
                           alt="Logo"
                         />
                       </div>
@@ -376,7 +389,10 @@ function home() {
                                 <div className="cardSocial-container">
                                   <img
                                     className="CardSocialImg"
-                                    src={`${config.api.BASE}${transaction.attributes.image.data.attributes.url}`}
+                                    src={
+                                      transaction.attributes.image.data
+                                        .attributes.url
+                                    }
                                     alt="Logo"
                                   />
                                 </div>
@@ -411,27 +427,55 @@ function home() {
             </div>
           </div>
           <div className="rev">
-            <Slider ref={slider} {...firstSlider}>
+            <Slider ref={slider} {...firstSlider} initialSlide={-1}>
               {!isMobile &&
                 testimony &&
-                testimony.map((test) => (
-                  <Reviews
-                    key={test.id}
-                    name={test?.attributes?.name}
-                    company={test?.attributes?.company}
-                    testimony={test?.attributes?.testimony}
-                  />
-                ))}
+                testimony
+                  .sort((a, b) => {
+                    const priorityOrder = {
+                      "Muito alta": 1,
+                      Alta: 2,
+                      Normal: 3,
+                      Baixa: 4,
+                    };
+
+                    const priorityA = priorityOrder[a.attributes.priority];
+                    const priorityB = priorityOrder[b.attributes.priority];
+
+                    return priorityA - priorityB;
+                  })
+                  .map((test, index) => (
+                    <Reviews
+                      key={test.id}
+                      name={test?.attributes?.name}
+                      company={test?.attributes?.company}
+                      testimony={test?.attributes?.testimony}
+                    />
+                  ))}
               {isMobile &&
                 testimony &&
-                testimony.map((test) => (
-                  <Reviews
-                    key={test.id}
-                    name={test?.attributes?.name}
-                    company={test?.attributes?.company}
-                    testimony={test?.attributes?.testimony}
-                  />
-                ))}
+                testimony
+                  .sort((a, b) => {
+                    const priorityOrder = {
+                      "Muito alta": 1,
+                      Alta: 2,
+                      Normal: 3,
+                      Baixa: 4,
+                    };
+
+                    const priorityA = priorityOrder[a.attributes.priority];
+                    const priorityB = priorityOrder[b.attributes.priority];
+
+                    return priorityA - priorityB;
+                  })
+                  .map((test) => (
+                    <Reviews
+                      key={test.id}
+                      name={test?.attributes?.name}
+                      company={test?.attributes?.company}
+                      testimony={test?.attributes?.testimony}
+                    />
+                  ))}
             </Slider>
           </div>
         </div>
@@ -457,7 +501,7 @@ function home() {
                 {index !== 1 && (
                   <img
                     className="banner"
-                    src={`${config.api.BASE}${service.attributes.image.data.attributes.url}`}
+                    src={service.attributes.image.data.attributes.url}
                     alt=""
                   />
                 )}
@@ -472,7 +516,7 @@ function home() {
                 {index === 1 && (
                   <img
                     className="banner"
-                    src={`${config.api.BASE}${service.attributes.image.data.attributes.url}`}
+                    src={service.attributes.image.data.attributes.url}
                     alt=""
                   />
                 )}

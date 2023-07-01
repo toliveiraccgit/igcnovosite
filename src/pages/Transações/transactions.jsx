@@ -7,8 +7,6 @@ import { useSelector } from "react-redux";
 import APITransaction from "../../api/transactions";
 import closeButton from "../../assets/closeButton.png";
 
-import config from "../../config/env";
-
 function transactions() {
   const { locale } = useSelector((state) => state.locales);
   const [transactionPage, setTransactionPage] = useState({});
@@ -31,7 +29,6 @@ function transactions() {
     APITransaction.page({ locale })
       .then((response) => {
         setTransactionPage(response.data.data.attributes);
-        console.log(response.data.attributes);
       })
       .catch((error) => {
         setTransactionPage({});
@@ -117,7 +114,7 @@ function transactions() {
         <>
           <div className="bannerContainer">
             <img
-              src={`${config.api.BASE}${
+              src={`${
                 transactionPage &&
                 transactionPage.banner &&
                 transactionPage.banner.data &&
@@ -215,115 +212,121 @@ function transactions() {
 
               {!isMobile &&
                 transactions &&
-                transactions.map((transaction) => (
-                  <Modal
-                    isOpen={selectedTransaction === transaction.id}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                    key={transaction.id}
-                  >
-                    <>
-                      <div className="ContainerModal">
-                        <div className="leftContainerModal">
-                          <div className="cardSocial-container">
-                            <img
-                              className="CardSocialImg"
-                              src={`${config.api.BASE}${transaction.attributes.image.data.attributes.url}`}
-                              alt="Logo"
-                            />
+                transactions
+                  .sort((a, b) => {
+                    const priorityOrder = {
+                      "Muito alta": 1,
+                      Alta: 2,
+                      Normal: 3,
+                      Baixa: 4,
+                    };
+
+                    const priorityA = priorityOrder[a.attributes.priority];
+                    const priorityB = priorityOrder[b.attributes.priority];
+
+                    return priorityA - priorityB;
+                  })
+                  .map((transaction) => (
+                    <Modal
+                      isOpen={selectedTransaction === transaction.id}
+                      onRequestClose={closeModal}
+                      style={customStyles}
+                      contentLabel="Example Modal"
+                      key={transaction.id}
+                    >
+                      <>
+                        <div className="ContainerModal">
+                          <div className="leftContainerModal">
+                            <div className="cardSocial-container">
+                              <img
+                                className="CardSocialImg"
+                                src={
+                                  transaction.attributes.image.data.attributes
+                                    .url
+                                }
+                                alt="Logo"
+                              />
+                            </div>
+                          </div>
+                          <div className="rightContainerModal">
+                            <h2 className="titleModal">
+                              {transaction.attributes.name}
+                            </h2>
+                            <button
+                              style={customStyles.closeButtonModal}
+                              className="closeButtonModal"
+                              onClick={closeModal}
+                            >
+                              <img src={closeButton} alt="" />
+                            </button>
+                            <div className="DescriptionContainerModal">
+                              <p className="Description">
+                                {transaction.attributes.description}
+                              </p>
+                            </div>
                           </div>
                         </div>
-                        <div className="rightContainerModal">
-                          <h2 className="titleModal">
-                            {transaction.attributes.name}
-                          </h2>
-                          <button
-                            style={customStyles.closeButtonModal}
-                            className="closeButtonModal"
-                            onClick={closeModal}
-                          >
-                            <img src={closeButton} alt="" />
-                          </button>
-                          <div className="DescriptionContainerModal">
-                            <p className="Description">
-                              {transaction.attributes.description}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  </Modal>
-                ))}
+                      </>
+                    </Modal>
+                  ))}
 
               <div className="caseCardsContainerMobile">
                 {isMobile &&
                   transactions &&
-                  transactions
-                    .sort((a, b) => {
-                      const priorityOrder = {
-                        "Muito alta": 1,
-                        Alta: 2,
-                        Normal: 3,
-                        Baixa: 4,
-                      };
-
-                      const priorityA = priorityOrder[a.attributes.priority];
-                      const priorityB = priorityOrder[b.attributes.priority];
-
-                      return priorityA - priorityB;
-                    })
-                    .map((transaction) => (
-                      <>
-                        <div
-                          onClick={(e) => openModal(e, transaction)}
-                          key={transaction.id}
-                        >
-                          <CardCase
-                            image={
-                              transaction.attributes.image.data.attributes.url
-                            }
-                            key={transaction.index}
-                          />
-                        </div>
-                        <Modal
-                          isOpen={selectedTransaction === transaction.id}
-                          onRequestClose={closeModal}
-                          style={customMobileStyles}
-                          contentLabel="Example Modal"
-                          key={transaction.id}
-                        >
-                          <div className="ContainerModalMobile">
-                            <div className="rightContainerModal">
-                              <button
-                                style={customStyles.closeButtonModal}
-                                className="closeButtonModal"
-                                onClick={closeModal}
-                              >
-                                <img src={closeButton} alt="" />
-                              </button>
-                              <div className="DescriptionContainerModal">
-                                <p className="Description">
-                                  <div className="Img">
-                                    <div className="cardSocial-container">
-                                      <img
-                                        className="CardSocialImg"
-                                        src={`${config.api.BASE}${transaction.attributes.image.data.attributes.url}`}
-                                        alt="Logo"
-                                      />
-                                    </div>
+                  transactions.map((transaction) => (
+                    <>
+                      <div
+                        onClick={(e) => openModal(e, transaction)}
+                        key={transaction.id}
+                      >
+                        <CardCase
+                          image={
+                            transaction.attributes.image.data.attributes.url
+                          }
+                          key={transaction.index}
+                        />
+                      </div>
+                      <Modal
+                        isOpen={selectedTransaction === transaction.id}
+                        onRequestClose={closeModal}
+                        style={customMobileStyles}
+                        contentLabel="Example Modal"
+                        key={transaction.id}
+                      >
+                        <div className="ContainerModalMobile">
+                          <div className="rightContainerModal">
+                            <button
+                              style={customStyles.closeButtonModal}
+                              className="closeButtonModal"
+                              onClick={closeModal}
+                            >
+                              <img src={closeButton} alt="" />
+                            </button>
+                            <div className="DescriptionContainerModal">
+                              <p className="Description">
+                                <div className="Img">
+                                  <div className="cardSocial-container">
+                                    <img
+                                      className="CardSocialImg"
+                                      src={
+                                        transaction.attributes.image.data
+                                          .attributes.url
+                                      }
+                                      alt="Logo"
+                                    />
                                   </div>
-                                  <h2 className="titleModal">
-                                    {transaction.attributes.name}
-                                  </h2>
-                                  {transaction.attributes.description}
-                                </p>
-                              </div>
+                                </div>
+                                <h2 className="titleModal">
+                                  {transaction.attributes.name}
+                                </h2>
+                                {transaction.attributes.description}
+                              </p>
                             </div>
                           </div>
-                        </Modal>
-                      </>
-                    ))}
+                        </div>
+                      </Modal>
+                    </>
+                  ))}
               </div>
             </div>
           </div>

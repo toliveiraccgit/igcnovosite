@@ -13,7 +13,6 @@ import Reviews from "../../components/Reviews/Review";
 
 import Modal from "react-modal";
 import closeButton from "../../assets/closeButton.png";
-import config from "../../config/env";
 
 import { useSelector } from "react-redux";
 import {
@@ -231,17 +230,17 @@ function Services() {
     e.preventDefault();
 
     if (!formName || formName === "") {
-      setStatusMessage("O campo nome é obrigatório");
+      setStatusMessage(contacts && contacts.required_field);
       return;
     }
 
     if (!formEmail || formEmail === "") {
-      setStatusMessage("O campo e-mail é obrigatório");
+      setStatusMessage(contacts && contacts.required_field);
       return;
     }
 
     if (!formMessage || formMessage === "") {
-      setStatusMessage("O campo mensagem é obrigatório");
+      setStatusMessage(contacts && contacts.required_field);
       return;
     }
 
@@ -256,7 +255,7 @@ function Services() {
     api_contact
       .send({ data })
       .then(() => {
-        setStatusMessage("Mensagem enviada com sucesso");
+        setStatusMessage(contacts && contacts.aprovado);
         setFormName(undefined);
         setFormEmail(undefined);
         setFormPhone(undefined);
@@ -264,7 +263,7 @@ function Services() {
         setFormMessage(undefined);
       })
       .catch(() => {
-        setStatusMessage("Ocorreu um erro ao enviar a mensagem");
+        setStatusMessage(contacts && contacts.erro);
       });
   };
 
@@ -328,17 +327,13 @@ function Services() {
       <div className="middleContainer">
         <div className="theContainer">
           <div className="rightContainer">
-            <h4>
-              {(servicePage && servicePage.dif && servicePage.dif.title) ||
-                `nossos diferenciais`}
-            </h4>
+            <h4>{servicePage && servicePage.dif && servicePage.dif.title}</h4>
             <h1 className="yellow">
               {servicePage && servicePage.dif && servicePage.dif.highlight_1}
             </h1>
             <div className="bottom">
               <Link className="buttonContact" to="/fale-conosco">
-                {/* {service.attributes.button.label}{" "} */}
-                fale com a gente
+                {servicePage && servicePage.dif && servicePage.dif.button}
                 <img src={rightArrow} alt="" />{" "}
               </Link>
             </div>
@@ -516,7 +511,7 @@ function Services() {
           <div className="imgArea">
             {!isMobile && (
               <img
-                src={`${config.api.BASE}${
+                src={`${
                   servicePage &&
                   servicePage.chart_img_desk &&
                   servicePage.chart_img_desk.data &&
@@ -527,7 +522,7 @@ function Services() {
             )}
             {isMobile && (
               <img
-                src={`${config.api.BASE}${
+                src={`=${
                   servicePage &&
                   servicePage.chart_img_mobile &&
                   servicePage.chart_img_mobile.data &&
@@ -610,7 +605,7 @@ function Services() {
                       <div className="cardSocial-container">
                         <img
                           className="CardSocialImg"
-                          src={`${config.api.BASE}${transaction.attributes.image.data.attributes.url}`}
+                          src={transaction.attributes.image.data.attributes.url}
                           alt="Logo"
                         />
                       </div>
@@ -674,7 +669,10 @@ function Services() {
                                 <div className="cardSocial-container">
                                   <img
                                     className="CardSocialImg"
-                                    src={`${config.api.BASE}${transaction.attributes.image.data.attributes.url}`}
+                                    src={
+                                      transaction.attributes.image.data
+                                        .attributes.url
+                                    }
                                     alt="Logo"
                                   />
                                 </div>
@@ -712,24 +710,52 @@ function Services() {
             <Slider ref={slider} {...firstSlider}>
               {!isMobile &&
                 testimony &&
-                testimony.map((test) => (
-                  <Reviews
-                    key={test.id}
-                    name={test?.attributes?.name}
-                    company={test?.attributes?.company}
-                    testimony={test?.attributes?.testimony}
-                  />
-                ))}
+                testimony
+                  .sort((a, b) => {
+                    const priorityOrder = {
+                      "Muito alta": 1,
+                      Alta: 2,
+                      Normal: 3,
+                      Baixa: 4,
+                    };
+
+                    const priorityA = priorityOrder[a.attributes.priority];
+                    const priorityB = priorityOrder[b.attributes.priority];
+
+                    return priorityA - priorityB;
+                  })
+                  .map((test) => (
+                    <Reviews
+                      key={test.id}
+                      name={test?.attributes?.name}
+                      company={test?.attributes?.company}
+                      testimony={test?.attributes?.testimony}
+                    />
+                  ))}
               {isMobile &&
                 testimony &&
-                testimony.map((test) => (
-                  <Reviews
-                    key={test.id}
-                    name={test?.attributes?.name}
-                    company={test?.attributes?.company}
-                    testimony={test?.attributes?.testimony}
-                  />
-                ))}
+                testimony
+                  .sort((a, b) => {
+                    const priorityOrder = {
+                      "Muito alta": 1,
+                      Alta: 2,
+                      Normal: 3,
+                      Baixa: 4,
+                    };
+
+                    const priorityA = priorityOrder[a.attributes.priority];
+                    const priorityB = priorityOrder[b.attributes.priority];
+
+                    return priorityA - priorityB;
+                  })
+                  .map((test) => (
+                    <Reviews
+                      key={test.id}
+                      name={test?.attributes?.name}
+                      company={test?.attributes?.company}
+                      testimony={test?.attributes?.testimony}
+                    />
+                  ))}
             </Slider>
           </div>
         </div>
@@ -749,18 +775,18 @@ function Services() {
             <form action="">
               <div className="form1">
                 <div className="form11">
-                  <label htmlFor="">Nome*</label>
+                  <label htmlFor="">{contacts && contacts.nome}</label>
                   <input
-                    placeholder="Digite aqui"
+                    placeholder={contacts && contacts.campo}
                     type="text"
                     value={formName}
                     onChange={(e) => setFormName(e.target.value)}
                   />
                 </div>
                 <div className="form11">
-                  <label htmlFor="">E-mail*</label>
+                  <label htmlFor="">{contacts && contacts.email}</label>
                   <input
-                    placeholder="Digite aqui"
+                    placeholder={contacts && contacts.campo}
                     type="email"
                     value={formEmail}
                     onChange={(e) => setFormEmail(e.target.value)}
@@ -769,18 +795,18 @@ function Services() {
               </div>
               <div className="form1">
                 <div className="form11">
-                  <label htmlFor="">Celular</label>
+                  <label htmlFor="">{contacts && contacts.celular}</label>
                   <input
-                    placeholder="Digite aqui"
+                    placeholder={contacts && contacts.campo}
                     type="tel"
                     value={formPhone}
                     onChange={(e) => setFormPhone(e.target.value)}
                   />
                 </div>
                 <div className="form11">
-                  <label htmlFor="">Nome da sua empresa</label>
+                  <label htmlFor="">{contacts && contacts.empresa}</label>
                   <input
-                    placeholder="Digite aqui"
+                    placeholder={contacts && contacts.campo}
                     type="text"
                     value={formCpfCnpj}
                     onChange={(e) => setFormCpfCnpj(e.target.value)}
@@ -789,7 +815,7 @@ function Services() {
               </div>
               <div className="messageForm">
                 <label className="messageLabel" htmlFor="">
-                  Mensagem*
+                  {contacts && contacts.mensagem}
                 </label>
                 <textarea
                   className="messageInput"

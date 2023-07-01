@@ -6,7 +6,6 @@ import "./Partner.scss";
 import EmailIcon from "../../assets/QuemSomos/Email-White.png";
 import Linkedin from "../../assets/QuemSomos/icon-linkedin-white.png";
 
-import config from "../../config/env";
 
 function Partner({ partner }) {
   return (
@@ -14,7 +13,7 @@ function Partner({ partner }) {
       <div className="containerImg">
         <img
           className="PartnerImg"
-          src={`${config.api.BASE}${partner?.attributes?.photo?.data?.attributes?.url}`}
+          src={partner?.attributes?.photo?.data?.attributes?.url}
           alt=""
         />
         <div className="social">
