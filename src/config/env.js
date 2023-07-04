@@ -1,15 +1,15 @@
 export default {
-  // Local Teste
-  // web: {
-  //   BASE: import.meta.env.VITE_BASE_URL || "http://localhost:1337",
-  // },
+  // Local
   // api: {
   //   URL: import.meta.env.VITE_API_URL || "http://localhost:1337/api",
-  //   BASE: import.meta.env.VITE_API_BASE || "http://localhost:1337",
   // },
 
-  // Original
+  // Environments (dev, prod)
   api: {
-    URL: import.meta.env.VITE_API_URL ?? "https://strapi-dev.igcp.com.br/api",
+    URL:
+      window.location.hostname.includes("development") ||
+      window.location.hostname.includes("localhost")
+        ? "https://strapi-dev.igcp.com.br/api"
+        : "https://strapi-prod.igcp.com.br/api",
   },
 };
