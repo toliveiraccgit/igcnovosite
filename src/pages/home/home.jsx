@@ -278,7 +278,7 @@ function home() {
           banners.map((banner) => (
             <BannerHome
               key={banner.id}
-              image={banner.image.data.attributes.url}
+              image={banner.image.data?.attributes.url ?? ""}
               title={banner.title}
               label={banner.metrics && banner.metrics.label}
               link={banner.metrics && banner.metrics.link}
@@ -300,8 +300,7 @@ function home() {
               transactions.map((transaction) => (
                 <div
                   onClick={(e) => openModal(e, transaction)}
-                  key={transaction.id}
-                >
+                  key={transaction.id}>
                   <CardCase
                     image={transaction.attributes.image.data.attributes.url}
                     key={transaction.index}
@@ -317,8 +316,7 @@ function home() {
                 onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="Example Modal"
-                key={transaction.id}
-              >
+                key={transaction.id}>
                 <>
                   <div className="ContainerModal">
                     <div className="leftContainerModal">
@@ -337,8 +335,7 @@ function home() {
                       <button
                         style={customStyles.closeButtonModal}
                         className="closeButtonModal"
-                        onClick={closeModal}
-                      >
+                        onClick={closeModal}>
                         <img src={closeButton} alt="" />
                       </button>
                       <div className="DescriptionContainerModal">
@@ -360,8 +357,7 @@ function home() {
                   <>
                     <div
                       onClick={(e) => openModal(e, transaction)}
-                      key={transaction.id}
-                    >
+                      key={transaction.id}>
                       <CardCase
                         image={transaction.attributes.image.data.attributes.url}
                         key={transaction.index}
@@ -372,15 +368,13 @@ function home() {
                       onRequestClose={closeModal}
                       style={customMobileStyles}
                       contentLabel="Example Modal"
-                      key={transaction.id}
-                    >
+                      key={transaction.id}>
                       <div className="ContainerModalMobile">
                         <div className="rightContainerModal">
                           <button
                             style={customStyles.closeButtonModal}
                             className="closeButtonModal"
-                            onClick={closeModal}
-                          >
+                            onClick={closeModal}>
                             <img src={closeButton} alt="" />
                           </button>
                           <div className="DescriptionContainerModal">
@@ -496,8 +490,7 @@ function home() {
                     : index === 1
                     ? "lineSecond"
                     : "lineThrd"
-                }
-              >
+                }>
                 {index !== 1 && (
                   <img
                     className="banner"

@@ -10,8 +10,6 @@ export default {
 
   // Original
   api: {
-    URL:
-      import.meta.env.VITE_API_URL ??
-      "http://site-institucional-strapi-igc-development.us-east-2.elasticbeanstalk.com/api",
+    URL: import.meta.env.VITE_API_URL ?? "https://strapi-dev.igcp.com.br/api",
   },
 };
