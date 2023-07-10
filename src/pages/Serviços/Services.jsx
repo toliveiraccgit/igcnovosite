@@ -326,19 +326,191 @@ function Services() {
 
       <div className="middleContainer">
         <div className="theContainer">
-          <div className="rightContainer">
-            <h4>{servicePage && servicePage.dif && servicePage.dif.title}</h4>
-            <h1 className="yellow">
+          <div className="titleContainer">
+            {/* <h4>{servicePage && servicePage.dif && servicePage.dif.title}</h4> */}
+            <h1 className="blue">
               {servicePage && servicePage.dif && servicePage.dif.highlight_1}
             </h1>
             <div className="bottom">
+              <p>
+                {servicePage &&
+                  servicePage.dif &&
+                  servicePage.dif.highlight_1_description}
+              </p>
+            </div>
+          </div>
+          <div className="highligthsContainer" style={{ width: "100%" }}>
+            <div className="top">
+              <h1 className="blue">Nossos diferenciais</h1>
               <Link className="buttonContact" to="/fale-conosco">
                 {servicePage && servicePage.dif && servicePage.dif.button}
                 <img src={rightArrow} alt="" />{" "}
               </Link>
             </div>
+            <div className="bottom">
+              <div className="bottom">
+                {!isMobile && (
+                  <div className="cardGrid">
+                    <div className="row">
+                      <div className="card">
+                        <span>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_1}
+                        </span>
+                        <h3>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_1_description}
+                        </h3>
+                      </div>
+                      <div className="card">
+                        <span>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_3}
+                        </span>
+                        <h3>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_3_description}
+                        </h3>
+                      </div>
+                      <div className="card">
+                        <span>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_2}
+                        </span>
+                        <h3>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_2_description}
+                        </h3>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="card">
+                        <span>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_5}
+                        </span>
+                        <h3>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_5_description}
+                        </h3>
+                      </div>
+                      <div className="card">
+                        <span>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_4}
+                        </span>
+                        <h3>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_4_description}
+                        </h3>
+                      </div>
+                      <div className="card">
+                        <span>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_6}
+                        </span>
+                        <h3>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_6_description}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {isMobile && (
+                  <div className="cardGrid">
+                    <Slider ref={highlightsMobile} {...highlightMobile}>
+                      <div className="card">
+                        <span>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_1}
+                        </span>
+                        <h3>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_1_description}
+                        </h3>
+                      </div>
+                      <div className="card">
+                        <span>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_3}
+                        </span>
+                        <h3>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_3_description}
+                        </h3>
+                      </div>
+                      <div className="card">
+                        <span>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_2}
+                        </span>
+                        <h3>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_2_description}
+                        </h3>
+                      </div>
+                      <div className="card">
+                        <span>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_5}
+                        </span>
+                        <h3>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_5_description}
+                        </h3>
+                      </div>
+                      <div className="card">
+                        <span>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_4}
+                        </span>
+                        <h3>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_4_description}
+                        </h3>
+                      </div>
+                      <div className="card">
+                        <span>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_6}
+                        </span>
+                        <h3>
+                          {servicePage &&
+                            servicePage.dif &&
+                            servicePage.dif.differential_6_description}
+                        </h3>
+                      </div>
+                    </Slider>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
-          <div className="leftContainer">
+          {/* <div className="leftContainer">
             <div className="bottom">
               {!isMobile && (
                 <div className="cardGrid">
@@ -499,7 +671,7 @@ function Services() {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 

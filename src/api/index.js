@@ -1,4 +1,5 @@
 import api_about_us from "./about-us";
+import api_unique from "./unique";
 import api_agro from "./agro";
 import api_capital_solution from "./capital-solution";
 import api_contact from "./contact";
@@ -20,6 +21,7 @@ import api_policies from "./privacy-policie";
 
 export {
   api_about_us,
+  api_unique,
   api_contact,
   api_home,
   api_capital_solution,

@@ -11,6 +11,7 @@ import IpoAdivisor from "./pages/Ipo-Adivisor/IpoAdivisor";
 import Network from "./pages/Network/network";
 import News from "./pages/Notícias/news";
 import QuemSomos from "./pages/Quem-Somos/QueSomos";
+import SomosUnicos from "./pages/somos-unicos/somosUnicos";
 import Services from "./pages/Serviços/Services";
 import Social from "./pages/Social/Social";
 import Transactions from "./pages/Transações/transactions";
@@ -59,6 +60,10 @@ function App() {
               <Route element={<IpoAdivisor />} path="/servicos/ipo-advisor" />
               <Route element={<NotíciaSelecionada />} path="/noticias/:id" />
               <Route element={<QuemSomos />} path="/quem-somos" />
+              <Route
+                element={<SomosUnicos />}
+                path="/quem-somos/somos-unicos"
+              />
               <Route
                 element={<PoliticaPrivacidade />}
                 path="/politica-privacidade"

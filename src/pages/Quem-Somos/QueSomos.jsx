@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import Tooltip from "react-bootstrap/Tooltip";
+// import Tooltip from "react-bootstrap/Tooltip";
 import Modal from "react-modal";
 import closeButton from "../../assets/closeButton.png";
-import Partner from "../../components/Partner/Partner";
+// import Partner from "../../components/Partner/Partner";
 import PartnerCardWhite from "../../components/PartnerCardWhite/PartnerCardWhite";
 import emailQuemSomos from "./assets/emailQuemSomos.png";
 import linkedinQuemSomos from "./assets/linkedinQuemSomos.png";
-import arrowLeft from "../../assets/slider/arrowLeft.svg";
-import arrowRight from "../../assets/slider/arrowRight.svg";
+// import arrowLeft from "../../assets/slider/arrowLeft.svg";
+// import arrowRight from "../../assets/slider/arrowRight.svg";
 import "./QuemSomos.scss";
 
 import { useSelector } from "react-redux";
@@ -47,46 +47,46 @@ function QuemSomos() {
   const [principles, setPrinciples] = useState([]);
 
   const [groups, setGroups] = useState([]);
-  const [group, setGroup] = useState(0);
+  // const [group, setGroup] = useState(0);
 
   const [modal, setModalData] = useState({});
   const [modalIsOpen, setIsOpenModal] = useState(false);
 
-  const sliderPartners = useRef(null);
-  const sliderPartnersMobile = useRef(null);
+  // const sliderPartners = useRef(null);
+  // const sliderPartnersMobile = useRef(null);
   const sliderPrinciplesContainers = useRef(null);
 
   const [filter, setFilter] = useState({});
 
-  const handleFilterChange = (event, type) => {
-    const filterValue = event.target.value;
-    setFilter({ ...filter, [type]: filterValue });
-  };
+  // const handleFilterChange = (event, type) => {
+  //   const filterValue = event.target.value;
+  //   setFilter({ ...filter, [type]: filterValue });
+  // };
 
   function closeModal() {
     setIsOpenModal(false);
   }
 
-  const handlePrevClick = () => {
-    sliderPartners.current.slickPrev();
-  };
+  // const handlePrevClick = () => {
+  //   sliderPartners.current.slickPrev();
+  // };
 
-  const handleNextClick = () => {
-    sliderPartners.current.slickNext();
-  };
+  // const handleNextClick = () => {
+  //   sliderPartners.current.slickNext();
+  // };
 
-  const sliderPartnerMobile = {
-    dots: true,
-    className: "center",
-    centerMode: true,
-    infinite: false,
-    centerPadding: "60px",
-    slidesToShow: 1,
-    speed: 500,
-    rows: 3,
-    slidesPerRow: 1,
-    variableWidth: true,
-  };
+  // const sliderPartnerMobile = {
+  //   dots: true,
+  //   className: "center",
+  //   centerMode: true,
+  //   infinite: false,
+  //   centerPadding: "60px",
+  //   slidesToShow: 1,
+  //   speed: 500,
+  //   rows: 3,
+  //   slidesPerRow: 1,
+  //   variableWidth: true,
+  // };
 
   const sliderPrinciplesContainer = {
     dots: true,
@@ -103,6 +103,7 @@ function QuemSomos() {
       .page({ locale })
       .then((response) => {
         setAboutUs(response.data.data.attributes);
+        console.log(response.data.data.attributes);
       })
       .catch(() => {
         setAboutUs({});
@@ -151,7 +152,8 @@ function QuemSomos() {
             <p
               dangerouslySetInnerHTML={{
                 __html: aboutUs && aboutUs.description,
-              }}></p>
+              }}
+            ></p>
           </div>
           <div className="left">
             {aboutUs?.media?.data && (
@@ -165,146 +167,6 @@ function QuemSomos() {
                 }`}
                 alt=""
               />
-            )}
-          </div>
-        </div>
-      </div>
-
-      <div className="partnersContainer">
-        <div className="theContainer">
-          <>
-            <div className="top">
-              <div className="left">
-                <div className="textArea">
-                  <h4>
-                    {aboutUs &&
-                      aboutUs.partners &&
-                      String(aboutUs.partners.title).replace(
-                        "{partners_count}",
-                        partners.length
-                      )}
-                  </h4>
-                  <p>{aboutUs?.partners?.description}</p>
-                </div>
-                <div className="filters">
-                  <select
-                    name=""
-                    id=""
-                    onChange={(e) => {
-                      handleFilterChange(e, "group");
-                      setGroup(Number(e.target.value));
-                    }}>
-                    <option value="">Todos</option>
-                    {groups &&
-                      groups.map((group) => (
-                        <option key={group.id} value={group.id}>
-                          {group.attributes.name}
-                        </option>
-                      ))}
-                  </select>
-                </div>
-              </div>
-
-              {partners &&
-              partners.filter((partner) => {
-                if (!filter.group) {
-                  return true;
-                }
-                return (
-                  partner &&
-                  partner.attributes &&
-                  partner.attributes.grupo &&
-                  partner.attributes.grupo.data &&
-                  partner.attributes.grupo.data.id === group
-                );
-              }).length >= 5 ? (
-                <div className="slicks">
-                  <button onClick={handlePrevClick}>
-                    <img src={arrowLeft} alt="" />
-                  </button>
-                  <button onClick={handleNextClick}>
-                    <img src={arrowRight} alt="" />
-                  </button>
-                </div>
-              ) : (
-                <div className="slicks"></div>
-              )}
-            </div>
-
-            <div className="partner-container">
-              {partners &&
-                partners
-                  .filter((partner) => {
-                    if (!filter.group) {
-                      return true;
-                    }
-                    return (
-                      partner &&
-                      partner.attributes &&
-                      partner.attributes.grupo &&
-                      partner.attributes.grupo.data &&
-                      partner.attributes.grupo.data.id === group
-                    );
-                  })
-                  .map((partner) => (
-                    <Partner key={partner.id} partner={partner} />
-                  ))}
-            </div>
-          </>
-
-          <div className="slider-mobile">
-            {partners &&
-            partners.filter((partner) => {
-              if (!filter.group) {
-                return true;
-              }
-              return (
-                partner &&
-                partner.attributes &&
-                partner.attributes.grupo &&
-                partner.attributes.grupo.data &&
-                partner.attributes.grupo.data.id === group
-              );
-            }).length >= 5 ? (
-              <Slider ref={sliderPartnersMobile} {...sliderPartnerMobile}>
-                {partners &&
-                  partners
-                    .filter((partner) => {
-                      if (!filter.group) {
-                        return true;
-                      }
-                      return (
-                        partner &&
-                        partner.attributes &&
-                        partner.attributes.grupo &&
-                        partner.attributes.grupo.data &&
-                        partner.attributes.grupo.data.id === group
-                      );
-                    })
-                    .map((partner) => (
-                      <Partner key={partner.id} partner={partner} />
-                    ))}
-              </Slider>
-            ) : (
-              <div className="noSlider">
-                {partners &&
-                  partners
-                    .filter((partner) => {
-                      if (!filter.group) {
-                        return true;
-                      }
-                      return (
-                        partner &&
-                        partner.attributes &&
-                        partner.attributes.grupo &&
-                        partner.attributes.grupo.data &&
-                        partner.attributes.grupo.data.id === group
-                      );
-                    })
-                    .map((partner) => (
-                      <Partner key={partner.id} partner={partner} />
-                    ))}
-              </div>
             )}
           </div>
         </div>
@@ -331,7 +193,8 @@ function QuemSomos() {
           <div className="bottomMobile">
             <Slider
               ref={sliderPrinciplesContainers}
-              {...sliderPrinciplesContainer}>
+              {...sliderPrinciplesContainer}
+            >
               {principles &&
                 principles.map((principle) => (
                   <PartnerCardWhite
@@ -344,12 +207,42 @@ function QuemSomos() {
         </div>
       </div>
 
+      <div className="VideoArea">
+        <div className="theContainer">
+          {/* {aboutUs?.media?.data && (
+            <img
+              src={`${
+                aboutUs &&
+                aboutUs.media &&
+                aboutUs.media.data &&
+                aboutUs.media.data.attributes &&
+                aboutUs.media.data.attributes.url
+              }`}
+              alt=""
+            />
+          )} */}
+          <video controls>
+            <source
+              src={
+                aboutUs &&
+                aboutUs.video &&
+                aboutUs.video.data &&
+                aboutUs.video.data.attributes &&
+                aboutUs.video.data.attributes.url
+              }
+              type="video/mp4"
+            />
+          </video>
+        </div>
+      </div>
+
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
-        className={"ModalQuemSomos"}>
+        className={"ModalQuemSomos"}
+      >
         <div className="ContainerModalMobileQuemSomos">
           <div className="rightContainerModal">
             <button className="closeButtonModalQuemSomos" onClick={closeModal}>

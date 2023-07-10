@@ -55,8 +55,11 @@ function PartnerCardWhite({ principle }) {
         <h4 className="title">{principle.title}</h4>
         <p className="subtitle">{principle.label}</p>
 
-        {/* <button onClick={openModal}>Saiba Mais</button> */}
-        <button onClick={openModal}>{principle.button}</button>
+        <p
+          style={customStyles.text}
+          dangerouslySetInnerHTML={{ __html: principle.description }}
+        ></p>
+        {/* <button onClick={openModal}>{principle.button}</button> */}
       </div>
 
       <Modal

@@ -146,16 +146,7 @@ function Footer() {
             </h2>
             <ul>
               <li>
-                <a
-                  href={
-                    footer &&
-                    footer.download_file &&
-                    footer.download_file.data &&
-                    footer.download_file.data.attributes &&
-                    footer.download_file.data.attributes.url
-                  }
-                  download
-                >
+                <a href={footer && footer.download_link} target="_blank">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="25px"
@@ -292,7 +283,7 @@ function Footer() {
             </h2>
             <ul>
               <li>
-                <a href="">
+                <a href={footer && footer.download_link} target="_blank">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="25px"

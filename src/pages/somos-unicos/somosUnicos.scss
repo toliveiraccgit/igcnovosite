@@ -1,4 +1,4 @@
-.QuemSomosContainer {
+.SomosUnicos {
   .topPage {
     background: #f5f5f5;
     font-family: "Poppins";
@@ -10,6 +10,11 @@
     display: flex;
     align-items: center;
     color: #d3a93d;
+
+    @media (max-width: 998px) {
+      font-size: 22px;
+      height: 73px;
+    }
 
     .theContainer {
       @media (max-width: 1600px) {
@@ -24,11 +29,6 @@
       @media (max-width: 998px) {
         margin: 0 20px;
       }
-    }
-
-    @media (max-width: 998px) {
-      font-size: 22px;
-      height: 73px;
     }
   }
 
@@ -204,6 +204,7 @@
             width: 30px;
             height: 2px;
             background-color: #ccc;
+            // border-radius: 4px;
             cursor: pointer;
           }
 
@@ -219,7 +220,6 @@
 
       .dividerContainer {
         display: flex;
-
         .dividerName {
           width: auto;
           white-space: nowrap;
@@ -229,7 +229,6 @@
           line-height: 24px;
           color: #222f44;
         }
-
         .divider {
           width: 90%;
           height: 20px;
@@ -280,16 +279,15 @@
         }
 
         h4 {
-          font-weight: 500;
-          font-size: 28px;
-          line-height: 44px;
-          color: #222f44;
+          font-weight: 600;
+          font-size: 40px;
+          line-height: 50px;
+          color: #222f43;
 
           @media (max-width: 720px) {
             font-size: 22px;
           }
         }
-
         p {
           font-style: normal;
           font-weight: 400;
@@ -301,10 +299,9 @@
             font-size: 14px;
           }
         }
-
         .slicks {
           display: none;
-
+          // display: flex;
           gap: 20px;
           float: right;
           margin-right: 2.5rem;
@@ -338,6 +335,13 @@
         display: flex;
         gap: 50px;
         flex-wrap: wrap;
+        // justify-content: center;
+
+        @media (max-width: 660px) {
+          display: grid;
+          grid-template-columns: 30% 30% 30%;
+          grid-gap: 15px;
+        }
       }
 
       .partner-container {
@@ -353,43 +357,15 @@
     }
   }
 
-  .PrinciplesContainer {
+  .EspecialistContainer {
     margin-top: 130px;
-    height: 1080px;
+    margin-bottom: 130px;
     background: #f5f5f5;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: -80px;
 
     @media (max-width: 1024px) {
       display: block;
-      margin-bottom: -200px;
-    }
-
-    .theContainer {
-      @media (max-width: 1600px) {
-        margin: 0 45px;
-      }
-
-      @media (max-width: 1074px) {
-        padding-top: 80px;
-        margin: 0 15px;
-      }
-
-      @media (max-width: 998px) {
-        padding-top: 0;
-        margin: 0 25px;
-      }
-
-      .top {
-        h4 {
-          font-weight: 600;
-          font-size: 40px;
-          line-height: 50px;
-          color: #222f43;
-        }
-      }
+      margin-top: 80px;
+      margin-bottom: 80px;
     }
 
     @media (max-width: 998px) {
@@ -400,230 +376,185 @@
       padding-bottom: 100px;
     }
 
-    .top {
-      margin-bottom: 40px;
-      font-weight: 500;
-      font-size: 28px;
-      line-height: 44px;
-      color: #222f44;
-    }
-
-    .bottom {
+    .theContainer {
       display: flex;
-      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+      padding: 3rem 0;
+
+      .left {
+        position: relative;
+        margin: 2rem;
+        width: 188px;
+        height: 188px;
+        background-color: #222f43;
+        color: white;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .left::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        background-color: #cbaa58;
+      }
 
       @media (max-width: 998px) {
-        display: none;
-      }
-    }
-
-    .accordion-button {
-      font-family: "Poppins";
-      font-style: normal;
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 21px;
-      color: #222f44;
-
-      &:nth-child(1) {
-        border-top: 1px solid #a7acb4;
-        border-bottom: none;
-      }
-    }
-
-    .accordion-button:not(.collapsed) {
-      box-shadow: none;
-    }
-
-    .accordion-button.collapsed {
-      &:nth-child(1) {
-        border-top: 1px solid #a7acb4;
-        border-bottom: 1px solid #a7acb4;
+        .left {
+          margin: 2rem auto;
+        }
       }
 
-      border-bottom: 1px solid #a7acb4;
-    }
+      .right {
+        flex: 2;
+        padding-left: 20px;
 
-    .accordion-body {
-      border-bottom: 1px solid #a7acb4;
+        .title {
+          font-weight: 600;
+          font-size: 40px;
+          line-height: 50px;
+          color: #222f43;
+        }
+
+        .text {
+          width: 55%;
+          margin-top: 10px;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+          color: #7a828f;
+        }
+
+        @media (max-width: 998px) {
+          .text {
+            width: 100%;
+          }
+        }
+      }
     }
   }
 
-  .bottomMobile {
-    @media (min-width: 998px) {
-      display: none;
-    }
-
-    .accordion-body {
-      overflow-wrap: break-word;
-      word-wrap: break-word;
-
-      -ms-word-break: break-all;
-      word-break: break-all;
-      word-break: break-word;
-
-      -ms-hyphens: auto;
-      -moz-hyphens: auto;
-      -webkit-hyphens: auto;
-      hyphens: auto;
-    }
-
-    .accordion-item {
-      background-color: transparent;
-    }
-
-    .accordion-button {
-      background-color: transparent;
-    }
-
-    .PartnerCardWhiteContainer {
-      height: 480px;
-
-      @media (max-width: 998px) {
-        height: 500px;
-      }
-    }
-
-    .slick-initialized .slick-slide {
-      padding: 0 20px 0 0;
-    }
-
-    .slick-dots {
-      top: 105%;
-      right: 20px;
-    }
-
-    .slick-dots li {
-      margin: 0;
-      width: 60px;
-      height: 2px;
-      background-color: #ccc;
-      cursor: pointer;
-    }
-
-    .slick-dots li.slick-active {
-      background-color: #333;
-    }
-
-    .slick-dots li button {
-      display: none;
-    }
-  }
-
-  .VideoArea {
+  .GlobalContainer {
     margin-top: 130px;
     margin-bottom: 130px;
 
     @media (max-width: 1024px) {
-      margin-top: 30px;
+      display: block;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    @media (max-width: 998px) {
+      height: auto;
+      padding-top: 40px;
+      justify-content: flex-start;
+      margin-bottom: 0px;
+      padding-bottom: 100px;
     }
 
     .theContainer {
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      padding: 3rem 0;
 
-      video,
-      img {
+      .top {
+        h4 {
+          font-weight: 600;
+          font-size: 40px;
+          line-height: 50px;
+          color: #222f43;
+
+          @media (max-width: 720px) {
+            font-size: 22px;
+          }
+        }
+
+        p {
+          width: 75%;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+          color: #7a828f;
+          margin-top: 1rem;
+
+          @media (max-width: 720px) {
+            font-size: 14px;
+            width: 90%;
+          }
+        }
+      }
+
+      .bottom {
+        width: 75%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 1rem;
         margin-top: 3rem;
-        max-height: 50rem;
-        width: auto;
-        cursor: pointer;
 
-        @media (max-width: 1440px) {
-          max-height: 40rem;
+        @media (max-width: 720px) {
+          display: block;
+          width: 95%;
         }
 
-        @media (max-width: 998px) {
-          max-height: auto;
-          width: 85vw;
+        .column {
+          padding: 1rem;
+
+          @media (max-width: 720px) {
+            padding: 1.5rem;
+          }
+
+          h4.yellow {
+            color: #cba958;
+            font-family: Poppins;
+            font-size: 60px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 24px;
+          }
+
+          p {
+            margin-top: 2rem;
+            color: #222f43;
+            font-family: Poppins;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+          }
         }
       }
 
-      @media (max-width: 4000px) {
-        .slider-mobile {
-          display: none;
+      .ImageArea {
+        .theContainer {
+          width: 90%;
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+          margin-left: 0;
+
+          img {
+            margin-top: 3rem;
+            width: auto;
+
+            @media (max-width: 1024px) {
+              width: 100%;
+            }
+
+            @media (max-width: 720px) {
+              max-height: auto;
+              width: 90vw;
+            }
+          }
         }
-        .PartnerContainerDesktop {
-          margin: 30px 0;
-        }
-      }
-
-      @media (max-width: 1600px) {
-        margin: 0 45px;
-      }
-
-      @media (max-width: 1024px) {
-        margin: 0 15px;
-      }
-
-      @media (max-width: 998px) {
-        margin: 0 25px;
       }
     }
   }
-}
-
-// MODAL
-
-.ContainerModalMobileQuemSomos {
-  .closeButtonModalQuemSomos {
-    border: none;
-    background-color: transparent;
-    position: absolute;
-    top: 16px;
-    right: 11px;
-  }
-
-  .titleModal {
-    text-align: left;
-    padding: 15px;
-    background-color: white;
-  }
-
-  .bottomModal {
-    margin-top: 25px;
-    margin-left: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .DataContainer {
-    display: flex;
-
-    .description {
-      display: flex;
-      align-items: center;
-      font-family: "Poppins", sans-serif;
-      font-style: normal;
-      font-weight: 300;
-      font-size: 14px;
-      line-height: 21px;
-      text-decoration-line: underline;
-      color: #ffffff;
-      margin-left: 10px;
-    }
-  }
-
-  .QuemSomosImage {
-    width: 100%;
-  }
-}
-
-.ModalQuemSomos {
-  position: absolute;
-  border: 1px solid rgb(204, 204, 204);
-  overflow: auto;
-  border-radius: 4px;
-  outline: none;
-
-  @media (min-width: 450px) {
-    width: 400px !important;
-    height: 650px !important;
-  }
-}
-
-.accordion-item {
-  border: none;
 }

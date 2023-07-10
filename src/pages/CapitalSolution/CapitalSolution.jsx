@@ -371,27 +371,32 @@ function CapitalSolution() {
 
       <div className="nossosDiferenciais">
         <div className="theContainer">
-          <div className="rightContainer">
-            <h4>{capitalSolution && capitalSolution.differential}</h4>
-            <h1 className="yellow">
+          <div className="titleContainer">
+            {/* <h4>{capitalSolution && capitalSolution.differential}</h4> */}
+            <h1 className="blue">
               {capitalSolution &&
                 capitalSolution.differentials &&
                 capitalSolution.differentials.highlight_1}
             </h1>
             <div className="bottom">
-              <h1 className="blue">
+              <p>
                 {capitalSolution &&
                   capitalSolution.differentials &&
-                  capitalSolution.differentials.highlight_2}
-              </h1>
+                  capitalSolution.differentials.highlight_1_description}
+              </p>
             </div>
-            <Link className="buttonContact" to="/fale-conosco">
-              {capitalSolution && capitalSolution.button}
-              <img src={rightArrow} alt="" />{" "}
-            </Link>
           </div>
 
-          <div className="leftContainer">
+          <div className="highligthsContainer" style={{ width: "100%" }}>
+            <div className="top">
+              <h1 className="blue">
+                {capitalSolution && capitalSolution.differential}
+              </h1>
+              <Link className="buttonContact" to="/fale-conosco">
+                {capitalSolution && capitalSolution.button}
+                <img src={rightArrow} alt="" />{" "}
+              </Link>
+            </div>
             <div className="bottom">
               {!isMobile && (
                 <div className="cardGrid">
@@ -568,74 +573,6 @@ function CapitalSolution() {
         </div>
       </div>
 
-      <div className="reviewsContainer">
-        <div className="theContainer">
-          <div className="top">
-            <p>{capitalSolution && capitalSolution.clients}</p>
-            <div className="slicks">
-              <button onClick={() => slider.current.slickPrev()}>
-                <img src={arrowLeft} alt="" />
-              </button>
-              <button onClick={() => slider.current.slickNext()}>
-                <img src={arrowRight} alt="" />
-              </button>
-            </div>
-          </div>
-          <div className="rev">
-            <Slider ref={slider} {...firstSlider}>
-              {!isMobile &&
-                testimony &&
-                testimony
-                  .sort((a, b) => {
-                    const priorityOrder = {
-                      "Muito alta": 1,
-                      Alta: 2,
-                      Normal: 3,
-                      Baixa: 4,
-                    };
-
-                    const priorityA = priorityOrder[a.attributes.priority];
-                    const priorityB = priorityOrder[b.attributes.priority];
-
-                    return priorityA - priorityB;
-                  })
-                  .map((test) => (
-                    <Reviews
-                      key={test.id}
-                      name={test?.attributes?.name}
-                      company={test?.attributes?.company}
-                      testimony={test?.attributes?.testimony}
-                    />
-                  ))}
-              {isMobile &&
-                testimony &&
-                testimony
-                  .sort((a, b) => {
-                    const priorityOrder = {
-                      "Muito alta": 1,
-                      Alta: 2,
-                      Normal: 3,
-                      Baixa: 4,
-                    };
-
-                    const priorityA = priorityOrder[a.attributes.priority];
-                    const priorityB = priorityOrder[b.attributes.priority];
-
-                    return priorityA - priorityB;
-                  })
-                  .map((test) => (
-                    <Reviews
-                      key={test.id}
-                      name={test?.attributes?.name}
-                      company={test?.attributes?.company}
-                      testimony={test?.attributes?.testimony}
-                    />
-                  ))}
-            </Slider>
-          </div>
-        </div>
-      </div>
-
       <div className="transactionsContainer">
         <div className="theContainer">
           <div className="top">
@@ -798,6 +735,74 @@ function CapitalSolution() {
                         </div>
                       </Modal>
                     </>
+                  ))}
+            </Slider>
+          </div>
+        </div>
+      </div>
+
+      <div className="reviewsContainer">
+        <div className="theContainer">
+          <div className="top">
+            <p>{capitalSolution && capitalSolution.clients}</p>
+            <div className="slicks">
+              <button onClick={() => slider.current.slickPrev()}>
+                <img src={arrowLeft} alt="" />
+              </button>
+              <button onClick={() => slider.current.slickNext()}>
+                <img src={arrowRight} alt="" />
+              </button>
+            </div>
+          </div>
+          <div className="rev">
+            <Slider ref={slider} {...firstSlider}>
+              {!isMobile &&
+                testimony &&
+                testimony
+                  .sort((a, b) => {
+                    const priorityOrder = {
+                      "Muito alta": 1,
+                      Alta: 2,
+                      Normal: 3,
+                      Baixa: 4,
+                    };
+
+                    const priorityA = priorityOrder[a.attributes.priority];
+                    const priorityB = priorityOrder[b.attributes.priority];
+
+                    return priorityA - priorityB;
+                  })
+                  .map((test) => (
+                    <Reviews
+                      key={test.id}
+                      name={test?.attributes?.name}
+                      company={test?.attributes?.company}
+                      testimony={test?.attributes?.testimony}
+                    />
+                  ))}
+              {isMobile &&
+                testimony &&
+                testimony
+                  .sort((a, b) => {
+                    const priorityOrder = {
+                      "Muito alta": 1,
+                      Alta: 2,
+                      Normal: 3,
+                      Baixa: 4,
+                    };
+
+                    const priorityA = priorityOrder[a.attributes.priority];
+                    const priorityB = priorityOrder[b.attributes.priority];
+
+                    return priorityA - priorityB;
+                  })
+                  .map((test) => (
+                    <Reviews
+                      key={test.id}
+                      name={test?.attributes?.name}
+                      company={test?.attributes?.company}
+                      testimony={test?.attributes?.testimony}
+                    />
                   ))}
             </Slider>
           </div>

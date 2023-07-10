@@ -16,6 +16,18 @@
     cursor: pointer;
   }
 
+  @media (max-width: 1715px) {
+    max-width: 265px;
+  }
+
+  @media (max-width: 1450px) {
+    max-width: 255px;
+  }
+
+  @media (max-width: 1370px) {
+    max-width: 205px;
+  }
+
   @media (max-width: 1074px) {
     max-width: 175px;
     height: 155px;
