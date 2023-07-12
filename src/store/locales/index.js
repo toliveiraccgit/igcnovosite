@@ -36,6 +36,17 @@ export const userSlice = createSlice({
       .addCase(get_async_locale.fulfilled, (state, action) => {
         state.status = "idle";
         state.locales = action.payload;
+        console.log(state.locale);
+
+        if (!state.locale) {
+          const defaultLocale = action.payload.find(
+            (item) => item.isDefault === true
+          );
+
+          if (defaultLocale) {
+            state.locale = defaultLocale.code;
+          }
+        }
       })
       .addCase(get_async_locale.rejected, (state, action) => {
         console.log(action.payload);

@@ -15,6 +15,8 @@ function HeaderTop() {
   useEffect(() => {
     dispatch(get_async_locale());
 
+    // locale = locale ? locale : "pt-BR";
+
     APIHeader.get({ locale })
       .then((response) => {
         setHeader(response.data.data.attributes.button);
@@ -82,7 +84,7 @@ function HeaderTop() {
                       (locale_i.name === "EN" || locale_i.name == "ES") &&
                       locale != "pt-BR"
                         ? "line"
-                        : locale == "pt-BR" && locale_i.name === "EN"
+                        : locale == "pt-BR" && locale_i.name === "ES"
                         ? "line"
                         : "no-line"
                     }
