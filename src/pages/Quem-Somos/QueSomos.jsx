@@ -8,7 +8,10 @@ import emailQuemSomos from "./assets/emailQuemSomos.png";
 import linkedinQuemSomos from "./assets/linkedinQuemSomos.png";
 // import arrowLeft from "../../assets/slider/arrowLeft.svg";
 // import arrowRight from "../../assets/slider/arrowRight.svg";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import "./QuemSomos.scss";
+import config from "../../config/env";
 
 import { useSelector } from "react-redux";
 import {
@@ -97,6 +100,18 @@ function QuemSomos() {
     initialSlide: 0,
     variableWidth: true,
   };
+
+  // const videoUrl = aboutUs?.video?.data?.attributes?.url;
+
+  const unMute = () => {
+    refVideo.current.muted = !refVideo.current.muted;
+  };
+
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      clique para ativar o áudio
+    </Tooltip>
+  );
 
   useEffect(() => {
     api_about_us
@@ -209,30 +224,31 @@ function QuemSomos() {
 
       <div className="VideoArea">
         <div className="theContainer">
-          {/* {aboutUs?.media?.data && (
-            <img
-              src={`${
-                aboutUs &&
-                aboutUs.media &&
-                aboutUs.media.data &&
-                aboutUs.media.data.attributes &&
-                aboutUs.media.data.attributes.url
-              }`}
-              alt=""
-            />
-          )} */}
-          <video controls>
-            <source
-              src={
-                aboutUs &&
-                aboutUs.video &&
-                aboutUs.video.data &&
-                aboutUs.video.data.attributes &&
-                aboutUs.video.data.attributes.url
-              }
-              type="video/mp4"
-            />
-          </video>
+          {aboutUs?.video?.data && (
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
+            >
+              <video
+                controls
+                autoPlay
+                muted
+                playsInline
+                loop
+                className="video"
+                onClick={unMute}
+                src={`${
+                  aboutUs &&
+                  aboutUs.video &&
+                  aboutUs.video.data &&
+                  aboutUs.video.data.attributes &&
+                  aboutUs.video.data.attributes.url
+                }`}
+                type="video/mp4"
+              />
+            </OverlayTrigger>
+          )}
         </div>
       </div>
 

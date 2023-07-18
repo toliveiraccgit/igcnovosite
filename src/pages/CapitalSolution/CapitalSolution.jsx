@@ -156,11 +156,11 @@ function CapitalSolution() {
       .send({ data })
       .then(() => {
         setStatusMessage(contacts && contacts.aprovado);
-        setFormName(undefined);
-        setFormEmail(undefined);
-        setFormPhone(undefined);
-        setFormCpfCnpj(undefined);
-        setFormMessage(undefined);
+        setFormName("");
+        setFormEmail("");
+        setFormPhone("");
+        setFormCpfCnpj("");
+        setFormMessage("");
       })
       .catch(() => {
         setStatusMessage(contacts && contacts.erro);

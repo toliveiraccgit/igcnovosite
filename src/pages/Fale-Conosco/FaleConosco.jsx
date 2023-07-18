@@ -1,4 +1,5 @@
 import faleConosco from "../../assets/faleConosco.png";
+import logo from "../../assets/logo.png";
 import "./FaleConosco.scss";
 
 import { useEffect, useState } from "react";
@@ -55,12 +56,15 @@ function FaleConosco() {
     }
 
     const data = {
+      logo: logo,
       name: formName,
       email: formEmail,
       phone: formPhone || "",
       cpf_cnpj: formCpfCnpj || "",
       message: formMessage,
-      parceiro: formPartner || (partners && partners[0].id) || undefined,
+      parceiro:
+        formPartner ||
+        (partners && partners.length > 0 ? partners[0].id : undefined),
     };
 
     api_contact

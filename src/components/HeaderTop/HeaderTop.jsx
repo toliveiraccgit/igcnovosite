@@ -20,8 +20,8 @@ function HeaderTop() {
     APIHeader.get({ locale })
       .then((response) => {
         setHeader(response.data.data.attributes.button);
-        console.log("Locale:", locale);
-        console.log("Locales:", locales);
+        // console.log("Locale:", locale);
+        // console.log("Locales:", locales);
       })
       .catch((error) => {
         setHeader([]);
