@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "../src/components/Footer/Footer";
 import "./App.scss";
@@ -17,7 +18,9 @@ import Social from "./pages/Social/Social";
 import Transactions from "./pages/Transações/transactions";
 import PoliticaPrivacidade from "./pages/politicaPrivacidade/politicaPrivacidade";
 import CookiesPopup from "./components/CookiesPopup/CookiesPopup";
+
 import { useCookies } from "react-cookie";
+import ReactGA from "react-ga4";
 
 import store from "./store/store";
 
@@ -30,6 +33,11 @@ let persistor = persistStore(store);
 
 function App() {
   const [cookies] = useCookies(["cookiesAccepted"]);
+
+  useEffect(() => {
+    ReactGA.initialize("G-37WC56ELXG");
+    ReactGA.send(location.pathname + location.search);
+  }, [location]);
 
   return (
     <div className="App">
