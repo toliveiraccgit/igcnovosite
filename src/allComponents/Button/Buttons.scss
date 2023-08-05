@@ -1,0 +1,65 @@
+.BtnTitle {
+  color: var(--marisa-black-90, #454242);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.868px;
+}
+
+.RowTitle {
+  color: rgba(69, 66, 66, 0.5);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.868px;
+}
+
+.alignVCenter {
+  align-items: center;
+}
+
+.alignHCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.spaceBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.BackgroundBlueHover {
+  color: #fff;
+  border-radius: 4px;
+  border: 1px solid #44556e;
+  background: #44556e;
+}
+
+.BackgroundBlueFocus {
+  background: #222f43;
+  border: 1px solid #222f43;
+  color: #fff;
+  box-shadow: 0px 0px 0px 4px rgba(211, 169, 61, 0.25);
+}
+
+.BackgroundWhiteHover {
+  color: #222f43;
+  border-radius: 4px;
+  border: 1px solid #f5f5f5;
+  background: #fafafa;
+}
+
+.BackgroundWhiteFocus {
+  border-radius: 4px;
+  border: 1px solid #f5f5f5;
+  background: #fff;
+  box-shadow: 0px 0px 0px 4px rgba(211, 169, 61, 0.25);
+  color: #222f43;
+}

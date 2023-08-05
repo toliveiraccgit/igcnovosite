@@ -21,12 +21,14 @@ function FaleConosco() {
 
   const [statusMessage, setStatusMessage] = useState("");
 
+  const [disabledSubmitButton, setDisabledSubmitButton] = useState(false);
+
   useEffect(() => {
     api_contact
       .page({ locale })
       .then((response) => {
         setPageContact(response.data.data.attributes);
-        console.log(response.data.data.attributes);
+        // console.log(response.data.data.attributes);
       })
       .catch(() => {
         setPageContact({});
@@ -39,6 +41,7 @@ function FaleConosco() {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
+    setDisabledSubmitButton(true);
 
     if (!formName || formName === "") {
       setStatusMessage(pageContact.required_field);
@@ -76,9 +79,11 @@ function FaleConosco() {
         setFormPhone("");
         setFormCpfCnpj("");
         setFormMessage("");
+        setDisabledSubmitButton(false);
       })
       .catch((error) => {
         setStatusMessage(pageContact.erro);
+        setDisabledSubmitButton(false);
       });
   };
 
@@ -168,7 +173,10 @@ function FaleConosco() {
                 </div>
                 <div className="statusMessage">{statusMessage}</div>
                 <div className="buttonForm">
-                  <button onClick={(e) => handlerSubmit(e)}>
+                  <button
+                    disabled={disabledSubmitButton}
+                    onClick={(e) => handlerSubmit(e)}
+                  >
                     {pageContact &&
                       pageContact.button &&
                       pageContact.button.label}

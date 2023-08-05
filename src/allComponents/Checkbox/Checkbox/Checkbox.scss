@@ -1,0 +1,56 @@
+/* Common styles for both square and circle checkboxes */
+.Checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.CheckboxInput {
+  display: none; /* Hide the default checkbox input */
+}
+
+.CheckboxCustom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d1d1d1;
+  border-radius: 4px;
+  margin-right: 8px;
+  background: #fff;
+
+  &:hover {
+    border: 1px solid #222f43;
+  }
+
+  &:focus {
+    background: var(--base-white, #fff);
+    box-shadow: 0px 0px 0px 4px rgba(211, 169, 61, 0.25);
+  }
+}
+
+/* Styles for square checkbox */
+.Checkbox.square .CheckboxCustom {
+  border-radius: 4px;
+}
+
+/* Styles for circle checkbox */
+.Checkbox.circle .CheckboxCustom {
+  border-radius: 50%;
+}
+
+/* Styles for the checked state */
+.Checkbox.checked .CheckboxCustom {
+  position: relative;
+}
+
+/* Styles for the checkmark */
+.Checkbox.checked .CheckboxCustom::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 22%;
+  left: 20%;
+  border-radius: 50%;
+  background: #222f43;
+}

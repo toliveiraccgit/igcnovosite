@@ -42,6 +42,7 @@ function NotíciaSelecionada() {
 
     api_news.find({ locale, id }).then((res) => {
       setNews(res.data.data.attributes);
+      console.log(res.data.data.attributes);
     });
   }, [locale]);
 
@@ -78,7 +79,8 @@ function NotíciaSelecionada() {
 
             <div className="textArea">
               <p className="datetime">
-                {moment(news && news.createdAt).format("DD MMMM, YYYY")}
+                {(news && news.date) ||
+                  moment(news && news.date).format("DD MMMM, YYYY")}
               </p>
 
               <h4 className="title">{news && news.title}</h4>
@@ -87,14 +89,16 @@ function NotíciaSelecionada() {
                 className="description"
                 dangerouslySetInnerHTML={{
                   __html: news && news.description,
-                }}></p>
+                }}
+              ></p>
 
               <div className="iconsArea">
                 <ul>
                   <li>
                     <a
                       href="https://www.instagram.com/igcpartners_/"
-                      target="blank">
+                      target="blank"
+                    >
                       <img src={icon3} />
                     </a>
                   </li>
@@ -102,7 +106,8 @@ function NotíciaSelecionada() {
                   <li>
                     <a
                       href="https://www.linkedin.com/company/igc-partners/"
-                      target="blank">
+                      target="blank"
+                    >
                       <img src={icon4} />
                     </a>
                   </li>

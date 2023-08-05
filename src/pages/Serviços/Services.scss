@@ -1077,6 +1077,10 @@
               color: #ffffff;
               background-color: #222f44;
             }
+
+            :disabled {
+              background-color: #4e5969;
+            }
           }
         }
       }

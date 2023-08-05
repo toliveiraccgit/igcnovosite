@@ -10,6 +10,6 @@ export default {
   },
 
   send: (data) => {
-    return client.post(`/controllers/contact`, data);
+    return client.post(`/controllers/email`, data);
   },
 };

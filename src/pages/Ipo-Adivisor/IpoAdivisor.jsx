@@ -23,6 +23,8 @@ function IpoAdivisor() {
 
   const [statusMessage, setStatusMessage] = useState("");
 
+  const [disabledSubmitButton, setDisabledSubmitButton] = useState(false);
+
   useEffect(() => {
     api_ipo
       .page({ locale })
@@ -45,6 +47,7 @@ function IpoAdivisor() {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
+    setDisabledSubmitButton(true);
 
     if (!formName || formName === "") {
       setStatusMessage("O campo nome é obrigatório");
@@ -78,9 +81,11 @@ function IpoAdivisor() {
         setFormPhone("");
         setFormCpfCnpj("");
         setFormMessage("");
+        setDisabledSubmitButton(false);
       })
       .catch((error) => {
         setStatusMessage("Ocorreu um erro ao enviar a mensagem");
+        setDisabledSubmitButton(false);
       });
   };
 
@@ -247,7 +252,11 @@ function IpoAdivisor() {
               </div>
               <div className="statusMessage">{statusMessage}</div>
               <div className="buttonForm">
-                <button onClick={(e) => handlerSubmit(e)}>Enviar</button>
+                <button
+                  disabled={disabledSubmitButton}
+                  onClick={(e) => handlerSubmit(e)}>
+                  Enviar
+                </button>
               </div>
             </form>
           </div>

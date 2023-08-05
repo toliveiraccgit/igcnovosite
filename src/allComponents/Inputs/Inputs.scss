@@ -1,0 +1,25 @@
+.InputsTitle {
+  color: var(--marisa-black-90, #454242);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.868px;
+}
+
+.RowTitle {
+  color: rgba(69, 66, 66, 0.5);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.868px;
+}
+
+.alignVCenter {
+  align-items: center;
+}

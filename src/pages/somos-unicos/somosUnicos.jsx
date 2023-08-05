@@ -62,7 +62,7 @@ export default function somosUnicos() {
     centerPadding: "60px",
     slidesToShow: 1,
     speed: 500,
-    rows: 3,
+    rows: 2,
     slidesPerRow: 1,
     variableWidth: true,
   };

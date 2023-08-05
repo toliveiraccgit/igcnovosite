@@ -173,6 +173,10 @@
               height: 41px;
               border-radius: 6px;
             }
+
+            :disabled {
+              background-color: #4e5969;
+            }
           }
         }
       }

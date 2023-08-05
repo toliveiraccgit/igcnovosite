@@ -1,0 +1,106 @@
+.row-title {
+  color: var(--marisa-black-90, #454242);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.868px;
+  margin: 3rem 0;
+}
+
+/* Background color classes */
+
+.Main-Color {
+  background-color: #222f42;
+}
+
+.Secondary-Color {
+  background-color: #d3a93d;
+}
+
+.Error-Color {
+  background-color: #cc1414;
+}
+
+.Error-Color-Strong {
+  background-color: #a01414;
+}
+
+.Error-Color-Medium {
+  background-color: #f93a3a;
+}
+
+.Error-Color-Smooth {
+  background-color: #ffa0a0;
+}
+
+.Warning-Color {
+  background-color: #fc0;
+}
+
+.Warning-Color-Strong {
+  background-color: #d19500;
+}
+
+.Warning-Color-Medium {
+  background-color: #ffec41;
+}
+
+.Warning-Color-Smooth {
+  background-color: #fff886;
+}
+
+.Success-Color {
+  background-color: #05a660;
+}
+
+.Success-Color-Strong {
+  background-color: #0d6e45;
+}
+
+.Success-Color-Medium {
+  background-color: #39ef9f;
+}
+
+.Success-Color-Smooth {
+  background-color: #b4fedd;
+}
+
+.Gray-Error-Color-Strong {
+  background-color: #282828;
+}
+
+.Gray-Error-Color-Smooth {
+  background-color: #9c9c9c;
+  p,
+  label {
+    color: #282828;
+  }
+}
+
+.Gray-Warning-Color-Strong {
+  background-color: #4e4e4e;
+}
+
+.Gray-Warning-Color-Smooth {
+  background-color: #d1d1d1;
+  p,
+  label {
+    color: #282828;
+  }
+}
+
+.Gray-Success-Color-Strong {
+  background-color: #6a6a6a;
+}
+
+.Gray-Success-Color-Smooth {
+  background-color: #f5f5f5;
+
+  p,
+  label {
+    color: #282828;
+  }
+}

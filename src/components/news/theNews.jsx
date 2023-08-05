@@ -3,7 +3,7 @@ import "./theNews.scss";
 
 import { useNavigate } from "react-router-dom";
 
-function theNews({ data, postDate }) {
+function theNews({ data, postDate, more }) {
   const navigate = new useNavigate();
 
   return (
@@ -25,7 +25,7 @@ function theNews({ data, postDate }) {
 
       <h1>{data.attributes.title}</h1>
 
-      <a href={`/noticias/${data.id}`}>Ler conteúdo</a>
+      <a href={`/noticias/${data.id}`}>{more}</a>
     </div>
   );
 }

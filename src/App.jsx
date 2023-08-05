@@ -18,9 +18,10 @@ import Social from "./pages/Social/Social";
 import Transactions from "./pages/Transações/transactions";
 import PoliticaPrivacidade from "./pages/politicaPrivacidade/politicaPrivacidade";
 import CookiesPopup from "./components/CookiesPopup/CookiesPopup";
-
 import { useCookies } from "react-cookie";
 import ReactGA from "react-ga4";
+
+import AllComponents from "./allComponents/allComponents";
 
 import store from "./store/store";
 
@@ -76,6 +77,7 @@ function App() {
                 element={<PoliticaPrivacidade />}
                 path="/politica-privacidade"
               />
+              <Route element={<AllComponents />} path="/all-components" />
             </Routes>
           </BrowserRouter>
           <Footer />

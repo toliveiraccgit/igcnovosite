@@ -28,10 +28,12 @@ function HeaderTop() {
       });
   }, [locale, dispatch]);
 
-  const handleLocaleChange = (event) => {
-    const locale = event.target.value;
-    dispatch(set_locale(locale));
-  };
+  useEffect(() => {
+    const hostname = window.location.origin;
+    hostname.includes("igc-partners")
+      ? dispatch(set_locale("en"))
+      : dispatch(set_locale("pt-BR"));
+  }, []);
 
   const handleDropdownClick = () => {
     setIsOpen(!isOpen);
@@ -53,8 +55,7 @@ function HeaderTop() {
                   <li key={index}>
                     <a
                       target={header_i.redirect && "_blank"}
-                      href={header_i.link}
-                    >
+                      href={header_i.link}>
                       {header_i.label}
                     </a>
                   </li>
@@ -77,8 +78,7 @@ function HeaderTop() {
                   onClick={() => handleLocaleClick(locale_i.code)}
                   style={{
                     display: locale_i.code === locale ? "none" : "block",
-                  }}
-                >
+                  }}>
                   <div
                     className={
                       (locale_i.name === "EN" || locale_i.name == "ES") &&
@@ -87,8 +87,7 @@ function HeaderTop() {
                         : locale == "pt-BR" && locale_i.name === "ES"
                         ? "line"
                         : "no-line"
-                    }
-                  >
+                    }>
                     {locale_i.name}
                   </div>
                 </li>

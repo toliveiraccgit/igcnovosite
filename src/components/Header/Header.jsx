@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import LogoMobile from "../../assets/HeaderMobile/logo.png";
+import LogoMobile from "../../assets/HeaderMobile/logomob.png";
 import logo from "../../assets/logo.svg";
 import arrowRight from "../../assets/services/rightarrow.svg";
 import "./Header.scss";
@@ -97,7 +97,11 @@ function HeaderTop() {
           >
             <Container fluid>
               <Navbar.Brand href="/">
-                <img src={LogoMobile} alt="Logo da IGC" />
+                <img
+                  className="logo-mobile"
+                  src={LogoMobile}
+                  alt="Logo da IGC"
+                />
               </Navbar.Brand>
               <div className="dropdown-area">
                 <div className={`dropdown ${isOpen ? "dropdownOpen" : ""}`}>

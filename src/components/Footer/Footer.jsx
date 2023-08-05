@@ -191,9 +191,9 @@ function Footer() {
       <div className="MobileContainer">
         <div className="ContainerMobile">
           <div className="HeaderMobile">
-            <div className="float-content">
+            <div className="float-content mb-5">
               <div className="float-logo">
-                <img src={footer?.brand?.data?.attributes?.url} alt="" />
+                <img className="w-75" src={footer?.brand?.data?.attributes?.url} alt="" />
               </div>
               <div className="social-media">
                 {footer && footer.social && footer.social.instagram && (
@@ -207,11 +207,6 @@ function Footer() {
                   </a>
                 )}
               </div>
-            </div>
-            <div className="float-text">
-              <h1>
-                nosso deal <br />é com você
-              </h1>
             </div>
           </div>
 
@@ -298,6 +293,11 @@ function Footer() {
                 </a>
               </li>
             </ul>
+            <div className="float-text">
+              <h1>
+                nosso deal <br />é com você
+              </h1>
+            </div>
           </div>
 
           <div className="final-footer">

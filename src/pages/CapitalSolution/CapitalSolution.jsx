@@ -50,6 +50,8 @@ function CapitalSolution() {
 
   const [filter, setFilter] = useState({});
 
+  const [disabledSubmitButton, setDisabledSubmitButton] = useState(false);
+
   const locale = useSelector((state) => state.locales.locale);
 
   useEffect(() => {
@@ -128,6 +130,7 @@ function CapitalSolution() {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
+    setDisabledSubmitButton(true);
 
     if (!formName || formName === "") {
       setStatusMessage(contacts && contacts.required_field);
@@ -161,9 +164,11 @@ function CapitalSolution() {
         setFormPhone("");
         setFormCpfCnpj("");
         setFormMessage("");
+        setDisabledSubmitButton(false);
       })
       .catch(() => {
         setStatusMessage(contacts && contacts.erro);
+        setDisabledSubmitButton(false);
       });
   };
 
@@ -200,7 +205,6 @@ function CapitalSolution() {
 
   const handleNextClick = () => {
     slider2.current.slickNext();
-    console.log(slider2);
   };
 
   const firstSlider = {
@@ -362,7 +366,16 @@ function CapitalSolution() {
   return (
     <div className="capitalSolutionContainer">
       <div className="bannerContainer">
-        <img src={Banner} alt="" />
+        <img
+          src={
+            capitalSolution &&
+            capitalSolution.bunner &&
+            capitalSolution.bunner?.data &&
+            capitalSolution.bunner?.data?.attributes &&
+            capitalSolution.bunner?.data?.attributes?.url
+          }
+          alt=""
+        />
         <div className="theContainer">
           <h3>{capitalSolution && capitalSolution.title}</h3>
           <p>{capitalSolution && capitalSolution.description}</p>
@@ -875,7 +888,10 @@ function CapitalSolution() {
                 <div className="statusMessage">{statusMessage}</div>
               )}
               <div className="buttonForm">
-                <button onClick={(e) => handlerSubmit(e)}>
+                <button
+                  onClick={(e) => handlerSubmit(e)}
+                  disabled={disabledSubmitButton}
+                >
                   {contacts && contacts.button && contacts.button.label}
                 </button>
               </div>

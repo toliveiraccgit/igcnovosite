@@ -37,7 +37,7 @@ function news() {
       .page({ locale })
       .then((res) => {
         setPage(res.data.data.attributes);
-        console.log("Page:", res.data.data.attributes);
+        console.log("Date:", res.data.data.attributes);
       })
       .catch(() => {
         alert.localeNotFound(locale);
@@ -103,11 +103,14 @@ function news() {
           <div className="rightContainer">
             <div className="content">
               <h5>
-                {highlight &&
+                {(highlight &&
                   highlight.attributes &&
-                  moment(highlight.attributes.createdAt).format(
-                    "DD MMMM, YYYY"
-                  )}
+                  highlight.attributes.date) ||
+                  (highlight &&
+                    highlight.attributes &&
+                    moment(highlight.attributes.createdAt).format(
+                      "DD MMMM, YYYY"
+                    ))}
               </h5>
               <h1>
                 {highlight &&
@@ -125,9 +128,7 @@ function news() {
                   }}
                 ></div>
               </p>
-              <a href={`/noticias/${highlight && highlight.id}`}>
-                {page && page.full_news}
-              </a>
+              <a href={`/noticias/${highlight.id}`}>{page && page.full_news}</a>
             </div>
           </div>
         </div>
@@ -142,9 +143,11 @@ function news() {
                 <TheNews
                   key={index}
                   data={item}
-                  postDate={moment(item.attributes.createdAt).format(
-                    "DD MMMM, YYYY"
-                  )}
+                  postDate={
+                    item.attributes.date ||
+                    moment(item.attributes.createdAt).format("DD MMMM, YYYY")
+                  }
+                  more={page && page.full_news}
                 />
               ))}
         </div>
