@@ -15,13 +15,9 @@ function HeaderTop() {
   useEffect(() => {
     dispatch(get_async_locale());
 
-    // locale = locale ? locale : "pt-BR";
-
     APIHeader.get({ locale })
       .then((response) => {
         setHeader(response.data.data.attributes.button);
-        // console.log("Locale:", locale);
-        // console.log("Locales:", locales);
       })
       .catch((error) => {
         setHeader([]);
@@ -55,7 +51,8 @@ function HeaderTop() {
                   <li key={index}>
                     <a
                       target={header_i.redirect && "_blank"}
-                      href={header_i.link}>
+                      href={header_i.link}
+                    >
                       {header_i.label}
                     </a>
                   </li>
@@ -78,7 +75,8 @@ function HeaderTop() {
                   onClick={() => handleLocaleClick(locale_i.code)}
                   style={{
                     display: locale_i.code === locale ? "none" : "block",
-                  }}>
+                  }}
+                >
                   <div
                     className={
                       (locale_i.name === "EN" || locale_i.name == "ES") &&
@@ -87,7 +85,8 @@ function HeaderTop() {
                         : locale == "pt-BR" && locale_i.name === "ES"
                         ? "line"
                         : "no-line"
-                    }>
+                    }
+                  >
                     {locale_i.name}
                   </div>
                 </li>

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import "./CookiesPopup.scss";
 import cookieImg from "../../assets/fi-rr-cookie.svg";
+// import { api_cookie } from "../../api";
 
 function CookiesPopup() {
   const [cookies, setCookie] = useCookies(["cookiesAccepted"]);
+  // const [cookie, setCookies] = useState([]);
   const [showOverlay, setShowOverlay] = useState(false);
 
   const hostname = window.location.origin;
@@ -21,6 +23,18 @@ function CookiesPopup() {
       : "Você precisa aceitar os cookies para ter acesso à página, por favor aceite a política de cookies.";
     alert(messageAlert);
   };
+
+  // useEffect(() => {
+  //   api_cookie
+  //     .page()
+  //     .then((response) => {
+  //       setCookies(response.data.data);
+  //       console.log(response.data.data);
+  //     })
+  //     .catch(() => {
+  //       setCookies([]);
+  //     });
+  // }, []);
 
   return (
     <div className={`cookies-popup ${showOverlay ? "overlay" : ""}`}>

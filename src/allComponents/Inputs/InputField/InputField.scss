@@ -46,6 +46,22 @@
       background: #fff;
       box-shadow: 0px 0px 0px 4px rgba(211, 169, 61, 0.25);
     }
+
+    &:disabled {
+      border-radius: 2px;
+      border: 1px solid #dee2e6;
+      opacity: 0.5;
+      background: #f5f5f5;
+
+      &::placeholder {
+        color: #d1d1d1;
+        font-family: Poppins;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+      }
+    }
   }
 
   .InputEmail {
@@ -94,6 +110,28 @@
       background-position: 10px center;
       padding-left: 40px;
     }
+
+    &:disabled {
+      border-radius: 2px;
+      border: 1px solid #dee2e6;
+      opacity: 0.5;
+      background: #f5f5f5;
+
+      width: 100%;
+      background-image: url("../../../assets/Icons/Mail.svg");
+      background-repeat: no-repeat;
+      background-position: 10px center;
+      padding-left: 40px;
+
+      &::placeholder {
+        color: #d1d1d1;
+        font-family: Poppins;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+      }
+    }
   }
 
   .InputTextArea {
@@ -130,6 +168,22 @@
       border: 1px solid #222f42;
       background: #fff;
       box-shadow: 0px 0px 0px 4px rgba(211, 169, 61, 0.25);
+    }
+
+    &:disabled {
+      border-radius: 2px;
+      border: 1px solid #dee2e6;
+      opacity: 0.5;
+      background: #f5f5f5;
+
+      &::placeholder {
+        color: #d1d1d1;
+        font-family: Poppins;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./Inputs.scss";
 
 // Bootstrap
@@ -45,7 +45,35 @@ export default function Inputs() {
               placeholder="olivia@untitledui.com"
             />
           </Col>
+          <Col lg={3}></Col>
         </Row>
+
+        {/* Disabled */}
+        <Row className="mt-5 alignVCenter">
+          <Col lg={2} className="RowTitle">
+            Disabled
+          </Col>
+          <Col lg={3}>
+            <InputField
+              label="Text"
+              type="Default"
+              toUse="Text"
+              placeholder="olivia@untitledui.com"
+              disabled={true}
+            />
+          </Col>
+          <Col lg={3}>
+            <InputField
+              label="Email"
+              type="Default"
+              toUse="Email"
+              placeholder="olivia@untitledui.com"
+              disabled={true}
+            />
+          </Col>
+        </Row>
+
+        <hr />
 
         {/* Text area */}
         <Row>
@@ -61,8 +89,22 @@ export default function Inputs() {
             <InputField
               label="Text"
               type="TextArea"
-              toUse="Text"
               placeholder="olivia@untitledui.com"
+            />
+          </Col>
+        </Row>
+
+        {/* Disabled */}
+        <Row className="mt-5 alignVCenter">
+          <Col lg={2} className="RowTitle">
+            Disabled
+          </Col>
+          <Col lg={6}>
+            <InputField
+              label="Text"
+              type="TextArea"
+              placeholder="olivia@untitledui.com"
+              disabled={true}
             />
           </Col>
         </Row>

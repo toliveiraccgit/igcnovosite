@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./InputField.scss";
 
-const InputField = ({ type, label, toUse, placeholder }) => {
+const InputField = ({ type, label, toUse, placeholder, disabled }) => {
   const isDefaultType = type === "Default";
   const isDefaultUse = toUse === "Text";
 
   return (
-    <div className="InputField">
+    <div className={`InputField ${disabled ? "disabled" : ""} `}>
       <label className="InputLabel" htmlFor="inputArea">
         {label}
       </label>
@@ -19,6 +19,7 @@ const InputField = ({ type, label, toUse, placeholder }) => {
             toUse={toUse}
             placeholder={placeholder}
             className="InputText"
+            disabled={disabled}
           />
         ) : (
           <input
@@ -27,15 +28,16 @@ const InputField = ({ type, label, toUse, placeholder }) => {
             toUse={toUse}
             placeholder={placeholder}
             className="InputEmail"
+            disabled={disabled}
           />
         )
       ) : (
-        <input
+        <textarea
           type={type}
-          id="inputArea"
-          toUse={toUse}
+          id="textArea"
           placeholder={placeholder}
           className="InputTextArea"
+          disabled={disabled}
         />
       )}
     </div>
@@ -47,6 +49,7 @@ InputField.propTypes = {
   label: PropTypes.string.isRequired,
   toUse: PropTypes.oneOf(["Text", "Email"]).isRequired,
   placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default InputField;

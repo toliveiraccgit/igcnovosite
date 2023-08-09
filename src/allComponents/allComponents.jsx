@@ -38,9 +38,9 @@ export default function allComponents() {
       <Tab eventKey="inputs" title="Inputs">
         <Inputs />
       </Tab>
-      <Tab eventKey="icons" title="Icons">
+      {/* <Tab eventKey="icons" title="Icons">
         Tab content for Contact
-      </Tab>
+      </Tab> */}
     </Tabs>
   );
 }

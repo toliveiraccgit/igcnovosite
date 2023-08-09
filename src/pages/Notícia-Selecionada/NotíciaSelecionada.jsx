@@ -42,7 +42,6 @@ function NotíciaSelecionada() {
 
     api_news.find({ locale, id }).then((res) => {
       setNews(res.data.data.attributes);
-      console.log(res.data.data.attributes);
     });
   }, [locale]);
 
@@ -59,7 +58,8 @@ function NotíciaSelecionada() {
       <div className="pathArea">
         <div className="theContainer">
           <h4>
-            <span>Noticia</span> <span>&gt;</span> {news && news.title}
+            <span>{page && page.title}</span> <span>&gt;</span>{" "}
+            {news && news.title}
           </h4>
         </div>
       </div>
@@ -113,7 +113,7 @@ function NotíciaSelecionada() {
                   </li>
 
                   <li>
-                    <p>compartilhe</p>
+                    <p>{page && page.label_share}</p>
                   </li>
                 </ul>
               </div>

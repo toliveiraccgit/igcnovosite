@@ -28,7 +28,6 @@ function FaleConosco() {
       .page({ locale })
       .then((response) => {
         setPageContact(response.data.data.attributes);
-        // console.log(response.data.data.attributes);
       })
       .catch(() => {
         setPageContact({});
@@ -36,6 +35,7 @@ function FaleConosco() {
 
     api_partners.get({ locale }).then((response) => {
       setPartners(response.data.data);
+      console.log(response.data.data);
     });
   }, [locale]);
 
@@ -67,7 +67,9 @@ function FaleConosco() {
       message: formMessage,
       parceiro:
         formPartner ||
-        (partners && partners.length > 0 ? partners[0].id : undefined),
+        (partners && partners.length > 0
+          ? partners[0].attributes.name
+          : undefined),
     };
 
     api_contact
@@ -112,7 +114,7 @@ function FaleConosco() {
                 )}
                 {partners &&
                   partners.map((partner, index) => (
-                    <option key={index} value={partner.id}>
+                    <option key={index} value={partner.attributes.name}>
                       {partner.attributes.name}
                     </option>
                   ))}

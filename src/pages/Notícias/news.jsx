@@ -128,7 +128,7 @@ function news() {
                   }}
                 ></div>
               </p>
-              <a href={`/noticias/${highlight.id}`}>{page && page.full_news}</a>
+              <a href={`/noticias/${highlight.id}`}>{page.full_news}</a>
             </div>
           </div>
         </div>
@@ -147,7 +147,7 @@ function news() {
                     item.attributes.date ||
                     moment(item.attributes.createdAt).format("DD MMMM, YYYY")
                   }
-                  more={page && page.full_news}
+                  more={page.full_news}
                 />
               ))}
         </div>

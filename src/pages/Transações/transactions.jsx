@@ -107,7 +107,7 @@ function transactions() {
     <div className="transactionsContainer">
       {isLoading ? (
         <div className="noData">
-          <div class="loading-icon"></div>
+          <div className="loading-icon"></div>
           <span>Loading...</span>
         </div>
       ) : (
@@ -133,9 +133,9 @@ function transactions() {
           <div className="caseContainer">
             <div className="theContainer">
               <div className="topCase">
-                <h4>Transações</h4>
+                <h4>{transactionPage && transactionPage.label_transaction}</h4>
                 <div className="filterContainer">
-                  <p>Filtros:</p>
+                  <p>{transactionPage && transactionPage.label_filters} </p>
                   <select
                     name=""
                     id=""
@@ -150,36 +150,6 @@ function transactions() {
                       </option>
                     ))}
                   </select>
-
-                  {/* V Filtro de origem V */}
-
-                  {/* <select
-                name=""
-                id=""
-                onChange={(e) => handleFilterChange(e, "origen")}
-              >
-                <option value="" selected disabled>
-                  {transactionPage && transactionPage.source}
-                </option>
-                {transactionOrigen.map((origen) => (
-                  <option value={origen.id}>{origen.attributes.origem}</option>
-                ))}
-              </select> */}
-
-                  {/* V Filtro de perfil V */}
-
-                  {/* <select
-                name=""
-                id=""
-                onChange={(e) => handleFilterChange(e, "perfil")}
-              >
-                <option value="" selected disabled>
-                  {transactionPage && transactionPage.profile}
-                </option>
-                {transactionPerfil.map((perfil) => (
-                  <option value={perfil.id}>{perfil.attributes.name}</option>
-                ))}
-              </select> */}
                 </div>
               </div>
               <div className="caseCardsContainer">
@@ -275,17 +245,15 @@ function transactions() {
                   transactions &&
                   transactions.map((transaction) => (
                     <>
-                      <div
+                      <a
+                        style={{ cursor: "pointer", marginBottom: 20 }}
                         onClick={(e) => openModal(e, transaction)}
-                        key={transaction.id}
                       >
                         <CardCase
-                          image={
-                            transaction.attributes.image.data.attributes.url
-                          }
-                          key={transaction.index}
+                          key={transaction.id}
+                          image={`${transaction.attributes.image.data.attributes.url}`}
                         />
-                      </div>
+                      </a>
                       <Modal
                         isOpen={selectedTransaction === transaction.id}
                         onRequestClose={closeModal}
