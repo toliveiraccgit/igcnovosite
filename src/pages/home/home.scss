@@ -498,6 +498,13 @@
       }
     }
   }
+  .closeButtonModal {
+    top: 20px;
+    right: 20px;
+    position: absolute;
+    border: none;
+    background: transparent;
+  }
 }
 
 .ReactModal__Content--after-open {
@@ -591,6 +598,11 @@
   align-items: center;
   justify-content: center;
   padding: 30px 44px;
+
+  img {
+    width: auto;
+    height: 100%;
+  }
 
   @media (max-width: 996px) {
     margin-bottom: 1.5rem;

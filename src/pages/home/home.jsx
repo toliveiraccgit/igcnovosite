@@ -18,6 +18,7 @@ import { api_testmony } from "../../api";
 
 import Modal from "react-modal";
 import closeButton from "../../assets/closeButton.png";
+import aboutUs from "../../api/about-us";
 
 function home() {
   const slider = useRef(null);
