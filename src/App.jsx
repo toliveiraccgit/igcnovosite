@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense } from "react";
+import React, { useEffect, Suspense, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Footer from "../src/components/Footer/Footer";
 import "./App.scss";
@@ -17,26 +17,33 @@ let persistor = persistStore(store);
 
 function App() {
   const [cookies] = useCookies(["cookiesAccepted"]);
+  const [chargeAsLast, setChargeAsLast] = useState(false);
 
   useEffect(() => {
     ReactGA.initialize("G-37WC56ELXG");
     ReactGA.send(location.pathname + location.search);
+    setTimeout(() => setChargeAsLast(true), 1500);
   }, [location]);
 
   return (
     <div className="App">
       {!cookies.cookiesAccepted && <CookiesPopup />}
-
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <BrowserRouter>
             <HeaderTop />
             <Header />
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense
+              fallback={
+                <div className="noData">
+                  <div class="loading-icon" />
+                  <span>Loading...</span>
+                </div>
+              }>
               <LazyRoutes />
             </Suspense>
           </BrowserRouter>
-          <Footer />
+          {chargeAsLast && <Footer />}
         </PersistGate>
       </Provider>
     </div>

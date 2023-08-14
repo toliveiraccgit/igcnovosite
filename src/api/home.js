@@ -7,7 +7,14 @@ export default {
     });
 
     return client.get(
-      `/home?populate=banner.image&populate=banner.metrics&populate=transaction.transactions.image&populate=testmonys&${query}`
+      `/home?populate=banner.image&populate=banner.metrics&${query}`
     );
+  },
+  getTransactions: ({ locale }) => {
+    const query = new URLSearchParams({
+      ...(locale && { locale }),
+    });
+
+    return client.get(`/home?populate=transaction.transactions.image&${query}`);
   },
 };

@@ -8,16 +8,7 @@ import React from "react";
 function Specialists({ partner }) {
   return (
     <div className="specialistCardContainer">
-      <img
-        src={`${
-          partner &&
-          partner?.photo?.data?.attributes?.url.replace(
-            "https//site-institucional-strapi-igc-development.s3.us-east-2.amazonaws.com",
-            ""
-          )
-        }`}
-        alt=""
-      />
+      <img src={`${partner && partner?.photo?.data?.attributes?.url}`} alt="" />
       <div className="rightContainer">
         <h4>{partner && partner.name}</h4>
         <p>

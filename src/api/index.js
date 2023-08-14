@@ -1,6 +1,7 @@
 import api_about_us from "./about-us";
 import api_unique from "./unique";
-import api_agro from "./agro";
+import api_transacoes from "./transacoes";
+import api_transacoes_footer from "./transacoes-footer";
 import api_capital_solution from "./capital-solution";
 import api_contact from "./contact";
 import api_footer from "./footer";
@@ -14,6 +15,7 @@ import api_news from "./news";
 import api_partners from "./parners";
 import api_principles from "./principles";
 import api_services from "./services";
+import api_services_home from "./services-home";
 import api_social from "./social";
 import api_testmony from "./testmony";
 import api_transactions from "./transactions";
@@ -31,11 +33,13 @@ export {
   api_partners,
   api_principles,
   api_services,
+  api_services_home,
   api_testmony,
   api_transactions,
   api_social,
   api_news,
-  api_agro,
+  api_transacoes,
+  api_transacoes_footer,
   api_ipo,
   api_group,
   api_footer,

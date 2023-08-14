@@ -15,10 +15,9 @@ function transactions() {
   const [transactionSpecialties, setTransactionSpecialties] = useState([]);
   const [transactionOrigen, setTransactionOrigen] = useState([]);
   const [transactionPerfil, setTransactionPerfil] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [filter, setFilter] = useState({});
-
-  const [isLoading, setIsLoading] = useState(true);
 
   const handleFilterChange = (event, type) => {
     const filterValue = event.target.value;
@@ -107,7 +106,7 @@ function transactions() {
     <div className="transactionsContainer">
       {isLoading ? (
         <div className="noData">
-          <div className="loading-icon"></div>
+          <div class="loading-icon" />
           <span>Loading...</span>
         </div>
       ) : (
@@ -139,8 +138,7 @@ function transactions() {
                   <select
                     name=""
                     id=""
-                    onChange={(e) => handleFilterChange(e, "specialtie")}
-                  >
+                    onChange={(e) => handleFilterChange(e, "specialtie")}>
                     <option value="" selected disabled>
                       {transactionPage && transactionPage.sectors}
                     </option>
@@ -170,8 +168,7 @@ function transactions() {
                   .map((transaction) => (
                     <a
                       style={{ cursor: "pointer", marginBottom: 20 }}
-                      onClick={(e) => openModal(e, transaction)}
-                    >
+                      onClick={(e) => openModal(e, transaction)}>
                       <CardCase
                         key={transaction.id}
                         image={`${transaction.attributes.image.data.attributes.url}`}
@@ -202,8 +199,7 @@ function transactions() {
                       onRequestClose={closeModal}
                       style={customStyles}
                       contentLabel="Example Modal"
-                      key={transaction.id}
-                    >
+                      key={transaction.id}>
                       <>
                         <div className="ContainerModal">
                           <div className="leftContainerModal">
@@ -225,8 +221,7 @@ function transactions() {
                             <button
                               style={customStyles.closeButtonModal}
                               className="closeButtonModal"
-                              onClick={closeModal}
-                            >
+                              onClick={closeModal}>
                               <img src={closeButton} alt="" />
                             </button>
                             <div className="DescriptionContainerModal">
@@ -247,8 +242,7 @@ function transactions() {
                     <>
                       <a
                         style={{ cursor: "pointer", marginBottom: 20 }}
-                        onClick={(e) => openModal(e, transaction)}
-                      >
+                        onClick={(e) => openModal(e, transaction)}>
                         <CardCase
                           key={transaction.id}
                           image={`${transaction.attributes.image.data.attributes.url}`}
@@ -259,15 +253,13 @@ function transactions() {
                         onRequestClose={closeModal}
                         style={customMobileStyles}
                         contentLabel="Example Modal"
-                        key={transaction.id}
-                      >
+                        key={transaction.id}>
                         <div className="ContainerModalMobile">
                           <div className="rightContainerModal">
                             <button
                               style={customStyles.closeButtonModal}
                               className="closeButtonModal"
-                              onClick={closeModal}
-                            >
+                              onClick={closeModal}>
                               <img src={closeButton} alt="" />
                             </button>
                             <div className="DescriptionContainerModal">

@@ -15,7 +15,7 @@ import Reviews from "../../components/Reviews/Review";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { api_agro, api_transactions } from "../../api";
+import { api_transacoes, api_transactions } from "../../api";
 import alert from "../../utils/systemAlert";
 
 function Agro() {
@@ -80,7 +80,7 @@ function Agro() {
   };
 
   useEffect(() => {
-    api_agro
+    api_transacoes
       .page({ locale })
       .then((res) => {
         const getScreen =
@@ -132,7 +132,6 @@ function Agro() {
             []
         );
         setNews((getScreen && getScreen.news && getScreen.news.data) || []);
-
         setPageExists(true);
       })
       .catch((err) => {
@@ -373,8 +372,7 @@ function Agro() {
                       .map((item, index) => (
                         <a
                           style={{ cursor: "pointer", marginBottom: 20 }}
-                          onClick={(e) => openModal(e, item)}
-                        >
+                          onClick={(e) => openModal(e, item)}>
                           <CardCase
                             key={index}
                             image={`${item.attributes.image.data.attributes.url}`}
@@ -395,8 +393,7 @@ function Agro() {
                     onRequestClose={closeModal}
                     style={customStyles}
                     contentLabel="Example Modal"
-                    key={item.id}
-                  >
+                    key={item.id}>
                     <>
                       <div className="ContainerModal">
                         <div className="leftContainerModal">
@@ -413,8 +410,7 @@ function Agro() {
                           <button
                             style={customStyles.closeButtonModal}
                             className="closeButtonModal"
-                            onClick={closeModal}
-                          >
+                            onClick={closeModal}>
                             <img src={closeButton} alt="" />
                           </button>
                           <div className="DescriptionContainerModal">
@@ -458,15 +454,13 @@ function Agro() {
                           onRequestClose={closeModal}
                           style={customMobileStyles}
                           contentLabel="Example Modal"
-                          key={item.id}
-                        >
+                          key={item.id}>
                           <div className="ContainerModalMobile">
                             <div className="rightContainerModal">
                               <button
                                 style={customStyles.closeButtonModal}
                                 className="closeButtonModal"
-                                onClick={closeModal}
-                              >
+                                onClick={closeModal}>
                                 <img src={closeButton} alt="" />
                               </button>
                               <div className="DescriptionContainerModal">
@@ -568,7 +562,7 @@ function Agro() {
         </>
       )) || (
         <div className="noData">
-          <div class="loading-icon"></div>
+          <div class="loading-icon" />
           <span>Loading...</span>
         </div>
       )}

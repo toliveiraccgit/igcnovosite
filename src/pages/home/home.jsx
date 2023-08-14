@@ -12,9 +12,7 @@ import Reviews from "../../components/Reviews/Review";
 import "./home.scss";
 
 import { useSelector } from "react-redux";
-import APIHome from "../../api/home";
-import APIServices from "../../api/services";
-import { api_testmony } from "../../api";
+import { api_testmony, api_home, api_services_home } from "../../api";
 
 import Modal from "react-modal";
 import closeButton from "../../assets/closeButton.png";
@@ -67,7 +65,7 @@ function home() {
     infinite: true,
     speed: 500,
     arrows: false,
-    slidesToShow: testimony.length >= 3 ? 3 : testimony.length,
+    slidesToShow: testimony && testimony.length >= 3 ? 3 : testimony.length,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -98,7 +96,8 @@ function home() {
     infinite: true,
     speed: 500,
     arrows: false,
-    slidesToShow: transactions.length >= 5 ? 5 : transactions.length,
+    slidesToShow:
+      transactions && transactions.length >= 5 ? 5 : transactions.length,
     slidesToScroll: 5,
     initialSlide: 0,
     nextArrow: <SampleNextArrow />,
@@ -213,13 +212,12 @@ function home() {
     },
   };
 
-  const [services_api_title, set_services_api_title] = useState("serviços");
-  const [transactions_api_title, set_transactions_api_title] = useState({
+  const [servicesTitle, setServicesTitle] = useState("serviços");
+  const [transactionsTitle, setTransactionsTitle] = useState({
     transaction: "últimas transações",
     more: "ver todas",
   });
-  const [clients_api_title, set_clients_api_title] =
-    useState("nossos clientes");
+  const [clientsTitle, setClientsTitle] = useState("nossos clientes");
 
   const locale = useSelector((state) => state.locales.locale);
 
@@ -238,19 +236,25 @@ function home() {
   });
 
   useEffect(() => {
-    APIHome.get({ locale }).then((res) => {
+    api_home.get({ locale }).then((res) => {
       setBanners(res.data.data.attributes.banner);
+      setServicesTitle(res.data.data.attributes.services);
+      setClientsTitle(res.data.data.attributes.clients);
 
-      const limitData =
-        res &&
-        res.data &&
-        res.data.data &&
-        res.data.data.attributes &&
-        res.data.data.attributes.transaction &&
-        res.data.data.attributes.transaction.transactions &&
-        res.data.data.attributes.transaction.transactions.data.slice(0, 10);
+      api_home.getTransactions({ locale }).then((res) => {
+        const limitData =
+          res &&
+          res.data &&
+          res.data.data &&
+          res.data.data.attributes &&
+          res.data.data.attributes.transaction &&
+          res.data.data.attributes.transaction.transactions &&
+          res.data.data.attributes.transaction.transactions.data.slice(0, 10);
 
-      setTransactions(limitData);
+        setTransactions(limitData);
+        setTransactionsTitle(res.data.data.attributes.transaction);
+      });
+
       api_testmony
         .get({ locale })
         .then((res) => {
@@ -259,13 +263,9 @@ function home() {
         .catch(() => {
           setTestimony([]);
         });
-
-      set_services_api_title(res.data.data.attributes.services);
-      set_transactions_api_title(res.data.data.attributes.transaction);
-      set_clients_api_title(res.data.data.attributes.clients);
     });
 
-    APIServices.get({ locale }).then((res) => {
+    api_services_home.get({ locale }).then((res) => {
       const limitData = res.data.data.slice(0, 3);
       setServices(limitData);
     });
@@ -289,11 +289,9 @@ function home() {
       <div className="lastTransactions">
         <div className="theContainer">
           <div className="top">
-            <h4>
-              {transactions_api_title && transactions_api_title.transaction}
-            </h4>
+            <h4>{transactionsTitle && transactionsTitle.transaction}</h4>
             <Link to="/transacoes/todas">
-              {transactions_api_title && transactions_api_title.more}
+              {transactionsTitle && transactionsTitle.more}
             </Link>
           </div>
           <div className="bottom">
@@ -417,7 +415,7 @@ function home() {
       <div className="reviewsContainer">
         <div className="theContainer">
           <div className="top">
-            <p>{clients_api_title}</p>
+            <p>{clientsTitle}</p>
             <div className="slicks">
               <button onClick={() => slider.current.slickPrev()}>
                 <img src={arrowLeft} alt="" />
@@ -485,7 +483,7 @@ function home() {
       <div className="servicesContainer">
         <div className="theContainer">
           <div className="top">
-            <h4>{services_api_title}</h4>
+            <h4>{servicesTitle}</h4>
           </div>
           <div className="bottom">
             {services.map((service, index) => (

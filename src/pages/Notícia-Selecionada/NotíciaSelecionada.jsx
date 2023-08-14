@@ -11,8 +11,8 @@ import { api_news } from "../../api";
 
 import alert from "../../utils/systemAlert";
 
-import icon4 from "../../assets/icon-linkedinB.png";
-import icon3 from "../../assets/icon-instaB.png";
+import icon4 from "../../assets/iconlinkedinB.png";
+import icon3 from "../../assets/iconinstaB.png";
 
 function NotíciaSelecionada() {
   const { id } = useParams();
@@ -89,16 +89,14 @@ function NotíciaSelecionada() {
                 className="description"
                 dangerouslySetInnerHTML={{
                   __html: news && news.description,
-                }}
-              ></p>
+                }}></p>
 
               <div className="iconsArea">
                 <ul>
                   <li>
                     <a
                       href="https://www.instagram.com/igcpartners_/"
-                      target="blank"
-                    >
+                      target="blank">
                       <img src={icon3} />
                     </a>
                   </li>
@@ -106,8 +104,7 @@ function NotíciaSelecionada() {
                   <li>
                     <a
                       href="https://www.linkedin.com/company/igc-partners/"
-                      target="blank"
-                    >
+                      target="blank">
                       <img src={icon4} />
                     </a>
                   </li>

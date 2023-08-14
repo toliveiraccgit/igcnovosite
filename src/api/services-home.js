@@ -7,7 +7,7 @@ export default {
     });
 
     return client.get(
-      `/testemunhos?populate=company&populate=name&populate=testimony&${query}`
+      `/servicos?populate=button&populate=description&populate=name&populate=image.url&${query}`
     );
   },
 };

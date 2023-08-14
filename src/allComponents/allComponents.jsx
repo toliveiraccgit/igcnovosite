@@ -29,9 +29,9 @@ export default function allComponents() {
       <Tab eventKey="button" title="Button">
         <Button />
       </Tab>
-      <Tab eventKey="spacing" title="Spacing">
+      {/* <Tab eventKey="spacing" title="Spacing">
         Tab content for Contact
-      </Tab>
+      </Tab> */}
       <Tab eventKey="checkbox" title="Checkbox">
         <Checkboxes />
       </Tab>
