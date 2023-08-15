@@ -3,7 +3,15 @@ import "./Button.scss";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const Button = ({ buttonType, text, size, background, disabled, link }) => {
+const Button = ({
+  buttonType,
+  text,
+  size,
+  background,
+  disabled,
+  link,
+  onClick,
+}) => {
   const padding =
     buttonType === "Arrow" && size === "Small"
       ? "8px 8px"
@@ -70,6 +78,7 @@ const Button = ({ buttonType, text, size, background, disabled, link }) => {
         className={`Button ${size} ${background} ${disabled ? "disabled" : ""}`}
         disabled={disabled}
         style={additionalStyles}
+        onClick={onClick}
       >
         {buttonType === "Text" && text}
         {buttonType === "Arrow" && getArrowIcon()}

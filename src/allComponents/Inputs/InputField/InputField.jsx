@@ -1,78 +1,73 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import "./InputField.scss";
 
-const InputField = ({ type, label, toUse, placeholder, disabled, error }) => {
+const InputField = ({
+  type,
+  label,
+  toUse,
+  placeholder,
+  disabled,
+  value,
+  onChange,
+  error,
+  errorMessage,
+}) => {
   const isDefaultType = type === "Default";
   const isDefaultUse = toUse === "Text";
 
-  const [hasError, setHasError] = useState(false); // State to track error
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    let inputFieldValue = "";
-
-    if (isDefaultType) {
-      inputFieldValue = document.getElementById("inputArea").value.trim();
-    } else {
-      inputFieldValue = document.getElementById("textArea").value.trim();
-    }
-
-    if (inputFieldValue === "") {
-      setHasError(true);
-      setErrorMessage("This is a hint text to help user.");
-    } else {
-      setHasError(false);
-      setErrorMessage("");
-      // Perform form submission logic here
-    }
-  };
-
   return (
     <div className={`InputField ${disabled ? "disabled" : ""}`}>
-      <form onSubmit={handleSubmit}>
-        <label
-          className="InputLabel"
-          htmlFor={isDefaultType ? "inputArea" : "textArea"}
-        >
-          {label}
-        </label>
-        {isDefaultType ? (
-          isDefaultUse ? (
-            <>
-              <input
-                type={type}
-                id="inputArea"
-                toUse={toUse}
-                placeholder={placeholder}
-                disabled={disabled}
-                className={`InputText ${hasError ? "error" : ""}`}
-              />
-              <div className="ErrorMessage">{errorMessage}</div>
-            </>
-          ) : (
+      <label
+        className="InputLabel"
+        htmlFor={isDefaultType ? "inputArea" : "textArea"}
+      >
+        {label}
+      </label>
+      {isDefaultType ? (
+        isDefaultUse ? (
+          <>
             <input
               type={type}
               id="inputArea"
               toUse={toUse}
               placeholder={placeholder}
-              className="InputEmail"
               disabled={disabled}
+              className={`InputText ${error ? "error" : ""}`}
+              value={value}
+              onChange={onChange}
             />
-          )
+            <div className="ErrorMessage">{error && errorMessage}</div>
+          </>
         ) : (
+          <>
+            <input
+              type={type}
+              id="inputArea"
+              toUse={toUse}
+              placeholder={placeholder}
+              className={`InputEmail ${error ? "error" : ""}`}
+              disabled={disabled}
+              value={value}
+              onChange={onChange}
+            />
+            <div className="ErrorMessage">{error && errorMessage}</div>
+          </>
+        )
+      ) : (
+        <>
           <textarea
             type={type}
             id="textArea"
             placeholder={placeholder}
-            className="InputTextArea"
+            className={`InputTextArea ${error ? "error" : ""}`}
             disabled={disabled}
+            value={value}
+            onChange={onChange}
           />
-        )}
-        <button type="submit">Submit</button>
-      </form>
+          <div className="ErrorMessage">{error && errorMessage}</div>
+        </>
+      )}
     </div>
   );
 };
@@ -83,6 +78,10 @@ InputField.propTypes = {
   toUse: PropTypes.oneOf(["Text", "Email"]).isRequired,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  error: PropTypes.bool,
+  errorMessage: PropTypes.string,
 };
 
 export default InputField;
