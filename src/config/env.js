@@ -3,7 +3,7 @@ export default {
     URL:
       window.location.hostname.includes("dev") ||
       window.location.hostname.includes("localhost")
-        ? "https://strapi-dev.igcp.com.br/api"
-        : "https://strapi-prod.igcp.com.br/api",
+        ? "https://backend-institucional-development.igcp.com.br/api"
+        : "https://backend-institucional-production.igcp.com.br/api",
   },
 };

@@ -1,0 +1,62 @@
+// MODAL
+.ContainerModalMobileQuemSomos {
+  .closeButtonModalQuemSomos {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 16px;
+    right: 11px;
+  }
+
+  .titleModal {
+    text-align: left;
+    padding: 15px;
+    background-color: white;
+  }
+
+  .bottomModal {
+    margin-top: 25px;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .DataContainer {
+    display: flex;
+
+    .description {
+      display: flex;
+      align-items: center;
+      font-family: "Poppins", sans-serif;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 21px;
+      text-decoration-line: underline;
+      color: #ffffff;
+      margin-left: 10px;
+    }
+  }
+
+  .QuemSomosImage {
+    width: 100%;
+  }
+}
+
+.ModalQuemSomos {
+  position: absolute;
+  border: 1px solid rgb(204, 204, 204);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+
+  @media (min-width: 450px) {
+    width: 400px !important;
+    height: 650px !important;
+  }
+}
+
+.accordion-item {
+  border: none;
+}

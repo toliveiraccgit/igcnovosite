@@ -1,0 +1,87 @@
+.reviewsContainer {
+  margin-top: 130px;
+  background: #f5f5f5;
+
+  @media (max-width: 910px) {
+    margin-top: 0;
+    height: 60vh;
+  }
+
+  .theContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 0;
+
+    @media (max-width: 910px) {
+      padding: 60px 0 0 0;
+    }
+
+    .top {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 65px;
+
+      p {
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 42px;
+        text-transform: lowercase;
+        color: #222f44;
+        position: relative;
+      }
+
+      .slicks {
+        display: flex;
+        gap: 20px;
+
+        button {
+          border: none;
+          background: none;
+          cursor: pointer;
+        }
+
+        @media (max-width: 1024px) {
+          margin-right: 0;
+        }
+
+        @media (max-width: 910px) {
+          display: none;
+        }
+      }
+    }
+    .rev {
+      width: 100%;
+
+      .slick-initialized .slick-slide {
+        padding: 0 20px 0 0;
+      }
+
+      .slick-dots {
+        bottom: -30%;
+        right: 0;
+      }
+
+      .slick-dots li {
+        margin: 0;
+        width: 20px;
+        height: 2px;
+        background-color: #ccc;
+        cursor: pointer;
+      }
+
+      .slick-dots li.slick-active {
+        background-color: #333;
+      }
+
+      .slick-dots li button {
+        display: none;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      margin: 80px 20px;
+    }
+  }
+}

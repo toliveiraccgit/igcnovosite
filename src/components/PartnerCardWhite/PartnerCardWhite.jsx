@@ -45,10 +45,6 @@ const customStyles = {
 function PartnerCardWhite({ principle }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
-
   return (
     <div className="PartnerCardWhiteContainer">
       <div className="Texts">

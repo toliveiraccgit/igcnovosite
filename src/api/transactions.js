@@ -23,36 +23,41 @@ export default {
 
     return client.get(`/transacoes?populate=*&${query}${format}`);
   },
-
-  page: ({ locale }) => {
+  getByPriorityAndService: ({ locale, priority, service }) => {
     const query = new URLSearchParams({
       ...(locale && { locale }),
     });
 
-    return client.get(`/pagina-transacoe?populate=*&${query}`);
-  },
+    const priorityQuery = priority ? `&filters[priority]=${priority}` : ``;
+    const serviceQuery = service
+      ? `&populate=servico&filters[servico][name]=${service}`
+      : ``;
 
-  get_origem: ({ locale }) => {
+    return client.get(
+      `/transacoes?populate=image&populate=setor${serviceQuery}${priorityQuery}&${query}`
+    );
+  },
+  getBySpeciality: ({ locale, speciality }) => {
     const query = new URLSearchParams({
       ...(locale && { locale }),
     });
 
-    return client.get(`/origems?${query}`);
+    return client.get(
+      `/transacoes?populate=image&populate=setor&populate=servico&filters[setor][name]=${speciality}&${query}`
+    );
   },
+  getBasic: ({ locale }) => {
+    const query = new URLSearchParams({
+      ...(locale && { locale }),
+    });
 
-  get_specialtie: ({ locale }) => {
+    return client.get(`/transacoes?populate=image&${query}`);
+  },
+  getSpecialties: ({ locale }) => {
     const query = new URLSearchParams({
       ...(locale && { locale }),
     });
 
     return client.get(`/specialties?${query}`);
-  },
-
-  get_perfil: ({ locale }) => {
-    const query = new URLSearchParams({
-      ...(locale && { locale }),
-    });
-
-    return client.get(`/perfis?${query}`);
   },
 };

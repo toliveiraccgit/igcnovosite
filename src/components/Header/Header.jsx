@@ -6,9 +6,8 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useDispatch, useSelector } from "react-redux";
-
 import LogoMobile from "../../assets/HeaderMobile/logomob.png";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/logo.png";
 import arrowRight from "../../assets/services/rightarrow.svg";
 import "./Header.scss";
 import APINavigation from "./../../api/navigation";
@@ -84,8 +83,7 @@ function HeaderTop() {
             key={expand}
             bg="white"
             expand={expand}
-            className="navBarContainer"
-          >
+            className="navBarContainer">
             <Container fluid>
               <Navbar.Brand href="/">
                 <img
@@ -98,8 +96,7 @@ function HeaderTop() {
                 <div className={`dropdown ${isOpen ? "dropdownOpen" : ""}`}>
                   <div
                     className="dropdown-toggle"
-                    onClick={handleDropdownClick}
-                  >
+                    onClick={handleDropdownClick}>
                     {locales.find((loc) => loc.code === locale)?.name || ""}
                   </div>
                   {isOpen && (
@@ -111,8 +108,7 @@ function HeaderTop() {
                           style={{
                             display:
                               locale_i.code === locale ? "none" : "block",
-                          }}
-                        >
+                          }}>
                           <div
                             className={
                               (locale_i.name === "EN" ||
@@ -122,8 +118,7 @@ function HeaderTop() {
                                 : locale === "pt-BR" && locale_i.name === "EN"
                                 ? "line"
                                 : "no-line"
-                            }
-                          >
+                            }>
                             {locale_i.name}
                           </div>
                         </li>
@@ -139,12 +134,10 @@ function HeaderTop() {
                   id={`offcanvasNavbar-expand-${expand}`}
                   aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
                   placement="end"
-                  className="MenuOppend"
-                >
+                  className="MenuOppend">
                   <Offcanvas.Header closeButton>
                     <Offcanvas.Title
-                      id={`offcanvasNavbarLabel-expand-${expand}`}
-                    >
+                      id={`offcanvasNavbarLabel-expand-${expand}`}>
                       <img src={LogoMobile} alt="Logo da IGC" />
                     </Offcanvas.Title>
                   </Offcanvas.Header>
@@ -155,20 +148,17 @@ function HeaderTop() {
                           {item.items.length === 0 ? (
                             <Nav.Link
                               className="quemSomos action bold"
-                              href={item.path}
-                            >
+                              href={item.path}>
                               {item.title}
                             </Nav.Link>
                           ) : (
                             <NavDropdown
                               title={item.title}
-                              id={`offcanvasNavbarDropdown-expand-${expand}`}
-                            >
+                              id={`offcanvasNavbarDropdown-expand-${expand}`}>
                               {item.items.map((subitem) => (
                                 <NavDropdown.Item
                                   key={subitem.path}
-                                  href={subitem.path}
-                                >
+                                  href={subitem.path}>
                                   {subitem.title}
                                 </NavDropdown.Item>
                               ))}

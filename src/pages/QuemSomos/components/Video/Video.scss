@@ -1,0 +1,53 @@
+.VideoArea {
+  margin-top: 50px;
+  margin-bottom: 130px;
+
+  @media (max-width: 1024px) {
+    margin-top: 30px;
+  }
+
+  .theContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    video,
+    img {
+      margin-top: 3rem;
+      max-height: 50rem;
+      max-width: 100%;
+      width: auto;
+      cursor: pointer;
+
+      @media (max-width: 1440px) {
+        max-height: 40rem;
+      }
+
+      @media (max-width: 998px) {
+        max-height: auto;
+        width: 85vw;
+      }
+    }
+
+    @media (max-width: 4000px) {
+      .slider-mobile {
+        display: none;
+      }
+      .PartnerContainerDesktop {
+        margin: 30px 0;
+      }
+    }
+
+    @media (max-width: 1600px) {
+      margin: 0 45px;
+    }
+
+    @media (max-width: 1024px) {
+      margin: 0 15px;
+    }
+
+    @media (max-width: 998px) {
+      margin: 0 25px;
+    }
+  }
+}

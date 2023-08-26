@@ -1,0 +1,116 @@
+.GlobalContainer {
+  margin-top: 130px;
+  margin-bottom: 130px;
+
+  @media (max-width: 1024px) {
+    display: block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  @media (max-width: 998px) {
+    height: auto;
+    padding-top: 40px;
+    justify-content: flex-start;
+    margin-bottom: 0px;
+    padding-bottom: 100px;
+  }
+
+  .theContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 0;
+
+    .top {
+      h4 {
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 50px;
+        color: #222f43;
+
+        @media (max-width: 720px) {
+          font-size: 22px;
+        }
+      }
+
+      p {
+        width: 75%;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #7a828f;
+        margin-top: 1rem;
+
+        @media (max-width: 720px) {
+          font-size: 14px;
+          width: 90%;
+        }
+      }
+    }
+
+    .bottom {
+      width: 75%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1rem;
+      margin-top: 3rem;
+
+      @media (max-width: 720px) {
+        display: block;
+        width: 95%;
+      }
+
+      .column {
+        padding: 1rem;
+
+        @media (max-width: 720px) {
+          padding: 1.5rem;
+        }
+
+        h4.yellow {
+          color: #cba958;
+          font-family: Poppins;
+          font-size: 60px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 24px;
+        }
+
+        p {
+          margin-top: 2rem;
+          color: #222f43;
+          font-family: Poppins;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+        }
+      }
+    }
+
+    .ImageArea {
+      .theContainer {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        margin-left: 0;
+
+        img {
+          margin-top: 3rem;
+          width: auto;
+
+          @media (max-width: 1024px) {
+            width: 100%;
+          }
+
+          @media (max-width: 720px) {
+            max-height: auto;
+            width: 90vw;
+          }
+        }
+      }
+    }
+  }
+}

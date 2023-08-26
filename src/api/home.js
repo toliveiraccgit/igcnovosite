@@ -7,7 +7,7 @@ export default {
     });
 
     return client.get(
-      `/home?populate=banner.image&populate=banner.metrics&${query}`
+      `/home?populate=banner.image&populate=banner.metrics&fields[0]=clients&fields[1]=services&${query}`
     );
   },
   getTransactions: ({ locale }) => {
@@ -15,6 +15,8 @@ export default {
       ...(locale && { locale }),
     });
 
-    return client.get(`/home?populate=transaction.transactions.image&${query}`);
+    return client.get(
+      `/home?populate=transaction.transactions.image&fields=locale&${query}`
+    );
   },
 };

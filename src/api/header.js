@@ -6,6 +6,6 @@ export default {
       ...(locale && { locale }),
     });
 
-    return client.get(`/header?populate=*&${query}`);
+    return client.get(`/header?populate=button&fields=locale&${query}`);
   },
 };

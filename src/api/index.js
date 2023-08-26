@@ -16,6 +16,7 @@ import api_partners from "./parners";
 import api_principles from "./principles";
 import api_services from "./services";
 import api_services_home from "./services-home";
+import api_specify_transactions from "./specify-transactions";
 import api_social from "./social";
 import api_testmony from "./testmony";
 import api_transactions from "./transactions";
@@ -34,6 +35,7 @@ export {
   api_principles,
   api_services,
   api_services_home,
+  api_specify_transactions,
   api_testmony,
   api_transactions,
   api_social,

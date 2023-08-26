@@ -1,13 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import rightArrow from "../../assets/services/rightarrow.svg";
-import homeBanner from "../../assets/homeBanner.png";
 
 import "./BannerHome.scss";
-
-import { useSelector, useDispatch } from "react-redux";
-import APIHome from "./../../api/home";
-import { useEffect, useState } from "react";
 
 function BannerHome({ title, image, label, link }) {
   return (

@@ -6,6 +6,8 @@ export default {
       ...(locale && { locale }),
     });
 
-    return client.get(`/pagina-agro?populate=screens.slug&${query}`);
+    return client.get(
+      `/pagina-agro?fields=cases&populate=screens.slug&${query}`
+    );
   },
 };

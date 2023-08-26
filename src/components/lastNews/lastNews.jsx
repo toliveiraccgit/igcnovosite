@@ -1,8 +1,6 @@
 import React from "react";
 import "./lastNews.scss";
 
-// import { Container } from './styles';
-
 function lastNews({ number, link, title }) {
   return (
     <>

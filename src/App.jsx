@@ -33,13 +33,7 @@ function App() {
           <BrowserRouter>
             <HeaderTop />
             <Header />
-            <Suspense
-              fallback={
-                <div className="noData">
-                  <div class="loading-icon" />
-                  <span>Loading...</span>
-                </div>
-              }>
+            <Suspense fallback={<div style={{ margin: "80px 20px" }} />}>
               <LazyRoutes />
             </Suspense>
           </BrowserRouter>

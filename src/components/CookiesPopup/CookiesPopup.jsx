@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import "./CookiesPopup.scss";
 import cookieImg from "../../assets/fi-rr-cookie.svg";

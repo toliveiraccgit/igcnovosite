@@ -1,11 +1,7 @@
 import React from "react";
 import "./theNews.scss";
 
-import { useNavigate } from "react-router-dom";
-
 function theNews({ data, postDate, more }) {
-  const navigate = new useNavigate();
-
   return (
     <div className="containerNews">
       <img

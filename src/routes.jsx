@@ -1,54 +1,56 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { Suspense } from "react";
 
-const FaleConosco = React.lazy(() =>
-  import("./pages/Fale-Conosco/FaleConosco")
-);
-const Transactions = React.lazy(() =>
-  import("./pages/Transações/transactions")
-);
-const Social = React.lazy(() => import("./pages/Social/Social"));
-const News = React.lazy(() => import("./pages/Notícias/news"));
-const Network = React.lazy(() => import("./pages/Network/network"));
-const Services = React.lazy(() => import("./pages/Serviços/Services"));
-const Agro = React.lazy(() => import("./pages/Agro/Agro"));
-const Home = React.lazy(() => import("./pages/home/home"));
-const Capital = React.lazy(() =>
+const AllComponents = React.lazy(() => import("./allComponents/allComponents"));
+const CapitalSolution = React.lazy(() =>
   import("./pages/CapitalSolution/CapitalSolution")
 );
-const IpoAdivisor = React.lazy(() =>
-  import("./pages/Ipo-Adivisor/IpoAdivisor")
-);
+const FaleConosco = React.lazy(() => import("./pages/FaleConosco/FaleConosco"));
+const Home = React.lazy(() => import("./pages/home/home"));
+const MeA = React.lazy(() => import("./pages/M&A/M&A"));
+const Notícias = React.lazy(() => import("./pages/Notícias/Notícias"));
 const NotíciaSelecionada = React.lazy(() =>
-  import("./pages/Notícia-Selecionada/NotíciaSelecionada")
+  import("./pages/NotíciaSelecionada/NotíciaSelecionada")
 );
-const QuemSomos = React.lazy(() => import("./pages/Quem-Somos/QueSomos"));
-const SomosUnicos = React.lazy(() =>
-  import("./pages/somos-unicos/somosUnicos")
+const PoliticasETermos = React.lazy(() =>
+  import("./pages/PoliticasETermos/PoliticasETermos")
 );
-const PoliticaPrivacidade = React.lazy(() =>
-  import("./pages/politicaPrivacidade/politicaPrivacidade")
+const QuemSomos = React.lazy(() => import("./pages/QuemSomos/QuemSomos"));
+const Social = React.lazy(() => import("./pages/Social/Social"));
+const SomosUnicos = React.lazy(() => import("./pages/SomosUnicos/SomosUnicos"));
+const TodasTransações = React.lazy(() =>
+  import("./pages/TodasTransações/TodasTransações")
 );
-const AllComponents = React.lazy(() => import("./allComponents/allComponents"));
+const TransaçõesSetor = React.lazy(() =>
+  import("./pages/TransaçõesSetor/TransaçõesSetor")
+);
+// const Network = React.lazy(() => import("./pages/Network/Network"));
+// const IpoAdivisor = React.lazy(() =>
+//   import("./pages/IpoAdivisor/IpoAdivisor")
+// );
 
 function LazyRoutes() {
   return (
     <Routes>
       <Route element={<FaleConosco />} path="/fale-conosco" exact />
-      <Route element={<Transactions />} path="/transacoes/todas" exact />
+      <Route element={<TodasTransações />} path="/transacoes/todas" exact />
       <Route element={<Social />} path="/social" exact />
-      <Route element={<News />} path="/noticias" />
-      <Route element={<Network />} path="/buscar" />
-      <Route element={<Services />} path="/servicos" />
-      <Route element={<Agro />} path="/transacoes/:id" />
+      <Route element={<Notícias />} path="/noticias" />
+      {/* Rota inutilizada */}
+      {/* <Route element={<Network />} path="/buscar" /> */}
+      <Route element={<MeA />} path="/servicos" />
+      <Route element={<TransaçõesSetor />} path="/transacoes/:id" />
       <Route element={<Home />} path="/" />
-      <Route element={<Capital />} path="/servicos/capitacao-recursos" />
-      <Route element={<IpoAdivisor />} path="/servicos/ipo-advisor" />
+      <Route
+        element={<CapitalSolution />}
+        path="/servicos/capitacao-recursos"
+      />
+      {/* Rota inutilizada */}
+      {/* <Route element={<IpoAdivisor />} path="/servicos/ipo-advisor" /> */}
       <Route element={<NotíciaSelecionada />} path="/noticias/:id" />
       <Route element={<QuemSomos />} path="/quem-somos" />
       <Route element={<SomosUnicos />} path="/quem-somos/somos-unicos" />
-      <Route element={<PoliticaPrivacidade />} path="/politica-privacidade" />
+      <Route element={<PoliticasETermos />} path="/politica-privacidade" />
       <Route element={<AllComponents />} path="/all-components" />
     </Routes>
   );

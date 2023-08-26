@@ -1,0 +1,154 @@
+.topPage {
+  background: #f5f5f5;
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 54px;
+  text-transform: lowercase;
+  height: 94px;
+  display: flex;
+  align-items: center;
+  color: #d3a93d;
+
+  .theContainer {
+    @media (max-width: 1600px) {
+      margin: 0 45px;
+    }
+
+    @media (max-width: 1074px) {
+      margin: 0 15px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 998px) {
+      margin: 0 20px;
+    }
+  }
+
+  @media (max-width: 998px) {
+    font-size: 22px;
+    height: 73px;
+  }
+}
+
+.FirstSectionContainer {
+  margin-top: 80px;
+  margin-bottom: 80px;
+
+  @media (max-width: 1024px) {
+    margin-top: 0px !important;
+  }
+
+  .theContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 1600px) {
+      margin: 0 45px;
+    }
+
+    @media (max-width: 1074px) {
+      margin: 0 15px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 998px) {
+      margin: 0 25px;
+    }
+
+    .right {
+      width: 50%;
+
+      @media (max-width: 1024px) {
+        order: inherit;
+        width: 50%;
+        margin-top: 30px;
+      }
+
+      @media (max-width: 998px) {
+        order: 1;
+        width: 100%;
+        margin-top: 0px;
+      }
+
+      h4 {
+        width: 75%;
+        margin: 5rem 0 2rem 0;
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 50px;
+        color: #222f43;
+
+        @media (max-width: 998px) {
+          width: 100%;
+          font-size: 28px;
+          line-height: 40px;
+        }
+      }
+
+      p {
+        width: 95%;
+        color: #222f43;
+        font-family: Poppins;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 30px;
+        letter-spacing: 0.36px;
+        margin-right: 25px;
+
+        @media (max-width: 998px) {
+          width: 100%;
+        }
+      }
+    }
+
+    .left {
+      width: 50%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 45rem;
+        margin-top: 5rem;
+        object-fit: cover;
+        object-position: left;
+      }
+
+      @media (max-width: 1024px) {
+        width: 50%;
+        height: 50rem;
+        position: relative;
+        overflow: hidden;
+        background-color: black;
+        margin-top: 100px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          position: relative;
+          top: 50%;
+          transform: translateY(-60%);
+        }
+      }
+
+      @media (max-width: 998px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        margin-top: 0;
+        background: none;
+
+        img {
+          width: 100%;
+          height: 20rem;
+          transform: none;
+        }
+      }
+    }
+  }
+}

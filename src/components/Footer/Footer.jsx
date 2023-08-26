@@ -1,11 +1,10 @@
 import icon4 from "../../assets/iconlinkedin.png";
 import icon3 from "../../assets/iconinsta.png";
 import "./footer.scss";
-
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { api_transacoes_footer, api_footer } from "../../api";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import APINavigation from "./../../api/navigation";
 
 function Footer() {

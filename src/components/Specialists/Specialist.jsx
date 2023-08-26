@@ -1,8 +1,5 @@
 import "./Specialist.scss";
 
-import emailicon from "../../assets/emailicon.svg";
-import linkedin from "../../assets/linkedinicon.svg";
-
 import React from "react";
 
 function Specialists({ partner }) {

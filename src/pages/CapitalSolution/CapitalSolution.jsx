@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import Banner from "../../assets/CapitalSolutionsBanner.png";
 
 import Slider from "react-slick";
 
@@ -22,16 +21,13 @@ import { useSelector } from "react-redux";
 import {
   api_capital_solution,
   api_contact,
-  api_partners,
   api_testmony,
   api_transactions,
-  api_news,
 } from "../../api";
 
 function CapitalSolution() {
   const [capitalSolution, setCapitalSolution] = useState({});
   const [transactions, setTransactions] = useState([]);
-  const [partners, setPartners] = useState([]);
   const [testimony, setTestimony] = useState([]);
 
   const [contacts, setContacts] = useState({});
@@ -44,12 +40,6 @@ function CapitalSolution() {
 
   const [statusMessage, setStatusMessage] = useState("");
 
-  const [news, setNews] = useState([]);
-  const [newsAll, setNewsAll] = useState([]);
-  const [highlight, setHighlight] = useState({});
-
-  const [filter, setFilter] = useState({});
-
   const [disabledSubmitButton, setDisabledSubmitButton] = useState(false);
 
   const locale = useSelector((state) => state.locales.locale);
@@ -59,74 +49,26 @@ function CapitalSolution() {
       .page({ locale })
       .then((response) => {
         setCapitalSolution(response.data.data.attributes);
+
+        chargeTransactions();
+
+        api_contact.page({ locale }).then((res) => {
+          setContacts(res.data.data.attributes);
+        });
+
+        api_testmony
+          .getByType({ locale, type: encodeURIComponent("Capital Solutions") })
+          .then((res) => {
+            setTestimony(res.data.data);
+          })
+          .catch(() => {
+            setTestimony([]);
+          });
       })
       .catch(() => {
         setCapitalSolution({});
       });
-
-    api_transactions.get({ locale, filter }).then((res) => {
-      const data = res.data.data;
-      const typeData = data.filter((element) => {
-        const servico = element.attributes?.servico?.data?.attributes?.name;
-        return servico == "Capital Solutions";
-      });
-      setTransactions(typeData);
-    });
-
-    api_partners
-      .get({ locale })
-      .then((res) => {
-        setPartners(res.data.data);
-      })
-      .catch(() => {
-        setPartners([]);
-      });
-
-    api_contact.page({ locale }).then((res) => {
-      setContacts(res.data.data.attributes);
-    });
-
-    api_testmony
-      .get({ locale })
-      .then((res) => {
-        const data = res.data.data;
-        const typeData = data.filter((e) => {
-          const servico = e.attributes?.type;
-          return servico == "Capital Solutions";
-        });
-        setTestimony(typeData);
-      })
-      .catch(() => {
-        setTestimony([]);
-      });
-
-    api_news
-      .page({ locale })
-      .then((res) => {
-        setPage(res.data.data.attributes);
-      })
-      .catch(() => {
-        alert.localeNotFound(locale);
-      });
-
-    api_news.highlights({ locale }).then((res) => {
-      if (res.data.data.length > 0) {
-        setHighlight(res.data.data && res.data.data[0] && res.data.data[0]);
-      }
-    });
-
-    api_news.get({ locale, count: 4 }).then((res) => {
-      if (res.data.data.length > 0) {
-        setNews(res.data.data);
-      }
-    });
-
-    api_news.get({ locale, count: 10 }).then((res) => {
-      if (res.data.data.length > 0) {
-        setNewsAll(res.data.data);
-      }
-    });
-  }, [locale, filter]);
+  }, [locale]);
 
   const handlerSubmit = (e) => {
     e.preventDefault();
@@ -169,6 +111,17 @@ function CapitalSolution() {
       .catch(() => {
         setStatusMessage(contacts && contacts.erro);
         setDisabledSubmitButton(false);
+      });
+  };
+
+  const chargeTransactions = () => {
+    api_transactions
+      .getByPriorityAndService({
+        locale,
+        service: encodeURIComponent("Capital Solutions"),
+      })
+      .then((res) => {
+        setTransactions(res.data.data);
       });
   };
 
@@ -592,7 +545,7 @@ function CapitalSolution() {
             <div className="left">
               <h3>
                 {(capitalSolution && capitalSolution.transaction) ||
-                  `nossas transações:`}
+                  `Nossas transações:`}
               </h3>
             </div>
             <div className="slicks">
@@ -607,14 +560,28 @@ function CapitalSolution() {
           <div className="bottom">
             <Slider ref={slider2} {...secondSlider}>
               {transactions &&
-                transactions.map((transaction) => (
-                  <a onClick={(e) => openModal(e, transaction)}>
-                    <CardCase
-                      key={transaction.id}
-                      image={`${transaction?.attributes?.image?.data?.attributes?.url}`}
-                    />
-                  </a>
-                ))}
+                transactions
+                  .sort((a, b) => {
+                    const priorityOrder = {
+                      "Muito alta": 1,
+                      Alta: 2,
+                      Normal: 3,
+                      Baixa: 4,
+                    };
+
+                    const priorityA = priorityOrder[a.attributes.priority];
+                    const priorityB = priorityOrder[b.attributes.priority];
+
+                    return priorityA - priorityB;
+                  })
+                  .map((transaction) => (
+                    <a onClick={(e) => openModal(e, transaction)}>
+                      <CardCase
+                        key={transaction.id}
+                        image={`${transaction?.attributes?.image?.data?.attributes?.url}`}
+                      />
+                    </a>
+                  ))}
             </Slider>
           </div>
 
@@ -640,8 +607,7 @@ function CapitalSolution() {
                   onRequestClose={closeModal}
                   style={customStyles}
                   contentLabel="Example Modal"
-                  key={transaction.id}
-                >
+                  key={transaction.id}>
                   <>
                     <div className="ContainerModal">
                       <div className="leftContainerModal">
@@ -662,8 +628,7 @@ function CapitalSolution() {
                         <button
                           style={customStyles.closeButtonModal}
                           className="closeButtonModal"
-                          onClick={closeModal}
-                        >
+                          onClick={closeModal}>
                           <img src={closeButton} alt="" />
                         </button>
                         <div className="DescriptionContainerModal">
@@ -681,74 +646,55 @@ function CapitalSolution() {
             <Slider ref={slider2Mobile} {...secondSlider}>
               {isMobile &&
                 transactions &&
-                transactions
-                  .sort((a, b) => {
-                    const priorityOrder = {
-                      "Muito alta": 1,
-                      Alta: 2,
-                      Normal: 3,
-                      Baixa: 4,
-                    };
-
-                    const priorityA = priorityOrder[a.attributes.priority];
-                    const priorityB = priorityOrder[b.attributes.priority];
-
-                    return priorityA - priorityB;
-                  })
-                  .map((transaction) => (
-                    <>
-                      <div
-                        onClick={(e) => openModal(e, transaction)}
-                        key={transaction.id}
-                      >
-                        <CardCase
-                          image={
-                            transaction.attributes.image.data.attributes.url
-                          }
-                          key={transaction.index}
-                        />
-                      </div>
-                      <Modal
-                        isOpen={selectedTransaction === transaction.id}
-                        onRequestClose={closeModal}
-                        style={customMobileStyles}
-                        contentLabel="Example Modal"
-                        key={transaction.id}
-                      >
-                        <div className="ContainerModalMobile">
-                          <div className="rightContainerModal">
-                            <button
-                              style={customStyles.closeButtonModal}
-                              className="closeButtonModal"
-                              onClick={closeModal}
-                            >
-                              <img src={closeButton} alt="" />
-                            </button>
-                            <div className="DescriptionContainerModal">
-                              <p className="Description">
-                                <div className="Img">
-                                  <div className="cardSocial-container">
-                                    <img
-                                      className="CardSocialImg"
-                                      src={
-                                        transaction.attributes.image.data
-                                          .attributes.url
-                                      }
-                                      alt="Logo"
-                                    />
-                                  </div>
+                transactions.map((transaction) => (
+                  <>
+                    <div
+                      onClick={(e) => openModal(e, transaction)}
+                      key={transaction.id}>
+                      <CardCase
+                        image={transaction.attributes.image.data.attributes.url}
+                        key={transaction.index}
+                      />
+                    </div>
+                    <Modal
+                      isOpen={selectedTransaction === transaction.id}
+                      onRequestClose={closeModal}
+                      style={customMobileStyles}
+                      contentLabel="Example Modal"
+                      key={transaction.id}>
+                      <div className="ContainerModalMobile">
+                        <div className="rightContainerModal">
+                          <button
+                            style={customStyles.closeButtonModal}
+                            className="closeButtonModal"
+                            onClick={closeModal}>
+                            <img src={closeButton} alt="" />
+                          </button>
+                          <div className="DescriptionContainerModal">
+                            <p className="Description">
+                              <div className="Img">
+                                <div className="cardSocial-container">
+                                  <img
+                                    className="CardSocialImg"
+                                    src={
+                                      transaction.attributes.image.data
+                                        .attributes.url
+                                    }
+                                    alt="Logo"
+                                  />
                                 </div>
-                                <h2 className="titleModal">
-                                  {transaction.attributes.name}
-                                </h2>
-                                {transaction.attributes.description}
-                              </p>
-                            </div>
+                              </div>
+                              <h2 className="titleModal">
+                                {transaction.attributes.name}
+                              </h2>
+                              {transaction.attributes.description}
+                            </p>
                           </div>
                         </div>
-                      </Modal>
-                    </>
-                  ))}
+                      </div>
+                    </Modal>
+                  </>
+                ))}
             </Slider>
           </div>
         </div>
@@ -780,8 +726,10 @@ function CapitalSolution() {
                       Baixa: 4,
                     };
 
-                    const priorityA = priorityOrder[a.attributes.priority];
-                    const priorityB = priorityOrder[b.attributes.priority];
+                    const priorityA =
+                      priorityOrder[a.attributes.priority ?? "Muito alta"];
+                    const priorityB =
+                      priorityOrder[b.attributes.priority ?? "Muito alta"];
 
                     return priorityA - priorityB;
                   })
@@ -804,8 +752,10 @@ function CapitalSolution() {
                       Baixa: 4,
                     };
 
-                    const priorityA = priorityOrder[a.attributes.priority];
-                    const priorityB = priorityOrder[b.attributes.priority];
+                    const priorityA =
+                      priorityOrder[a.attributes.priority ?? "Muito alta"];
+                    const priorityB =
+                      priorityOrder[b.attributes.priority ?? "Muito alta"];
 
                     return priorityA - priorityB;
                   })
@@ -829,8 +779,7 @@ function CapitalSolution() {
             <p
               dangerouslySetInnerHTML={{
                 __html: contacts && contacts.description,
-              }}
-            ></p>
+              }}></p>
           </div>
           <div className="form">
             <form action="">
@@ -890,8 +839,7 @@ function CapitalSolution() {
               <div className="buttonForm">
                 <button
                   onClick={(e) => handlerSubmit(e)}
-                  disabled={disabledSubmitButton}
-                >
+                  disabled={disabledSubmitButton}>
                   {contacts && contacts.button && contacts.button.label}
                 </button>
               </div>

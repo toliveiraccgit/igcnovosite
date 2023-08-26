@@ -1,8 +1,6 @@
 import React from "react";
 import "./NewsCard.scss";
 
-import config from "../../config/env";
-
 function NewsCard({ data, id }) {
   return (
     <div className="newsCardContainer">
