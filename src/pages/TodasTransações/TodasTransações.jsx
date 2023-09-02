@@ -36,6 +36,7 @@ function TodasTransações() {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getTransactionPage({ locale })
       .then((res) => {
         const data = res.data.data.attributes;
@@ -143,7 +144,7 @@ function TodasTransações() {
       {banner && banner.url && (
         <div className="bannerContainer">
           <img src={`${banner && banner.url}`} alt="Banner" />
-          <div className="bannerText">
+          <div className="theContainer">
             <h3>{banner && banner.title}</h3>
             <p>{banner && banner.description}</p>
           </div>
@@ -164,7 +165,8 @@ function TodasTransações() {
                   {transactionSpecialties.map((specialtie) => (
                     <option
                       key={specialtie.attributes.name}
-                      value={specialtie.attributes.name}>
+                      value={specialtie.attributes.name}
+                    >
                       {specialtie.attributes.name}
                     </option>
                   ))}
@@ -189,7 +191,8 @@ function TodasTransações() {
                 {transactions.map((transaction) => (
                   <a
                     style={{ cursor: "pointer", marginBottom: 20 }}
-                    onClick={(e) => openModal(e, transaction)}>
+                    onClick={(e) => openModal(e, transaction)}
+                  >
                     <CardCase
                       key={transaction.id}
                       image={`${transaction.attributes.image.data.attributes.url}`}
@@ -206,7 +209,8 @@ function TodasTransações() {
                     onRequestClose={closeModal}
                     style={customStyles}
                     contentLabel="Example Modal"
-                    key={transaction.id}>
+                    key={transaction.id}
+                  >
                     <>
                       <div className="ContainerModal">
                         <div className="leftContainerModal">
@@ -227,7 +231,8 @@ function TodasTransações() {
                           <button
                             style={customStyles.closeButtonModal}
                             className="closeButtonModal"
-                            onClick={closeModal}>
+                            onClick={closeModal}
+                          >
                             <img src={closeButton} alt="" />
                           </button>
                           <div className="DescriptionContainerModal">
@@ -248,7 +253,8 @@ function TodasTransações() {
                     <>
                       <a
                         style={{ cursor: "pointer", marginBottom: 20 }}
-                        onClick={(e) => openModal(e, transaction)}>
+                        onClick={(e) => openModal(e, transaction)}
+                      >
                         <CardCase
                           key={transaction.id}
                           image={`${transaction.attributes.image.data.attributes.url}`}
@@ -259,13 +265,15 @@ function TodasTransações() {
                         onRequestClose={closeModal}
                         style={customMobileStyles}
                         contentLabel="Example Modal"
-                        key={transaction.id}>
+                        key={transaction.id}
+                      >
                         <div className="ContainerModalMobile">
                           <div className="rightContainerModal">
                             <button
                               style={customStyles.closeButtonModal}
                               className="closeButtonModal"
-                              onClick={closeModal}>
+                              onClick={closeModal}
+                            >
                               <img src={closeButton} alt="" />
                             </button>
                             <div className="DescriptionContainerModal">

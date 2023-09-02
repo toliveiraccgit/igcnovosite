@@ -58,6 +58,7 @@ function Services() {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api_services
       .page({ locale })
       .then((res) => {

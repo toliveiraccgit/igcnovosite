@@ -79,6 +79,7 @@ function TransaçõesSetor() {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api_transacoes
       .getBanner({ locale })
       .then((res) => {
@@ -278,9 +279,9 @@ function TransaçõesSetor() {
       {banner && banner?.url && (
         <div className="bannerContainer">
           <img src={`${banner.url}`} alt="Banner" />
-          <div className="bannerText">
-            <h3>{banner.title}</h3>
-            <p>{banner.description}</p>
+          <div className="theContainer">
+            <h3>{banner && banner.title}</h3>
+            <p>{banner && banner.description}</p>
           </div>
         </div>
       )}
@@ -333,7 +334,8 @@ function TransaçõesSetor() {
                       .map((item, index) => (
                         <a
                           style={{ cursor: "pointer", marginBottom: 20 }}
-                          onClick={(e) => openModal(e, item)}>
+                          onClick={(e) => openModal(e, item)}
+                        >
                           <CardCase
                             key={index}
                             image={`${item.attributes.image.data.attributes.url}`}
@@ -354,7 +356,8 @@ function TransaçõesSetor() {
                     onRequestClose={closeModal}
                     style={customStyles}
                     contentLabel="Example Modal"
-                    key={item.id}>
+                    key={item.id}
+                  >
                     <>
                       <div className="ContainerModal">
                         <div className="leftContainerModal">
@@ -371,7 +374,8 @@ function TransaçõesSetor() {
                           <button
                             style={customStyles.closeButtonModal}
                             className="closeButtonModal"
-                            onClick={closeModal}>
+                            onClick={closeModal}
+                          >
                             <img src={closeButton} alt="" />
                           </button>
                           <div className="DescriptionContainerModal">
@@ -417,13 +421,15 @@ function TransaçõesSetor() {
                           onRequestClose={closeModal}
                           style={customMobileStyles}
                           contentLabel="Example Modal"
-                          key={item.id}>
+                          key={item.id}
+                        >
                           <div className="ContainerModalMobile">
                             <div className="rightContainerModal">
                               <button
                                 style={customStyles.closeButtonModal}
                                 className="closeButtonModal"
-                                onClick={closeModal}>
+                                onClick={closeModal}
+                              >
                                 <img src={closeButton} alt="" />
                               </button>
                               <div className="DescriptionContainerModal">

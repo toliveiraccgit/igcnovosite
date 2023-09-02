@@ -45,6 +45,7 @@ function CapitalSolution() {
   const locale = useSelector((state) => state.locales.locale);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api_capital_solution
       .page({ locale })
       .then((response) => {
@@ -607,7 +608,8 @@ function CapitalSolution() {
                   onRequestClose={closeModal}
                   style={customStyles}
                   contentLabel="Example Modal"
-                  key={transaction.id}>
+                  key={transaction.id}
+                >
                   <>
                     <div className="ContainerModal">
                       <div className="leftContainerModal">
@@ -628,7 +630,8 @@ function CapitalSolution() {
                         <button
                           style={customStyles.closeButtonModal}
                           className="closeButtonModal"
-                          onClick={closeModal}>
+                          onClick={closeModal}
+                        >
                           <img src={closeButton} alt="" />
                         </button>
                         <div className="DescriptionContainerModal">
@@ -650,7 +653,8 @@ function CapitalSolution() {
                   <>
                     <div
                       onClick={(e) => openModal(e, transaction)}
-                      key={transaction.id}>
+                      key={transaction.id}
+                    >
                       <CardCase
                         image={transaction.attributes.image.data.attributes.url}
                         key={transaction.index}
@@ -661,13 +665,15 @@ function CapitalSolution() {
                       onRequestClose={closeModal}
                       style={customMobileStyles}
                       contentLabel="Example Modal"
-                      key={transaction.id}>
+                      key={transaction.id}
+                    >
                       <div className="ContainerModalMobile">
                         <div className="rightContainerModal">
                           <button
                             style={customStyles.closeButtonModal}
                             className="closeButtonModal"
-                            onClick={closeModal}>
+                            onClick={closeModal}
+                          >
                             <img src={closeButton} alt="" />
                           </button>
                           <div className="DescriptionContainerModal">
@@ -779,7 +785,8 @@ function CapitalSolution() {
             <p
               dangerouslySetInnerHTML={{
                 __html: contacts && contacts.description,
-              }}></p>
+              }}
+            ></p>
           </div>
           <div className="form">
             <form action="">
@@ -839,7 +846,8 @@ function CapitalSolution() {
               <div className="buttonForm">
                 <button
                   onClick={(e) => handlerSubmit(e)}
-                  disabled={disabledSubmitButton}>
+                  disabled={disabledSubmitButton}
+                >
                   {contacts && contacts.button && contacts.button.label}
                 </button>
               </div>

@@ -20,6 +20,7 @@ function SomosUnicos() {
   const [showGlobalAtuation, setShowGlobalAtuation] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api_unique
       .getBasic({ locale })
       .then((response) => {

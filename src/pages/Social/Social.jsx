@@ -15,6 +15,7 @@ function Social() {
   const [social, setSocial] = useState({});
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api_social
       .page({ locale })
       .then((res) => {
@@ -96,7 +97,8 @@ function Social() {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal">
+        contentLabel="Example Modal"
+      >
         <div className="ContainerModal">
           <div className="leftContainerModal">
             <Cards

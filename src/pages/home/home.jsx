@@ -51,6 +51,7 @@ function home() {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api_home.get({ locale }).then((res) => {
       setBanners(res.data.data.attributes.banner);
       setServicesTitle(res.data.data.attributes.services);

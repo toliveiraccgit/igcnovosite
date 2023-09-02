@@ -24,6 +24,7 @@ function FaleConosco() {
   const [disabledSubmitButton, setDisabledSubmitButton] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api_contact
       .page({ locale })
       .then((response) => {
@@ -104,7 +105,8 @@ function FaleConosco() {
               <select
                 className="partner"
                 onChange={(e) => setFormPartner(e.target.value)}
-                value={formPartner || ""}>
+                value={formPartner || ""}
+              >
                 {!formPartner && (
                   <option value="" selected disabled>
                     {pageContact.socios_label}
@@ -175,7 +177,8 @@ function FaleConosco() {
                 <div className="buttonForm">
                   <button
                     disabled={disabledSubmitButton}
-                    onClick={(e) => handlerSubmit(e)}>
+                    onClick={(e) => handlerSubmit(e)}
+                  >
                     {pageContact &&
                       pageContact.button &&
                       pageContact.button.label}

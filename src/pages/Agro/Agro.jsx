@@ -372,7 +372,8 @@ function Agro() {
                       .map((item, index) => (
                         <a
                           style={{ cursor: "pointer", marginBottom: 20 }}
-                          onClick={(e) => openModal(e, item)}>
+                          onClick={(e) => openModal(e, item)}
+                        >
                           <CardCase
                             key={index}
                             image={`${item.attributes.image.data.attributes.url}`}
@@ -393,7 +394,8 @@ function Agro() {
                     onRequestClose={closeModal}
                     style={customStyles}
                     contentLabel="Example Modal"
-                    key={item.id}>
+                    key={item.id}
+                  >
                     <>
                       <div className="ContainerModal">
                         <div className="leftContainerModal">
@@ -410,7 +412,8 @@ function Agro() {
                           <button
                             style={customStyles.closeButtonModal}
                             className="closeButtonModal"
-                            onClick={closeModal}>
+                            onClick={closeModal}
+                          >
                             <img src={closeButton} alt="" />
                           </button>
                           <div className="DescriptionContainerModal">
@@ -454,13 +457,15 @@ function Agro() {
                           onRequestClose={closeModal}
                           style={customMobileStyles}
                           contentLabel="Example Modal"
-                          key={item.id}>
+                          key={item.id}
+                        >
                           <div className="ContainerModalMobile">
                             <div className="rightContainerModal">
                               <button
                                 style={customStyles.closeButtonModal}
                                 className="closeButtonModal"
-                                onClick={closeModal}>
+                                onClick={closeModal}
+                              >
                                 <img src={closeButton} alt="" />
                               </button>
                               <div className="DescriptionContainerModal">

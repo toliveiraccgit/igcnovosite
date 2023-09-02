@@ -74,6 +74,7 @@ function QuemSomos() {
   }, [locale]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     // Time to wait first image
     setTimeout(() => {
       setShowPrinciples(true);

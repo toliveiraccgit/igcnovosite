@@ -1,68 +1,50 @@
 .AgroContainer {
   .bannerContainer {
+    position: relative;
     overflow-x: hidden;
     overflow-y: hidden;
-    height: 18rem;
 
     @media (max-width: 600px) {
       width: 100%;
     }
 
     img {
-      position: relative;
-      transform: translateY(-50%);
+      // position: relative;
+      width: 99.99%;
+      height: 475px;
       filter: brightness(50%);
+    }
 
-      @media (max-width: 1024px) {
-        transform: translateY(-40%);
-      }
+    .theContainer {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+    }
+
+    p {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 30px;
+      text-transform: lowercase;
+      color: #ffffff;
 
       @media (max-width: 600px) {
-        transform: translateY(0);
+        font-size: 16px;
+        line-height: 24px;
       }
     }
 
-    .bannerText {
-      position: absolute;
-      height: 0;
-      top: 32.5%;
-      transform: translateY(-50%);
-      left: 0;
-      margin: 0px 20px;
-
-      @media (max-width: 1000px) {
-        top: 15%;
-      }
+    h3 {
+      font-weight: 600;
+      font-size: 36px;
+      text-transform: lowercase;
+      color: #ffffff;
+      width: 90%;
 
       @media (max-width: 600px) {
-        top: 17.5%;
-      }
-
-      p {
-        font-weight: 600;
-        font-size: 20px;
         line-height: 30px;
-        text-transform: lowercase;
-        color: #ffffff;
-
-        @media (max-width: 600px) {
-          font-size: 16px;
-          line-height: 24px;
-        }
-      }
-
-      h3 {
-        font-weight: 600;
-        font-size: 36px;
-        text-transform: lowercase;
-        color: #ffffff;
-        width: 90%;
-
-        @media (max-width: 600px) {
-          line-height: 30px;
-          font-size: 22px;
-          width: 100%;
-        }
+        font-size: 22px;
       }
     }
   }

@@ -25,6 +25,7 @@ function Notícias() {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api_news
       .page({ locale })
       .then((res) => {
@@ -69,9 +70,8 @@ function Notícias() {
           <div className="leftContainer">
             <div
               className="bannerContainer"
-              onClick={() =>
-                navigate(`/noticias/${highlight && highlight.id}`)
-              }>
+              onClick={() => navigate(`/noticias/${highlight && highlight.id}`)}
+            >
               <div className="bannerNewsContainer">
                 <img
                   className="bannerNews"
@@ -111,7 +111,8 @@ function Notícias() {
                       highlight &&
                       highlight.attributes &&
                       highlight.attributes.description,
-                  }}></div>
+                  }}
+                ></div>
               </p>
               <a href={`/noticias/${highlight.id}`}>{page.full_news}</a>
             </div>
@@ -137,9 +138,11 @@ function Notícias() {
               ))}
         </div>
         <div className="moreNews">
-          <button onClick={handleLoadMore}>
-            {page && page.load_more} <img src={rightArrow} alt="" />{" "}
-          </button>
+          {displayCount < newsAll.length && (
+            <button onClick={handleLoadMore}>
+              {page && page.load_more} <img src={rightArrow} alt="" />{" "}
+            </button>
+          )}
         </div>
       </div>
     </div>

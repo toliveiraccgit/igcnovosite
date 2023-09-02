@@ -34,6 +34,7 @@
         font-size: 22px;
       }
     }
+
     .theContainer {
       position: absolute;
       top: 50%;
@@ -330,7 +331,8 @@
 
           @media (max-width: 1280px) {
             .card {
-              width: 220px;
+              width: 320px;
+              height: 300px;
             }
           }
 
@@ -1133,6 +1135,13 @@
         padding-right: 13px;
       }
     }
+  }
+  .closeButtonModal {
+    top: 20px;
+    right: 20px;
+    position: absolute;
+    border: none;
+    background: transparent;
   }
 }
 

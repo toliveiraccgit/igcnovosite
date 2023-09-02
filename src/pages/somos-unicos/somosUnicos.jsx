@@ -68,6 +68,7 @@ export default function somosUnicos() {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api_about_us
       .page({ locale })
       .then((response) => {

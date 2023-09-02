@@ -23,10 +23,10 @@ function Video({ video }) {
           <OverlayTrigger
             placement="top"
             delay={{ show: 250, hide: 400 }}
-            overlay={renderTooltip}>
+            overlay={renderTooltip}
+          >
             <video
               controls
-              autoPlay
               muted
               playsInline
               loop

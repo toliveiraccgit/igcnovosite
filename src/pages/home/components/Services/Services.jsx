@@ -32,7 +32,8 @@ function Services({ servicesTitle }) {
                   : index === 1
                   ? "lineSecond"
                   : "lineThrd"
-              }>
+              }
+            >
               {index !== 1 && (
                 <img
                   className="banner"

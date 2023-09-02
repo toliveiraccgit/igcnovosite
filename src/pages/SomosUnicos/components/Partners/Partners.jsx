@@ -118,13 +118,15 @@ function Partners() {
                 <select
                   onChange={(e) => {
                     handleFilterChange(e.target.value);
-                  }}>
+                  }}
+                >
                   <option value="Todos">Todos</option>
                   {groups &&
                     groups.map((group) => (
                       <option
                         key={group.attributes.name}
-                        value={group.attributes.name}>
+                        value={group.attributes.name}
+                      >
                         {group.attributes.name}
                       </option>
                     ))}

@@ -59,6 +59,7 @@ function MeA() {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api_services
       .page({ locale })
       .then((res) => {
@@ -80,11 +81,27 @@ function MeA() {
         api_transactions
           .getByPriorityAndService({
             locale,
-            priority: encodeURIComponent("Muito alta"),
+            // priority: encodeURIComponent("Muito alta"),
             service: encodeURIComponent("M&A"),
           })
           .then((res) => {
-            setTransactions(res.data.data);
+            const resTransactions = res.data.data;
+
+            const priorityOrder = {
+              "Muito alta": 1,
+              Alta: 2,
+              Normal: 3,
+              Baixa: 4,
+            };
+
+            resTransactions.sort((a, b) => {
+              const priorityA = priorityOrder[a.attributes.priority] || 999;
+              const priorityB = priorityOrder[b.attributes.priority] || 999;
+
+              return priorityA - priorityB;
+            });
+
+            setTransactions(resTransactions);
           });
 
         api_contact.page({ locale }).then((res) => {
@@ -570,7 +587,8 @@ function MeA() {
                     transactionSpecialties.map((specialtie) => (
                       <option
                         key={specialtie.attributes.name}
-                        value={specialtie.attributes.name}>
+                        value={specialtie.attributes.name}
+                      >
                         {specialtie.attributes.name}
                       </option>
                     ))}
@@ -603,7 +621,8 @@ function MeA() {
                       onRequestClose={closeModal}
                       style={customStyles}
                       contentLabel="Example Modal"
-                      key={transaction.id}>
+                      key={transaction.id}
+                    >
                       <>
                         <div className="ContainerModal">
                           <div className="leftContainerModal">
@@ -625,7 +644,8 @@ function MeA() {
                             <button
                               style={customStyles.closeButtonModal}
                               className="closeButtonModal"
-                              onClick={closeModal}>
+                              onClick={closeModal}
+                            >
                               <img src={closeButton} alt="" />
                             </button>
                             <div className="DescriptionContainerModal">
@@ -654,13 +674,15 @@ function MeA() {
                       onRequestClose={closeModal}
                       style={customMobileStyles}
                       contentLabel="Example Modal"
-                      key={transaction.id}>
+                      key={transaction.id}
+                    >
                       <div className="ContainerModalMobile">
                         <div className="rightContainerModal">
                           <button
                             style={customStyles.closeButtonModal}
                             className="closeButtonModal"
-                            onClick={closeModal}>
+                            onClick={closeModal}
+                          >
                             <img src={closeButton} alt="" />
                           </button>
                           <div className="DescriptionContainerModal">
@@ -772,7 +794,8 @@ function MeA() {
             <p
               dangerouslySetInnerHTML={{
                 __html: contacts && contacts.description,
-              }}></p>
+              }}
+            ></p>
           </div>
           <div className="form">
             <form action="">
@@ -830,7 +853,8 @@ function MeA() {
               <div className="buttonForm">
                 <button
                   disabled={disabledSubmitButton}
-                  onClick={(e) => handlerSubmit(e)}>
+                  onClick={(e) => handlerSubmit(e)}
+                >
                   {contacts && contacts.button && contacts.button.label}
                 </button>
               </div>

@@ -24,6 +24,7 @@ function NotíciaSelecionada() {
   const [news, setNews] = useState({});
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api_news
       .page({ locale })
       .then((res) => {
@@ -82,14 +83,16 @@ function NotíciaSelecionada() {
                 className="description"
                 dangerouslySetInnerHTML={{
                   __html: news && news.description,
-                }}></p>
+                }}
+              ></p>
 
               <div className="iconsArea">
                 <ul>
                   <li>
                     <a
                       href="https://www.instagram.com/igcpartners_/"
-                      target="blank">
+                      target="blank"
+                    >
                       <img src={icon3} />
                     </a>
                   </li>
@@ -97,7 +100,8 @@ function NotíciaSelecionada() {
                   <li>
                     <a
                       href="https://www.linkedin.com/company/igc-partners/"
-                      target="blank">
+                      target="blank"
+                    >
                       <img src={icon4} />
                     </a>
                   </li>

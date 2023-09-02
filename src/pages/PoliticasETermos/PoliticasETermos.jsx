@@ -10,6 +10,7 @@ function PoliticasETermos() {
   const [sections, setSections] = useState([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api_policies
       .page({ locale })
       .then((res) => {
